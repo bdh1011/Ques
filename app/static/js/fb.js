@@ -1,4 +1,7 @@
-  // This is called with the results from from FB.getLoginStatus().
+  window.onload = function() {
+    // all of your code goes in here
+    // it runs after the DOM is built
+// This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -76,3 +79,4 @@
     });
   }
 
+}
