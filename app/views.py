@@ -11,3 +11,7 @@ def main():
 @app.route('/join')
 def join():
 	return render_template("join.html")
+
+@app.route('/home')
+def home():
+	return render_template('home.html')
