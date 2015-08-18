@@ -8,3 +8,6 @@ import sys
 def main():
 	return render_template("main.html")
 
+@app.route('/join')
+def join():
+	return render_template("join.html")
