@@ -1,7 +1,32 @@
-  window.onload = function() {
+  
     // all of your code goes in here
     // it runs after the DOM is built
 // This is called with the results from from FB.getLoginStatus().
+
+function fb_login(){
+  FB.login(function(response){
+
+        if (response.authResponse) {
+            console.log('Welcome!  Fetching your information.... ');
+            //console.log(response); // dump complete info
+            access_token = response.authResponse.accessToken; //get access token
+            user_id = response.authResponse.userID; //get FB UID
+
+            FB.api('/me', function(response) {
+                user_email = response.email; //get user email
+          // you can store this data into your database             
+            });
+
+        } else {
+            //user hit cancel button
+            console.log('User cancelled login or did not fully authorize.');
+
+        }
+    }, {
+        scope: 'email, public_profile, user_friends'
+    });
+}
+
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -14,12 +39,12 @@
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
+      document.getElementById('fb-status').innerHTML = 'Please log ' +
         'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
+      document.getElementById('fb-status').innerHTML = 'Please log ' +
         'into Facebook.';
     }
   }
@@ -39,7 +64,7 @@
       xfbml      : true,
       version    : 'v2.4'
     });
-    
+
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
@@ -74,10 +99,8 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-        window.navigate(”home”);
+      document.getElementById('fb-status').innerHTML =
+        response.name + '으로 로그인하기!';
+        window.location = "/home";
     });
   }
-
-}
