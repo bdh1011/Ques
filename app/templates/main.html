@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>큐스 | 당신의 모든 설문조사</title>
+	<link href="../static/css/style.css" rel="stylesheet">
+	<script src="../static/js/fb.js"></script>
+</head>
+
+<body class="intro">
+	<div id="contents">
+		<div class="bg"></div>
+		<div class="bg-alpha"></div>
+		<div class="content" style="background-image: url({{url_for('static', filename='img/main_bg.jpeg')}}); background-size:100%">
+			<div class="bg-alpha inner"></div>
+			<div class="content-wrapper">
+	          <img class="logo" src="{{url_for('static',filename='img/QUES_logo.png')}}"><br><br>
+	          <img src="{{url_for('static',filename='img/main_slogan.png')}}" alt="오늘 영화도 부탁해!"><br><br>
+	          <span class="service-msg">큐스는 세상의 모든 설문조사라는 서비스입니다.</span>
+	          <span class="login">이미 큐스 회원이신가요?&nbsp;&nbsp;<a href="/login">로그인</a></span><br><br>
+	          <div class="buttons-wrapper">
+	            <div class="fb-join" onclick="checkLoginState();return false;">
+	              <a href="javascript:void(0);return false;">
+	                <div class="fb-join-image"><img src="https://d12hfz37g51hrt.cloudfront.net/assets/intro/intro_btn_fb-be965df1261cacccc62891c1759f853a.png"></div>
+	                <div class="fb-join-text">페이스북으로 1초만에 가입</div>
+	              </a>
+	            </div>
+	            <br>
+	            <div class="mail-join" onclick="document.location.href='/join';">
+	              <a href="javascript:void(0);return false;">
+	                <div class="mail-join-image"><img src="https://d12hfz37g51hrt.cloudfront.net/assets/intro/intro_btn_email-0599493e255987e3bbac2b3fe8fbc6a4.png"></div>
+	                <div class="mail-join-text">이메일로 10초만에 가입</div>
+	              </a>
+	            </div>
+	          </div>
+        </div>
+		</div>
+		<div class="left-bottom">
+	        <a href="http://frograms.com" target="_blank" class="frograms"><img src="{{url_for('static',filename='img/QUES_txt.png')}}" style="width:100px; margin-bottom:-10px"></a>
+	        <img src="https://d12hfz37g51hrt.cloudfront.net/assets/intro/intro_icon_star-3a0a4994cdd77d92aa83afae0ae9bbeb.png"><span class="rating-count">0개의 설문이 있습니다.</span>
+      	</div>
+
+	</div>
+
+
+</body>
+
+</html>
