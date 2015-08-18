@@ -105,6 +105,9 @@ td {
     font-weight: normal;
     vertical-align: middle
 }
+html span {
+    font-family: 'Apple SD Gothic Neo', '나눔고딕', NanumGothic, '맑은 고딕', 'Malgun Gothic', '돋움', dotum, '굴림', gulim, applegothic, sans-serif;
+}
 q,
 blockquote {
     quotes: none
@@ -385,3 +388,270 @@ body.intro .app-store {
     margin-right: 5px
 }
 
+
+#contents .login_background{
+    background: url(../img/login_bg.JPG);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+}
+
+#simple_logo_header {
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    margin-top: 30px;
+}
+
+#simple_logo_header .logo_container {
+    width:100%;
+    margin: 0 auto;
+}
+
+
+.movable {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.movable .table_center {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.ham_box {
+    position: relative;
+    margin: 0 auto;
+    width: 300px;
+}
+
+
+.ham_box .title {
+    -moz-border-radius-topleft: 7px;
+    -webkit-border-top-left-radius: 7px;
+    border-top-left-radius: 7px;
+    -moz-border-radius-topright: 7px;
+    -webkit-border-top-right-radius: 7px;
+    border-top-right-radius: 7px;
+    height: 16px;
+    text-align: center;
+    border: solid 1px #fff;
+    padding: 16px 0;
+    line-height: 16px;
+    background-color: white;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    cursor: default;
+}
+
+.ham_box .no_top_radius {
+    -moz-border-radius-topleft: 0;
+    -webkit-border-top-left-radius: 0;
+    border-top-left-radius: 0;
+    -moz-border-radius-topright: 0;
+    -webkit-border-top-right-radius: 0;
+    border-top-right-radius: 0;
+    padding: 20px 30px 20px 30px;
+}
+
+
+.ham_box .content_ham {
+    padding: 20px 30px 20px 30px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    background-color: #eeeeee;
+}
+
+
+.ham_box .content_ham .input_form {
+    width: 240px;
+}
+
+.ham_box .content_ham .input_form .box_wrapper {
+    height: 40px;
+    position: relative;
+    border: solid 1px #dddddd;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.ham_box .content_ham .input_form .box_wrapper .joinbox {
+    background-color: white;
+    display: block;
+    padding: 23px 0 13px 10px;
+    margin: 0;
+    height: 22px;
+    font-size: 14px;
+    text-shadow: 0px 1px #fff;
+    border: 0 none;
+    width: 237px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    color: #555;
+}
+
+
+.ham_box .content_ham .input_form .box_wrapper label {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+
+.ham_box .content_ham .input_form .box_wrapper .validation_check {
+    position: absolute;
+    background-image: url(https://d12hfz37g51hrt.cloudfront.net/assets/join_login/join_check_off-cb912e33dae28ea1f6f65b147959ed11.png);
+    width: 16px;
+    height: 12px;
+    top: 17px;
+    right: 9px;
+}
+
+.ham_box .content_ham .btn_join.disable, .ham_box .content_ham .btn_login.disable {
+    cursor: default;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff8400), color-stop(100%, #ff7400));
+    background: -webkit-linear-gradient(#ff8400,#ff7400);
+    background: -moz-linear-gradient(#ff8400,#ff7400);
+    background: -o-linear-gradient(#ff8400,#ff7400);
+    -pie-background: linear-gradient(#ff8400,#ff7400);
+    background: linear-gradient(#ff8400,#ff7400);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8400', endColorstr='#ff7400');
+    border: solid 1px #ff7400;
+}
+
+
+
+.ham_box .content_ham .btn_join, .ham_box .content_ham .btn_login {
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff8400), color-stop(100%, #ff7400));
+    background: -webkit-linear-gradient(#ff8400,#ff7400);
+    background: -moz-linear-gradient(#ff8400,#ff7400);
+    background: -o-linear-gradient(#ff8400,#ff7400);
+    -pie-background: linear-gradient(#ff8400,#ff7400);
+    background: linear-gradient(#ff8400,#ff7400);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8400', endColorstr='#ff7400');
+    border: solid 1px #ff7400;
+}
+
+
+.ham_box .content_ham .btn_fb_join, .ham_box .content_ham .btn_join, .ham_box .content_ham .btn_login {
+    display: block;
+    text-decoration: none;
+    text-indent: 40px;
+    float: left;
+    width: 238px;
+    height: 58px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 58px;
+    text-indent: 59px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    -ms-transition: all 0.5s;
+
+
+}
+
+.ham_box .content_ham .btn_join.disable .email_fake_btn, .ham_box .content_ham .btn_login.disable .email_fake_btn {
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff7000), color-stop(100%, #ff6000));
+    background: -webkit-linear-gradient(#ff7000,#ff6000);
+    background: -moz-linear-gradient(#ff7000,#ff6000);
+    background: -o-linear-gradient(#ff7000,#ff6000);
+    -pie-background: linear-gradient(#ff7000,#ff6000);
+    background: linear-gradient(#ff7000,#ff6000);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7000', endColorstr='#ff6000');
+}
+
+
+.ham_box .content_ham .btn_join .email_fake_btn, .ham_box .content_ham .btn_login .email_fake_btn {
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff7000), color-stop(100%, #ff6000));
+    background: -webkit-linear-gradient(#ff7000,#ff6000);
+    background: -moz-linear-gradient(#ff7000,#ff6000);
+    background: -o-linear-gradient(#ff7000,#ff6000);
+    -pie-background: linear-gradient(#ff7000,#ff6000);
+    background: linear-gradient(#ff7000,#ff6000);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7000', endColorstr='#ff6000');
+}
+
+.ham_box .content_ham .btn_fb_join .facebook_fake_btn, .ham_box .content_ham .btn_fb_join .email_fake_btn, .ham_box .content_ham .btn_join .facebook_fake_btn, .ham_box .content_ham .btn_join .email_fake_btn, .ham_box .content_ham .btn_login .facebook_fake_btn, .ham_box .content_ham .btn_login .email_fake_btn {
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 59px;
+    height: 100%;
+    margin-top: -58px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    -ms-transition: all 0.5s;
+}
+
+
+.ham_box .content_ham .comment_top {
+    cursor: default;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 13px;
+    color: #aaa;
+}
+
+.ham_box .content_ham .comment_top a {
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #aaa;
+}
+
+.box_wrapper .radio_title{
+    background-color: white;
+    display: inline-block;
+    padding: 18px 0 0px 10px;
+    margin: 0;
+    height: 20px;
+    font-size: 14px;
+    text-shadow: 0px 1px #fff;
+    border: 0 none;
+    width: 30px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    color: #555;
+}
+
+.box_wrapper .radio_option{
+    padding-right:1px;
+    padding-left:1px;
+    color: #555;
+    text-shadow: 0px 1px #fff;
+    font-size:12px;
+    
+}
