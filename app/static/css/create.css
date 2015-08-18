@@ -1,0 +1,345 @@
+::-webkit-input-placeholder {
+    color: #6B7570;
+}
+:-moz-placeholder {
+   color: #6B7570;
+   opacity:  1;
+}
+::-moz-placeholder {
+   color: #6B7570;
+   opacity:  1;
+}
+:-ms-input-placeholder {
+   color: #6B7570;
+}
+
+html{
+	  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+
+html, body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+div{
+	-webkit-box-sizing: border-box; 
+ 	-moz-box-sizing: border-box;    
+ 	box-sizing: border-box;  
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.container{
+}
+
+.top{
+	width: 100%;
+}
+
+.back_btn{
+	background-color: #00F;
+	float: left;
+	position: relative;
+}
+
+.title{
+	float: left;
+	position: relative;
+	text-align: center;
+	font-weight: bold;
+}
+
+.submit{
+	border-radius: 10px;
+	float: left;
+	position: relative;
+	background-color: #6B7570;
+	text-align: center;
+	color: #FFF;
+}
+
+.user{
+	float: left;
+	position: relative;
+	text-align: left;
+	color: #6B7570;
+}
+
+.point{
+	float: right;
+	position: relative;
+	text-align: right;
+	color: #6B7570;
+}
+
+#ques{
+	height: auto;
+}
+
+.survey_title{
+	background-color: #C7C9C8;
+}
+
+.question{
+	background-color: #C7C9C8;
+}
+
+.survey_title input{
+	width: 100%;
+	background-color: #C7C9C8;
+	margin: 0;
+	padding: 0;
+	border-style: none;
+	font-weight: bold;
+}
+
+.question input{
+	width: 100%;
+	background-color: #C7C9C8;
+	margin: 0;
+	padding: 0;
+	border-style: none;
+	font-weight: bold;
+}
+
+.question textarea{
+	width: 100%;
+	background-color: #C7C9C8;
+	margin: 0;
+	padding: 0;
+	border-style: none;
+}
+
+.question select{
+	border:none;
+}
+
+.choice input{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #FFF;
+	border-style: none;
+}
+
+.option_addition{
+	background-color: #00F;
+	text-align: center;
+	color: #FFF;
+}
+
+.addition{
+	background-color: #6B7570;
+	text-align: center;
+	color: #FFF;
+}
+
+/*PC*/
+@media (min-width: 768px){
+
+	.container{
+		width: 700px;
+		margin: 0 auto;
+	}
+
+	.top{
+		height: 100px;
+	}
+
+	.back_btn{
+		margin: 10px 30px;
+		width: 90px;
+		height: 50px;
+		
+	}
+
+	.title{
+		width: 400px;
+		height: 70px;
+		float: left;
+		line-height: 70px;
+		font-size: 40px;
+	}
+
+	.submit{
+		margin: 10px 30px;
+		width: 90px;
+		height: 50px;
+		float: left;
+		line-height: 50px;
+		font-size: 20px;
+	}
+
+	.user{
+		width: 50%;
+		height: 30px;
+		padding: 0 30px;
+		line-height: 30px;
+	}
+
+	.point{
+		width: 50%;
+		height: 30px;
+		padding: 0 30px;
+		line-height: 30px;
+	}
+
+	#ques{
+		width:640px;
+		margin:0 auto;
+		margin-top: 20px;
+		margin-left: 30px;
+		margin-right: 30px;
+	}
+
+	.survey_title{
+		padding: 20px;
+	}
+
+	.survey_title input{
+	height: 40px;
+	font-size: 30px;
+	}
+
+	.question{
+		margin-top: 20px;
+		padding: 20px;
+	}
+
+	.question input{
+	height: 30px;
+	font-size: 25px;
+	}
+
+	.question select{
+	font-size: 15px;
+	}
+
+	.choice input{
+	margin-top: 5px;
+	font-size: 15px;
+	}
+
+	.option_addition{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	margin: 10px auto;
+	border-radius: 10px;
+	}
+
+	.addition{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	margin: 10px auto;
+	border-radius: 10px;
+	}
+
+}
+
+/*mobile*/
+@media (max-width: 768px){
+	.container{
+		width: 100%;
+		height: 100%;
+	}
+
+	.top{
+		height: 70px;
+	}
+
+	.back_btn{
+		width: 20%;
+		height: 50px;
+		
+	}
+
+	.back_btn{
+		width: 15%;
+		height: 40px;
+		margin: 5px 2.5%;
+
+	}
+	.title{
+		width: 60%;
+		height: 50px;
+		float: left;
+		line-height: 50px;
+		font-size: 25px;
+	}
+
+	.submit{
+		width: 15%;
+		height: 40px;
+		margin: 5px 2.5%;
+		line-height: 40px;
+		font-size: 15px;
+		border-radius: 5px;
+		
+	}
+
+	.user{
+		width: 50%;
+		height: 20px;
+		padding-left: 10px;
+		line-height: 20px;
+		font-size: 13px;
+	}
+
+	.point{
+		width: 50%;
+		height: 20px;
+		padding-right: 10px;
+		line-height: 20px;
+		font-size: 13px;
+	}
+	
+	#ques{
+		width:100%;
+		margin-top: 20px;
+	}
+
+	.survey_title{
+		padding: 10px;
+	}
+
+	.survey_title input{
+	height: 30px;
+	font-size: 15px;
+	}
+
+	.question{
+		margin-top: 10px;
+		padding: 10px;
+	}
+
+	.question input{
+		margin-top: 5px;
+	height: 30px;
+	font-size: 12px;
+	}
+
+	.option_addition{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	margin: 10px auto;
+	border-radius: 5px;
+	}
+
+	.addition{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	margin: 10px auto;
+	border-radius: 5px;
+	}
+
+}
