@@ -15,3 +15,7 @@ def join():
 @app.route('/home')
 def home():
 	return render_template('home.html')
+
+@app.route('/create')
+def create():
+	return render_template('create.html')
