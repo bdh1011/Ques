@@ -57,4 +57,9 @@ docs/_build/
 *.pyc
 # PyBuilder
 target/
+<<<<<<< Updated upstream
 >>>>>>> 4ed5348ee243236ad45305af71a597a6896a9417
+=======
+
+app/templates/untitled.html
+>>>>>>> Stashed changes
