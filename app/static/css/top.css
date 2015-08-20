@@ -20,7 +20,7 @@ body{
 
 .header_wrapper{
 	width: 100%;
-	background-image: url("../img/photo-1430132594682-16e1185b17c5.jpg");
+	background-image: url("../img/QUES_logo.jpg");
 	background-size: cover;
 }
 
@@ -47,7 +47,7 @@ body{
 .profile_image{
 	position: relative;
 	float: left;
-	background-image: url("../img/10393901_719770631444133_7258567748749394499_n.jpg")
+	background-image: url("../img/main_bg.jpeg")
 }
 
 .profile_name{
@@ -213,7 +213,7 @@ body{
 	.icon{
 		width: 30px;
 		height: 30px;
-		background-image: url("../img/1440114642_39.Heart.png");
+		background-image: url("../img/QUES_logo.png");
 		background-size: cover;
 	}
 }
