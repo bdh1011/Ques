@@ -33,18 +33,18 @@
                             <div class="input_form">
                                 <div class="box_wrapper first">
                                     <input autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="autofocus" class="joinbox email" id="user_email" name="user[email]" placeholder="이메일 주소" size="30" type="email">
-                                    <label for="user_email">이메일 주소</label>
+                                    <label for="email">이메일 주소</label>
 
                                     <div class="validation_check"></div>
                                 </div>
                                 <div class="box_wrapper">
                                     <input class="joinbox name" id="user_name" name="user[name]" placeholder="이름" size="30" type="text">
-                                    <label for="user_name">이름</label>
+                                    <label for="username">이름</label>
                                     <div class="validation_check"></div>
                                 </div>
                                 <div class="box_wrapper last">
                                     <input autocapitalize="off" autocomplete="off" autocorrect="off" class="joinbox password" id="user_password" name="user[password]" placeholder="비밀번호 (6자 이상)" size="30" type="password">
-                                    <label for="user_password">비밀번호 (6자 이상)</label>
+                                    <label for="password">비밀번호 (6자 이상)</label>
                                     <div class="validation_check"></div>
                                 </div>
                                 <div class="box_wrapper">
@@ -68,11 +68,9 @@
 
                             </div>
 
-                            <div id="submit_join" class="btn_join disable" disabled="disabled">등록하기
-                                <div class="email_fake_btn">
-                                    <div class="email_inner_img"></div>
-                                </div>
-                            </div>
+                            <input type="submit" id="submit_join" class="btn_join">등록하기
+                                
+                            </input>
                             <div class="comment_top">
                                 <a href="/login">로그인</a> / <a href="/about/agreement" target="_blank">약관 보기</a>
                             </div>
