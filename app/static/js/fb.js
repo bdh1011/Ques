@@ -15,7 +15,10 @@ function fb_login(){
             FB.api('/me', function(response) {
                 user_email = response.email; //get user email
                 user_public_profile = response.public_profile;
-                window.location = "/home";
+                user_birthday = response.user_birthday;
+                console.log(response);
+                
+                // window.location = "/home";
           // you can store this data into your database             
             });
 
@@ -25,7 +28,7 @@ function fb_login(){
 
         }
     }, {
-        scope: 'email, public_profile, user_friends'
+        scope: 'email, public_profile, user_friends, user_birthday'
     });
 }
 
