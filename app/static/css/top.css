@@ -1,0 +1,219 @@
+*{
+	-moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html{
+	width: 100%;
+	height: 100%;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+}
+
+
+/*common*/
+
+.header_wrapper{
+	width: 100%;
+	background-image: url("../img/QUES_logo.jpg");
+	background-size: cover;
+}
+
+#navbar{
+	position: fixed;
+	width: 100%;
+}
+
+.nav_icon{
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+.create{
+	position: relative;
+	float: right;
+}
+
+.profile{
+	position: relative;
+	float: right;
+}
+.profile_image{
+	position: relative;
+	float: left;
+	background-image: url("../img/main_bg.jpeg")
+}
+
+.profile_name{
+	position: relative;
+	float: left;
+	color: #FFF;
+}
+
+.logout{
+	position: relative;
+	float: left;
+	color: #E2E2E2;
+}
+
+.main_title{
+	color: #FFF;
+	text-align: center;
+	position: relative;
+}
+
+.main_wrapper{
+	width: 100%;
+	height: 100%;
+	background-color: #F0F;
+}
+
+.main_top{
+	width: 100%;
+	height: 80px;
+	background-color: #000;
+}
+
+.card_count{
+	line-height: 80px;
+}
+.main_image{
+	width: 100%;
+	background-color: #FF0;
+}
+
+.cards{
+}
+
+.card{
+}
+
+.card_bottom{
+	background-color: #E2E2E2;
+	width: 100%;
+}
+
+
+/*web*/
+@media(min-width: 900px){
+	.header_wrapper{
+	height: 600px;
+	}
+	#navbar{
+		top: 40px;
+		height: 100px;
+	}
+
+	.nav_icon{
+		line-height: 100px;
+		color: #FFF;
+		margin-left: 42px;
+		font-size: 40px;
+	}
+
+	.create{
+		border-radius: 10px;
+		border-style: solid;
+		border-color: #FFF;
+		padding:0 10px;
+		font-size: 20px;
+		color: #FFF;
+		margin: 23px 0;
+		line-height: 50px;
+		border-width: 2px;
+		opacity: 1.0;
+	}
+
+	.profile{
+		height: 100%;
+		margin: 0 42px;
+	}
+
+	.profile_image{
+		width: 40px;
+		height: 40px;
+		margin-top: 30px;
+		background-color: #FFF;
+		background-size: cover;
+	}
+	.profile_name{
+		line-height: 100px;
+		padding: 0 10px;
+		font-size: 20px;
+	}
+	.logout{
+		line-height: 100px;
+		padding: 0 10px;
+	}
+
+	.main_title{
+		top: 200px;
+		font-size: 40px;
+	}
+
+	.main_wrapper{
+
+	}
+
+	.main_top{
+		width: 100%;
+		height: 80px;
+		background-color: #E2E2E2;
+		border-bottom: solid 3px #D1D1D1;
+	}
+
+	.card_count{
+		line-height: 80px;
+		width:880px;
+		margin: 0 auto;
+		font-size: 20px;
+	}
+
+	.cards{
+		width: 904px;
+		margin: 0 auto;
+	}
+
+	.card{
+		position: relative;
+		float: left;
+		width: 202px;
+		height: 320px;
+		margin: 12px 12px;
+		border-width: 1px;
+		border-radius: 5px;
+		border-style: solid;
+		border-color: #E2E2E2;
+	}
+
+	.card_bottom{
+		position:absolute;
+		bottom: 0;
+		height: 65px;
+		padding: 10px 10px;
+	}
+
+	.card_icon{
+
+		position: relative;
+		float: left;
+		height: 45px;
+		width: 30px;
+		margin: 0 15px;
+		text-align: center;
+		color: #AAA;
+	}
+
+	.icon{
+		width: 30px;
+		height: 30px;
+		background-image: url("../img/QUES_logo.png");
+		background-size: cover;
+	}
+}
