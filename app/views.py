@@ -30,6 +30,7 @@ def sign_up():
     birthday =  request.args.get('birthday')
     gender =  request.args.get('gender')
 
+    
     if email is None or password is None:
     	flash('폼을 채워주세요')
         return redirect(url_for('join'))
@@ -48,6 +49,10 @@ def sign_up():
 
 
 @app.route('/')
+def login():
+	return render_template("login.html")
+
+@app.route('/main')
 def main():
 	return render_template("main.html")
 
