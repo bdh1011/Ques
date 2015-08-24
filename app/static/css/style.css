@@ -85,8 +85,10 @@ video {
     border: 0;
     font: inherit;
     font-size: 100%;
+    font-weight: 400;
     vertical-align: baseline
 }
+
 html {
     line-height: 1
 }
@@ -106,7 +108,7 @@ td {
     vertical-align: middle
 }
 html span {
-    font-family: 'Apple SD Gothic Neo', '나눔고딕', NanumGothic, '맑은 고딕', 'Malgun Gothic', '돋움', dotum, '굴림', gulim, applegothic, sans-serif;
+    font-family:  '나눔고딕', NanumGothic, 'Apple SD Gothic Neo','맑은 고딕', 'Malgun Gothic', '돋움', dotum, '굴림', gulim, applegothic, sans-serif;
 }
 q,
 blockquote {
@@ -151,7 +153,7 @@ body {
 html,
 input,
 textarea {
-    font-family: 'Apple SD Gothic Neo', '나눔고딕', NanumGothic, '맑은 고딕', 'Malgun Gothic', '돋움', dotum, '굴림', gulim, applegothic, sans-serif
+    font-family:  '나눔고딕', NanumGothic, 'Apple SD Gothic Neo','맑은 고딕', 'Malgun Gothic', '돋움', dotum, '굴림', gulim, applegothic, sans-serif
 }
 a {
     text-decoration: none;
@@ -292,19 +294,22 @@ body.intro .content {
 }
 body.intro .content .content-wrapper {
     position: relative;
-    z-index: 10000
+    z-index: 10000;
+    padding-top:50px;
 }
 body.intro .content .content-wrapper .logo {
     margin-top: 44px
 }
-body.intro .content .content-wrapper .service-msg {
-    font-size: 16px;
-    line-height: 24px;
+body.intro .content .content-wrapper .intro-msg {
+    font-size: 25px;
+    line-height: 34px;
+    font-weight: 600;
     color: white;
     display: block
 }
 body.intro .content .content-wrapper .login {
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 500;
     line-height: 24px;
     color: white
 }
@@ -364,6 +369,12 @@ body.intro .content .content-wrapper .buttons-wrapper .mail-join a .mail-join-te
     margin-top: 20px;
     margin-left: 60px
 }
+
+body.intro .content .content-wrapper .logo-text{
+    font-size:70px;
+    color:#fff;
+    font-weight: 800;
+}
 body.intro .left-bottom {
     position: absolute;
     left: 10px;
@@ -390,7 +401,7 @@ body.intro .app-store {
 
 
 #contents .login_background{
-    background: url(../img/login_bg.JPG);
+    background: url(../img/bg.jpg);
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -440,7 +451,7 @@ body.intro .app-store {
     height: 16px;
     text-align: center;
     border: solid 1px #fff;
-    padding: 16px 0;
+    padding: 32px 0;
     line-height: 16px;
     background-color: white;
     font-size: 16px;
@@ -461,12 +472,14 @@ body.intro .app-store {
 
 
 .ham_box .content_ham {
+    margin-top:-10px;
     padding: 20px 30px 20px 30px;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    -ms-border-radius: 7px;
-    -o-border-radius: 7px;
-    border-radius: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -webkit-border-bottom-right-radius: 7px;
+    border-bottom-right-radius: 7px;
     background-color: #eeeeee;
 }
 
@@ -480,11 +493,11 @@ body.intro .app-store {
     position: relative;
     border: solid 1px #dddddd;
     background-color: white;
-    -webkit-border-radius: 5px;
+    /*-webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 5px;*/
     margin-bottom: 10px;
 }
 
@@ -497,22 +510,22 @@ body.intro .app-store {
     font-size: 14px;
     text-shadow: 0px 1px #fff;
     border: 0 none;
-    width: 237px;
+    width: 237px;/*
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
+    -o-border-radius: 3px;*/
+    /*border-radius: 3px;*/
     color: #555;
 }
 
 
-.ham_box .content_ham .input_form .box_wrapper label {
+/*.ham_box .content_ham .input_form .box_wrapper label {
     position: absolute;
     top: -9999px;
     left: -9999px;
 }
-
+*/
 
 .ham_box .content_ham .input_form .box_wrapper .validation_check {
     position: absolute;
@@ -654,4 +667,74 @@ body.intro .app-store {
     text-shadow: 0px 1px #fff;
     font-size:12px;
     
+}
+
+.birthday_select select{
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 0;
+    width: 79.3px;
+    padding: 5px;
+    font-size: 16px;
+    height: 40px;
+    position:relative;
+    float:left;
+}
+
+.birthday_select select::-ms-expand { /* for IE 11 */
+    display: none;
+}
+
+.gender div{
+    width:50%;
+    height:40px;
+    position:relative;
+    float:left;
+}
+
+.gender div:first{
+    border-right: 1px solid #aaa;
+}
+.gender input[type="radio"] {
+    display:none;
+    /*position:relative;*/
+}
+.gender input[type="radio"] + label {
+    color: $DarkBrown;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+}
+.gender input[type="radio"] + label span {
+    display:inline-block;
+    width:100%;
+    height:100%;
+    /*margin:-1px 4px 0 0;*/
+    vertical-align:middle;
+    cursor:pointer;
+    text-align: center;
+    line-height: 40px;
+
+    /*-moz-border-radius:  50%;*/
+    /*border-radius:  50%;*/
+}
+
+.gender input[type="radio"] + label span {
+     background-color: #fff;
+}
+
+
+.gender input[type="radio"]:checked + label span{
+     background-color:#aaa;
+}
+
+
+.gender input[type="radio"] + label span,
+.gender input[type="radio"]:checked + label span {
+  -webkit-transition:background-color 0.4s linear;
+  -o-transition:background-color 0.4s linear;
+  -moz-transition:background-color 0.4s linear;
+  transition:background-color 0.4s linear;
 }

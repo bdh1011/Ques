@@ -10,12 +10,12 @@ from app import app
 
 class User(db.Model):
 	__tablename__ = 'user'
-	id = db.Column(db.Interger, primary_key=True, autoincrement=True, nullable=False)
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
 	password_hash = db.Column(db.String(256), nullable=False)
 	email = db.Column(db.String(64), nullable=False)
-	gender = db.Column(db.Interger, nullable=False)
+	gender = db.Column(db.String(64), nullable=False)
 	birthday = db.Column(db.String(64), nullable=False)
-	q_point = db.Column(db.Interger)
+	q_point = db.Column(db.Integer)
 	profile_picture_filename = db.Column(db.String(64))
 
 	register_timestamp = db.Column(db.DateTime, default=db.func.now())
@@ -26,7 +26,7 @@ class User(db.Model):
 	
 	def __init__(self, email, password, gender, birthday):
 		self.email = email
-		hash_password(password)
+		self.hash_password(password)
 		self.gender = gender
 		self.birthday = birthday
 
@@ -34,7 +34,7 @@ class User(db.Model):
 		self.password_hash = pwd_context.encrypt(password)
 
 	def verify_password(self, password):
-        return pwd_context.verify(password, self.password_hash)
+		return pwd_context.verify(password, self.password_hash)
 
 	def generate_auth_token(self, expiration=360000):
 		s = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
@@ -42,20 +42,20 @@ class User(db.Model):
 
 	@staticmethod
 	def verify_auth_token(token):
-        s = Serializer(app.config['SECRET_KEY'])
-        try:
-            data = s.loads(token)
-        except SignatureExpired:
-            return None    # valid token, but expired
-        except BadSignature:
-            return None    # invalid token
-        user = User.query.get(data['id'])
-        return user
+		s = Serializer(app.config['SECRET_KEY'])
+		try:
+			data = s.loads(token)
+		except SignatureExpired:
+			return None    # valid token, but expired
+		except BadSignature:
+			return None    # invalid token
+		user = User.query.get(data['id'])
+		return user
 
 
 class Survey(db.Model):
 	__tablename__ = 'survey'
-	id = db.Column(db.Interger, primary_key=True, autoincrement=True, nullable=False)
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
 	title = db.Column(db.String(64), nullable=False)
 	register_timestamp = db.Column(db.DateTime, default=db.func.now())
 	userID = db.Column(db.String(64), db.ForeignKey('user.id'))
@@ -64,8 +64,8 @@ class Survey(db.Model):
 	question = db.relationship('Question', backref='survey',lazy='dynamic')
 
 class Like(db.Model):
-	__tablename__ 'like'
-	id = db.Column(db.Interger, primary_key=True, autoincrement=True, nullable=False)
+	__tablename__ = 'like'
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
 	timestamp = db.Column(db.DateTime, default=db.func.now())
 	userID = db.Column(db.String(64), db.ForeignKey('user.id'))
 	surveyID = db.Column(db.String(64), db.ForeignKey('survey.id'))
@@ -74,9 +74,9 @@ class Like(db.Model):
 
 class Question(db.Model):
 	__tablename__ = 'question'
-	id = db.Column(db.Interger, primary_key=True, autoincrement=True, nullable=False)
-	title = db.Column(db.String(64), nullalbe=False)
-	subtitle = db.Column(db.Text, nullalbe=False)
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+	title = db.Column(db.String(64), nullable=False)
+	subtitle = db.Column(db.Text, nullable=False)
 	questionType = db.Column(db.Integer, nullable=False)
 	isEssential = db.Column(db.Boolean, nullable=False)
 	surveyID = db.Column(db.String(64), db.ForeignKey('survey.id'))
@@ -84,8 +84,8 @@ class Question(db.Model):
 
 class Option(db.Model):
 	__tablename__ = 'option'
-	id = db.Column(db.Interger, primary_key=True, autoincrement=True, nullable=False)
-	optionType = db.Column(db.Interger)
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+	optionType = db.Column(db.Integer)
 	content = db.Column(db.Text)
 	questionID = db.Column(db.String(64), db.ForeignKey('question.id'))
 
@@ -94,7 +94,7 @@ class Option(db.Model):
 
 class Answer(db.Model):
 	__tablename__ = 'answer'
-	id = db.Column(db.Interger, primary_key=True, autoincrement=True, nullable=False)
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
 	userID = db.Column(db.String(64), db.ForeignKey('user.id'))
 
 	content = db.Column(db.Text)

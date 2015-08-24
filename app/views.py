@@ -4,6 +4,7 @@ from app import db
 from app import app
 import os
 import sys
+from models import User
 
 #temp decorator
 def login_required(f):
@@ -23,20 +24,30 @@ def login_required(f):
 
 
 
-@app.route('/join', methods=['POST'])
-def sign_up():
-    email = request.args.get('email')
-    password =  request.args.get('password')
-    birthday =  request.args.get('birthday')
-    gender =  request.args.get('gender')
 
+
+
+@app.route('/join', methods=['POST'])
+def join():
+
+    email = request.form['email']
+
+    password =  request.form['password']
+
+    year = request.form['year']
+    month = request.form['month']
+    day = request.form['day']
+    birthday =  year + month + day
+    gender =  request.form['gender']
+    
     
     if email is None or password is None:
     	flash('폼을 채워주세요')
         return redirect(url_for('join'))
-    if User.query.filter_by(email=email).first() is not None:
-        flash('이미 존재하는 계정입니다')
-        return redirect(url_for('join'))
+    # if User.query.filter_by(email=email).first() is not None:
+    #     flash('이미 존재하는 계정입니다')
+    #     return redirect(url_for('join'))
+    print email, password, birthday, gender
 
     user = User(email=email, password=password, gender=gender, birthday=birthday )
 
@@ -44,21 +55,55 @@ def sign_up():
     db.session.commit()
     g.user = user
 
-    return redirect(url_for('home'))
+    return redirect(url_for('main'))
+
+
+@app.route('/join',  methods=['GET'])
+def sign_up():
+    return render_template("join.html")
+
+
+
+@app.route('/join/email/<email>')
+def check_duplicate_email(email):
+    if User.query.filter_by(email=email).first() is not None:
+        return jsonify({'exist':'true'})
+    else:
+        return jsonify({'exist':'false'})
+
+
+@app.route('/logout')
+def logout():
+    # remove the user from the session if it's there
+    session.pop('token', None)
+    return redirect(url_for(''))
 
 
 
 @app.route('/')
+@app.route('/login' , methods=['GET', 'POST'])
 def login():
-	return render_template("login.html")
+    if request.method=='GET':
+        if 'token' in session:
+            return redirect(url_for('main'))
+    	return render_template("login.html")
+    else:
+        email = request.form['email']
+        password = request.form['password']
+        user = User.query.filter_by(email=email).first()
+        try:
+            if not user.verify_password(password):
+                return render_template("login.html")
+        except:
+            return render_template("login.html")
+        user_hash = hashlib.sha1(str(user.id)).hexdigest()
+        session['token'] = user_hash
+        return render_template("main.html")
+
 
 @app.route('/main')
 def main():
 	return render_template("main.html")
-
-@app.route('/join',  methods=['GET'])
-def join():
-	return render_template("join.html")
 
 @app.route('/home')
 def home():
