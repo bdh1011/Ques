@@ -18,7 +18,7 @@ function fb_login(){
                 user_birthday = response.user_birthday;
                 console.log(response);
                 
-                // window.location = "/home";
+                window.location = "/main";
           // you can store this data into your database             
             });
 
