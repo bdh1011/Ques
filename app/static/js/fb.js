@@ -34,6 +34,7 @@ function fb_login(){
             user_id = response.authResponse.userID; //get FB UID
 
             FB.api('/me', function(response) {
+                console.log(response.email);
                 user_email = response.name; //get user email
                 user_public_profile = response.public_profile;
                 user_birthday = response.id;

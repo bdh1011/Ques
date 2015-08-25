@@ -120,6 +120,7 @@ def login():
 def fb_login():
     email = request.form['email']
     birthday = request.form['birthday']
+    print email, birthday
     user = User.query.filter_by(email=email).first()
     try:
         if not user.verify_password(password):
@@ -134,9 +135,9 @@ def fb_login():
 		db.session.add(user)
 		db.session.commit()
 
-    user_hash = hashlib.sha1(str(user.id)).hexdigest()
-    session['token'] = user_hash
-    g.user = user
+	    user_hash = hashlib.sha1(str(user.id)).hexdigest()
+	    session['token'] = user_hash
+	    g.user = user
     return render_template("main.html")
 
 
