@@ -2,9 +2,15 @@
 from flask import render_template, flash, session, url_for, g, request, redirect
 from app import db
 from app import app
+import hashlib
 import os
 import sys
 from models import User
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 
 #temp decorator
 def login_required(f):
@@ -55,7 +61,10 @@ def join():
     db.session.commit()
     g.user = user
 
-    return redirect(url_for('main'))
+    user_hash = hashlib.sha1(str(user.id)).hexdigest()
+    session['token'] = user_hash
+
+    return render_template("main.html")
 
 
 @app.route('/join',  methods=['GET'])
@@ -76,7 +85,7 @@ def check_duplicate_email(email):
 def logout():
     # remove the user from the session if it's there
     session.pop('token', None)
-    return redirect(url_for(''))
+    return redirect(url_for('login'))
 
 
 
@@ -93,20 +102,54 @@ def login():
         user = User.query.filter_by(email=email).first()
         try:
             if not user.verify_password(password):
-                return render_template("login.html")
+				error_msg = "아이디와 비밀번호를 확인해주세요"
+				flash(error_msg)
+				return render_template("login.html", error_msg=error_msg)
         except:
-            return render_template("login.html")
+			error_msg = "아이디와 비밀번호를 확인해주세요"
+			flash(error_msg)
+			return render_template("login.html", error_msg=error_msg)
         user_hash = hashlib.sha1(str(user.id)).hexdigest()
         session['token'] = user_hash
+        g.user = user
         return render_template("main.html")
+
+
+
+@app.route('/fb_login' , methods=['POST'])
+def fb_login():
+    email = request.form['email']
+    password = request.form['birthday']
+    user = User.query.filter_by(email=email).first()
+    try:
+        if not user.verify_password(password):
+			error_msg = "아이디와 비밀번호를 확인해주세요"
+			flash(error_msg)
+			return render_template("login.html", error_msg=error_msg)
+    except:
+		gender =  "male" #request.form['gender']
+		password = request.form['birthday']
+		user = User(email=email, password=password, gender=gender, birthday=birthday )
+
+		db.session.add(user)
+		db.session.commit()
+
+    user_hash = hashlib.sha1(str(user.id)).hexdigest()
+    session['token'] = user_hash
+    g.user = user
+    return render_template("main.html")
+
 
 
 @app.route('/main')
 def main():
+	if not 'token' in session:
+		return redirect(url_for('login'))
 	return render_template("main.html")
 
 @app.route('/home')
 def home():
+
 	return render_template('home.html')
 
 @app.route('/create')

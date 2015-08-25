@@ -3,9 +3,30 @@
     // it runs after the DOM is built
 // This is called with the results from from FB.getLoginStatus().
 
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+            form.appendChild(hiddenField);
+         }
+    }
+    document.body.appendChild(form);
+    form.submit();
+}
+
 function fb_login(){
   FB.login(function(response){
-
         if (response.authResponse) {
             console.log('Welcome!  Fetching your information.... ');
             //console.log(response); // dump complete info
@@ -16,8 +37,8 @@ function fb_login(){
                 user_email = response.email; //get user email
                 user_public_profile = response.public_profile;
                 user_birthday = response.user_birthday;
+                post('/fb_login', {email: user_email, birthday:user_birthday});
                 console.log(response);
-                
                 window.location = "/main";
           // you can store this data into your database             
             });

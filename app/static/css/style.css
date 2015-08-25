@@ -146,7 +146,7 @@ summary {
 }
 html,
 body {
-    background-color: #e5e5e5;
+    background-color: #fff;
     letter-spacing: -1px;
     min-height: 100%
 }
@@ -234,10 +234,8 @@ a {
 html,
 body {
     min-height: 100%;
-    height: 100%
 }
 body.intro {
-    height: 100%;
     min-width: 800px
 }
 body.intro #contents {
@@ -669,6 +667,140 @@ body.intro .app-store {
     
 }
 
+
+
+
+
+
+.login_box {
+    position: relative;
+    margin: 0 auto;
+    width: 250px;
+    display:none;
+}
+
+
+.login_box .title {
+    -moz-border-radius-topleft: 7px;
+    -webkit-border-top-left-radius: 7px;
+    border-top-left-radius: 7px;
+    -moz-border-radius-topright: 7px;
+    -webkit-border-top-right-radius: 7px;
+    border-top-right-radius: 7px;
+    height: 16px;
+    text-align: center;
+    border: solid 1px #fff;
+    padding: 32px 0;
+    line-height: 16px;
+    background-color: white;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    cursor: default;
+}
+
+.login_box .no_top_radius {
+    padding: 20px 30px 20px 30px;
+}
+
+
+.login_box .content_ham {
+    margin-top:-10px;
+    padding: 20px 30px 20px 30px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    background-color: #eeeeee;
+    height:150px;
+}
+
+
+.login_box .content_ham .input_form {
+    width: 180px;
+    padding: 10px 0 0px 10px;
+}
+
+.login_box .content_ham .input_form .box_wrapper {
+    height: 40px;
+    position: relative;
+    border: solid 1px #dddddd;
+    background-color: white;
+    /*-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;*/
+    margin-bottom: 10px;
+}
+
+.login_box .content_ham .input_form .box_wrapper .joinbox {
+    background-color: white;
+    display: block;
+    padding: 10px 0px 14px 3px;
+    margin: 0;
+    height: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    text-shadow: 0px 1px #fff;
+    border: 0 none;
+    width: 100%;/*
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;*/
+    /*border-radius: 3px;*/
+    color: #555;
+}
+
+
+
+.login_box .content_ham .btn_join, .login_box .content_ham .btn_login {
+    display: block;
+    position:relative;
+    text-decoration: none;
+    float: left;
+    width: 180px;
+    height: 40px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    margin-left:10px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff8400), color-stop(100%, #ff7400));
+    background: -webkit-linear-gradient(#ff8400,#ff7400);
+    background: -moz-linear-gradient(#ff8400,#ff7400);
+    background: -o-linear-gradient(#ff8400,#ff7400);
+    -pie-background: linear-gradient(#ff8400,#ff7400);
+    background: linear-gradient(#ff8400,#ff7400);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8400', endColorstr='#ff7400');
+    border: solid 1px #ff7400;
+
+}
+
+.content-wrapper .error{
+    color:red;
+    font-size:14px;
+    font-weight:700;
+
+}
+
 .birthday_select select{
    -webkit-appearance: none;
    -moz-appearance: none;
@@ -738,3 +870,270 @@ body.intro .app-store {
   -moz-transition:background-color 0.4s linear;
   transition:background-color 0.4s linear;
 }
+
+
+
+
+/*common*/
+
+.header_wrapper{
+    width: 100%;
+    background-image: url("../img/QUES_logo.jpg");
+    background-size: cover;
+}
+
+#navbar{
+    position: fixed;
+    width: 100%;
+}
+
+.nav_icon{
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+.create{
+    position: relative;
+    float: right;
+}
+
+.profile{
+    position: relative;
+    float: right;
+}
+.profile_image{
+    position: relative;
+    float: left;
+    background-image: url("../img/main_bg.jpeg")
+}
+
+.profile_name{
+    position: relative;
+    float: left;
+    color: #FFF;
+}
+
+.main_title{
+    color: #FFF;
+    text-align: center;
+    position: relative;
+}
+
+.main_wrapper{
+    width: 100%;
+    height: 100%;
+    background-color: #F0F0F0;
+}
+
+.main_top{
+    width: 100%;
+    height: 60px;
+    background-color: #000;
+}
+
+.card_count{
+    line-height: 80px;
+}
+.main_image{
+    width: 100%;
+    background-color: #FF0;
+}
+
+.cards{
+}
+
+.card{
+}
+
+.card_bottom{
+    background-color: #E2E2E2;
+    width: 100%;
+}
+
+
+/*web*/
+@media(min-width: 900px){
+    .header_wrapper{
+        height: 600px;
+    }
+    #navbar{
+        top: 40px;
+        height: 100px;
+    }
+
+    .nav_icon{
+        line-height: 100px;
+        color: #FFF;
+        margin-left: 42px;
+        font-size: 40px;
+    }
+
+    .create{
+        border-radius: 10px;
+        border-style: solid;
+        border-color: #FFF;
+        padding:0 10px;
+        font-size: 20px;
+        color: #FFF;
+        margin: 23px 0;
+        line-height: 50px;
+        border-width: 2px;
+        opacity: 1.0;
+    }
+
+    .profile{
+        height: 100%;
+        margin: 0 42px;
+    }
+
+    .profile_image{
+        width: 40px;
+        height: 40px;
+        margin-top: 30px;
+        background-color: #FFF;
+        background-size: cover;
+    }
+    .profile_name{
+        line-height: 100px;
+        padding: 0 10px;
+        font-size: 20px;
+    }
+
+    .main_title{
+        top: 200px;
+        font-size: 40px;
+    }
+
+    .main_wrapper{
+        width:100%;
+        height:auto;
+    }
+    .base_top{
+        width:100%;
+        height:400px;
+        background-image: url("../img/base_top.jpg");
+        background-size: cover;
+    }
+    .main_top{
+        width: 100%;
+        height: 60px;
+        background-color: #F2F2F2;
+        border-bottom: solid 1px #D1D1D1;
+    }
+
+    .card_count{
+        line-height: 60px;
+        width:880px;
+        margin: 0 auto;
+        font-size: 20px;
+    }
+
+    .cards{
+        position:relative;
+        width: 912px;
+        height:auto;
+        margin: 0 auto;
+        clear:both;
+    }
+
+    .card{
+        position: relative;
+        float: left;
+        width: 202px;
+        height: 320px;
+        margin: 12px 12px;
+        border-width: 1px;
+        border-radius: 5px;
+        border-style: solid;
+        border-color: #E2E2E2;
+    }
+
+    .card_bottom{
+        position:absolute;
+        bottom: 0;
+        height: 65px;
+        padding: 10px 0px;
+    }
+
+    .card_icon{
+
+        position: relative;
+        float: left;
+        height: 45px;
+        width: 30px;
+        margin: 0 15px;
+        text-align: center;
+        color: #AAA;
+    }
+
+    .icon{
+        width: 30px;
+        height: 30px;
+        background-image: url("../img/QUES_logo.png");
+        background-size: cover;
+    }
+
+    .main_wrapper .base_top .logo{
+        position:absolute;
+        top:60px;
+        left:42px;
+        font-size:40px;
+        color:#fff;
+        margin-top:-14px;
+        font-weight: 800;
+    }
+
+    .main_wrapper .base_top .logout{
+        position:relative;
+        float:right;
+        margin-right: 30px;
+    }
+
+    .main_wrapper .base_top .logout a{
+        font-size:15px;
+        color:#BEBEBE;
+        font-weight: 600;
+    }
+
+
+    .main_wrapper .base_top .register{
+        position:relative;
+        float:right;
+        font-size:16px;
+        color:#fff;
+        font-weight:600;
+        background-color:rgba(37,57,132,0.5);
+        border-radius: 10px;
+        border:1px solid #aaa;
+        margin-right:30px;
+        margin-top:-12px;
+        padding:10px 20px;
+    }
+
+     .main_wrapper .base_top .email{
+        position:relative;
+        float:right;
+        font-size:16px;
+        color:#fff;
+        font-weight:600;
+        margin-right:30px;
+    }
+
+
+    .main_wrapper .top_row{
+        width:100%;
+        height: 50px;
+        padding-top:50px;
+    }
+    .main_wrapper .base_top .main_slogan{
+        padding-top:50px;
+        font-size:40px;
+        line-height: 45px;
+        font-weight: 600;
+        color:#fff;
+        text-align: center;
+        width:100%;
+    }
+}
+

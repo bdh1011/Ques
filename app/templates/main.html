@@ -4,10 +4,42 @@
 	<title>QUES</title>
 	<meta charset ='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='stylesheet' type='text/css'  href='../static/css/top.css'>
+	<link rel='stylesheet' type='text/css'  href='../static/css/style.css'>
 </head>
 <body>
 	<div class="main_wrapper">
+		<div class="base_top">
+			<div class="top_row">
+				<div class="logo">
+					큐스
+				</div>
+				<div class="logout">
+				<a href="/logout">
+					로그아웃
+					</a>
+				</div>
+
+				{% if g.user %}
+				<div class="email">
+					{{ g.user.email }}
+				</div>
+
+				<div class="profile_pic">
+				</div>
+				{% endif %}
+				<a href="/register">
+					<div class="register">
+						설문 등록하기
+					</div>
+				</a>
+
+				
+			</div>
+
+			<div class="main_slogan">
+				설문을<br>만들고<br>공유하세요.
+			</div>
+		</div>
 		<div class="main_top">
 			<div class="card_count">
 				보유한 Q &nbsp;<span style="color:#4A90E2; font-size:25px;"><b>230</b></span><!--survey 수자-->

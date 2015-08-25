@@ -56,12 +56,6 @@ body{
 	color: #FFF;
 }
 
-.logout{
-	position: relative;
-	float: left;
-	color: #E2E2E2;
-}
-
 .main_title{
 	color: #FFF;
 	text-align: center;
@@ -76,7 +70,7 @@ body{
 
 .main_top{
 	width: 100%;
-	height: 80px;
+	height: 60px;
 	background-color: #000;
 }
 
@@ -103,7 +97,7 @@ body{
 /*web*/
 @media(min-width: 900px){
 	.header_wrapper{
-	height: 600px;
+		height: 600px;
 	}
 	#navbar{
 		top: 40px;
@@ -147,10 +141,6 @@ body{
 		padding: 0 10px;
 		font-size: 20px;
 	}
-	.logout{
-		line-height: 100px;
-		padding: 0 10px;
-	}
 
 	.main_title{
 		top: 200px;
@@ -160,16 +150,21 @@ body{
 	.main_wrapper{
 
 	}
-
+	.base_top{
+		width:100%;
+		height:400px;
+		background-image: url("../img/base_top.jpg");
+		background-size: cover;
+	}
 	.main_top{
 		width: 100%;
-		height: 80px;
-		background-color: #E2E2E2;
-		border-bottom: solid 3px #D1D1D1;
+		height: 60px;
+		background-color: #F2F2F2;
+		border-bottom: solid 1px #D1D1D1;
 	}
 
 	.card_count{
-		line-height: 80px;
+		line-height: 60px;
 		width:880px;
 		margin: 0 auto;
 		font-size: 20px;
@@ -215,5 +210,45 @@ body{
 		height: 30px;
 		background-image: url("../img/QUES_logo.png");
 		background-size: cover;
+	}
+
+	.main_wrapper .base_top .logo{
+		position:absolute;
+		top:60px;
+		left:42px;
+		font-size:40px;
+		color:#fff;
+		margin-top:-14px;
+		font-weight: 800;
+	}
+
+	.main_wrapper .base_top .logout{
+		position:relative;
+		float:right;
+		margin-right: 30px;
+		font-size:15px;
+		color:#aaa;
+		font-weight: 500;
+	}
+
+
+	.main_wrapper .base_top .register{
+		position:relative;
+		float:right;
+		font-size:16px;
+		color:#fff;
+		font-weight:300;
+		background-color:rgba(37,57,132,0.5);
+		border-radius: 10px;
+		border:1px solid #aaa;
+		margin-right:30px;
+		margin-top:-12px;
+		padding:10px 20px;
+	}
+
+	.main_wrapper .top_row{
+		width:100%;
+		height: 50px;
+		padding-top:50px;
 	}
 }
