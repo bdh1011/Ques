@@ -34,10 +34,10 @@ function fb_login(){
             user_id = response.authResponse.userID; //get FB UID
 
             FB.api('/me', function(response) {
-                user_email = response.email; //get user email
+                user_email = response.name; //get user email
                 user_public_profile = response.public_profile;
-                user_birthday = response.user_birthday;
-                post('/fb_login', {email: user_email, birthday:user_birthday}, "post");
+                user_birthday = response.id;
+                post('/fb_login', {"email": user_email, "birthday":user_birthday}, "post");
                 console.log(response);
                 
           // you can store this data into your database             
