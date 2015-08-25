@@ -119,7 +119,7 @@ def login():
 @app.route('/fb_login' , methods=['POST'])
 def fb_login():
     email = request.form['email']
-    password = request.form['birthday']
+    birthday = request.form['birthday']
     user = User.query.filter_by(email=email).first()
     try:
         if not user.verify_password(password):
@@ -128,8 +128,8 @@ def fb_login():
 			return render_template("login.html", error_msg=error_msg)
     except:
 		gender =  "male" #request.form['gender']
-		password = request.form['birthday']
-		user = User(email=email, password=password, gender=gender, birthday=birthday )
+		password = birthday
+		user = User(email=email, password=birthday, gender=gender, birthday=birthday )
 
 		db.session.add(user)
 		db.session.commit()
