@@ -244,7 +244,7 @@ body.intro #contents {
     height: 100%
 }
 body.intro .bg {
-    background-image: url(../img/bg.jpeg);
+    background-image: url(../img/login_bg.jpg);
     background-size: 100%;
     background-position: 0 100%;
     height: 100%;
