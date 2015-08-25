@@ -135,9 +135,9 @@ def fb_login():
 		db.session.add(user)
 		db.session.commit()
 
-	    user_hash = hashlib.sha1(str(user.id)).hexdigest()
-	    session['token'] = user_hash
-	    g.user = user
+		user_hash = hashlib.sha1(str(user.id)).hexdigest()
+		session['token'] = user_hash
+		g.user = user
     return render_template("main.html")
 
 
