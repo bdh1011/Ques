@@ -7,58 +7,57 @@
 	<link rel='stylesheet' type='text/css'  href='../static/css/style.css'>
 </head>
 <body>
-	<div class="main_wrapper">
-		<div class="base_top">
-			<div class="top_row">
-				<div class="logo">
-					큐스
-				</div>
-				<div class="logout">
-				<a href="/logout">
-					로그아웃
-					</a>
-				</div>
-
-				{% if g.user %}
-				<div class="email">
-					{{ g.user.email }}
-				</div>
-
-				<div class="profile_pic">
-				</div>
-				{% endif %}
-				<a href="/register">
-					<div class="register">
-						설문 등록하기
+	<header class="header_wrapper">
+		<nav id="navbar">
+			<div class="nav_icon">큐스</div>
+			<ul class="menu">
+				<li class="create">
+					<a href="#">설문 등록하기</a>
+				</li>
+				<li class="profile">
+				<!--<div style="backgound-image:url('유알엘')" 로 변경가능(프로필 사진 url)>-->
+					<div class="profile_name">
+						<!--이름 불러와야해-->
+						<span>MansooShin</span>
 					</div>
-				</a>
-
-				
-			</div>
-
-			<div class="main_slogan">
-				설문을<br>만들고<br>공유하세요.
-			</div>
+					<div class="profile_image"></div>
+					<ul class="fallback">
+						<li><a href="#">설문 보관함</a></li>
+    					<li><a href="#">프로필 수정</a></li>
+    					<li><a href="#">문의하기</a></li>
+    					<li><a href="#">로그아웃</a></li>
+					</ul>
+				</li>
+			<!--<form><input class="search" type="search"></form>-->
+			</ul>
+		</nav>
+		<div class="main_title">설문을<br>만들고<br>이용하세요.
 		</div>
+	</header>
+	<div class="main_wrapper">
 		<div class="main_top">
 			<div class="card_count">
-				보유한 Q &nbsp;<span style="color:#4A90E2; font-size:25px;"><b>230</b></span><!--survey 수자-->
+				가지고 있는 Q &nbsp;<span style="color:#FF3900; font-size:25px;"><b>230</b></span><!--survey 수자-->
+				<a>
+				설문 분류
+				</a>
 			</div>
+			
 		</div>
 		<div class="cards">
 			<div class="card">
 				<div class="card_bottom">
 					<div class="card_icon">
 						<div class="icon"></div>
-						230<!--조아요순-->
+						<span>230</span>
 					</div>
 					<div class="card_icon">
 						<div class="icon"></div>
-						230
+						<span>230</span>
 					</div>
 					<div class="card_icon">
 						<div class="icon"></div>
-						230
+						<span>230</span>
 					</div>
 				</div>
 			</div>
