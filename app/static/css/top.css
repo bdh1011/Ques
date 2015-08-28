@@ -3,16 +3,25 @@
     -webkit-box-sizing: border-box; 
     box-sizing: border-box;
     text-decoration: none;
+    margin: 0;
+	padding: 0;
 }
 
 html{
 	width: 100%;
 	height: 100%;
 }
-
+	
 body{
-	margin: 0;
-	padding: 0;
+}
+
+li{
+	list-style-type: none;
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
 }
 
 
@@ -20,13 +29,14 @@ body{
 
 .header_wrapper{
 	width: 100%;
-	background-image: url("../img/QUES_logo.jpg");
+	background-image: url("../img/6271bc5e15d95f67f9036178a52dce5c.png");
 	background-size: cover;
+	-webkit-filter: grayscale(0.5)
 }
 
 #navbar{
-	position: fixed;
 	width: 100%;
+	position: relative;
 }
 
 .nav_icon{
@@ -35,9 +45,17 @@ body{
 	float: left;
 }
 
-.create{
-	position: relative;
+.menu{
 	float: right;
+}
+
+.create{
+	
+	display: inline;
+	float: left;
+}
+
+.search{
 }
 
 .profile{
@@ -47,7 +65,7 @@ body{
 .profile_image{
 	position: relative;
 	float: left;
-	background-image: url("../img/main_bg.jpeg")
+	background-image: url("../img/10393901_719770631444133_7258567748749394499_n.jpg")
 }
 
 .profile_name{
@@ -65,12 +83,12 @@ body{
 .main_wrapper{
 	width: 100%;
 	height: 100%;
-	background-color: #F0F;
+	background-color: #F2F2F2;
 }
 
 .main_top{
 	width: 100%;
-	height: 60px;
+	height: 80px;
 	background-color: #000;
 }
 
@@ -86,18 +104,20 @@ body{
 }
 
 .card{
+	background-color: #FFF;
+	
 }
 
 .card_bottom{
-	background-color: #E2E2E2;
+	background-color: #F5F5F5;
 	width: 100%;
 }
 
 
 /*web*/
-@media(min-width: 900px){
+@media(min-width: 1064px){
 	.header_wrapper{
-		height: 600px;
+	height: 480px;
 	}
 	#navbar{
 		top: 40px;
@@ -107,7 +127,7 @@ body{
 	.nav_icon{
 		line-height: 100px;
 		color: #FFF;
-		margin-left: 42px;
+		margin-left: 60px;
 		font-size: 40px;
 	}
 
@@ -115,92 +135,166 @@ body{
 		border-radius: 10px;
 		border-style: solid;
 		border-color: #FFF;
-		padding:0 10px;
+		padding:0 15px;
 		font-size: 20px;
 		color: #FFF;
-		margin: 23px 0;
-		line-height: 50px;
+		margin: 28px 0;
+		line-height: 40px;
 		border-width: 2px;
-		opacity: 1.0;
+	}
+
+	.search{
+		position: absolute;
+		left: 50%;
+		margin-left: -150px;
+		margin-top: 35px;
+		border-width: 0;
+		border: none;
+		border-radius: 25px;
+		height: 40px;
+		width: 340px;
+		background-image: url("../img/search_icon.png");
+		background-size: cover;
 	}
 
 	.profile{
 		height: 100%;
 		margin: 0 42px;
+		margin-left: 0;
+		margin-right: 60px;
 	}
+
+	#navbar ul li ul{
+		z-index: 10px;
+		border:solid 1px #9B9B9B;
+		border-top:solid 5px #FF3900;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		position: absolute;
+		margin-top: 70px;
+		margin-left: 10px;
+		width: 150px;
+		background-color: #FFF;
+		text-align: center;
+		padding:10px 10px;
+		padding-top: 15px;
+	}
+	#navbar ul li ul li{
+		width: 130px;
+		line-height: 40px;
+		display: block;
+		position: relative;
+		cursor: pointer;
+	}
+	#navbar ul li ul li a{
+		
+	}
+	#navbar ul li ul li:hover a{
+		color: #FF3900;
+	}
+
+	#navbar ul li ul.fallback{
+		display: none;
+	}
+
+	#navbar ul li:hover ul.fallback{
+		display: block;
+	}
+
 
 	.profile_image{
 		width: 40px;
 		height: 40px;
-		margin-top: 30px;
+		margin: 30px 0;
 		background-color: #FFF;
 		background-size: cover;
+
 	}
 	.profile_name{
 		line-height: 100px;
 		padding: 0 10px;
 		font-size: 20px;
+		display: inline;
+	}
+
+	.profile_name span{
+		cursor: pointer;
 	}
 
 	.main_title{
-		top: 200px;
-		font-size: 40px;
+		top: 80px;
+		font-size: 35px;
+		width: 300px;
+		position: relative;
+		margin: 0 auto;
 	}
 
 	.main_wrapper{
 
 	}
-	.base_top{
-		width:100%;
-		height:400px;
-		background-image: url("../img/base_top.jpg");
-		background-size: cover;
-	}
+
 	.main_top{
 		width: 100%;
-		height: 60px;
+		height: 80px;
 		background-color: #F2F2F2;
-		border-bottom: solid 1px #D1D1D1;
+		border-bottom: solid 3px #C5C5C5;
 	}
 
 	.card_count{
-		line-height: 60px;
-		width:880px;
+		line-height: 80px;
+		width:1038px;
 		margin: 0 auto;
 		font-size: 20px;
 	}
 
+	.card_count a{
+		text-align: right;
+		position: relative;
+		float: right;
+		color: #A7A7A7;
+		cursor: pointer;
+	}
+
 	.cards{
-		width: 904px;
+		width: 1064px;
 		margin: 0 auto;
+		height: auto;
+		overflow: hidden;
 	}
 
 	.card{
 		position: relative;
 		float: left;
-		width: 202px;
-		height: 320px;
-		margin: 12px 12px;
+		width: 240px;
+		height: 410px;
+		margin: 0px 12px;
+		margin-top: 50px;
 		border-width: 1px;
-		border-radius: 5px;
+		border-radius: 10px;
 		border-style: solid;
-		border-color: #E2E2E2;
+		border-color: #E5E5E5;
 	}
 
 	.card_bottom{
 		position:absolute;
 		bottom: 0;
-		height: 65px;
-		padding: 10px 10px;
+		height: 96px;
+		padding: 10px 11px;
+		border-bottom-left-radius:10px; 
+		border-bottom-right-radius:10px;
+	}
+
+	.card_bottom span{
+		line-height: 26px;
 	}
 
 	.card_icon{
 
 		position: relative;
 		float: left;
-		height: 45px;
-		width: 30px;
-		margin: 0 15px;
+		height: 76px;
+		width: 50px;
+		margin: 0 11px;
 		text-align: center;
 		color: #AAA;
 	}
@@ -208,47 +302,8 @@ body{
 	.icon{
 		width: 30px;
 		height: 30px;
-		background-image: url("../img/QUES_logo.png");
+		margin: 10px 10px;
+		background-image: url("../img/1440770577_39.Heart.png");
 		background-size: cover;
-	}
-
-	.main_wrapper .base_top .logo{
-		position:absolute;
-		top:60px;
-		left:42px;
-		font-size:40px;
-		color:#fff;
-		margin-top:-14px;
-		font-weight: 800;
-	}
-
-	.main_wrapper .base_top .logout{
-		position:relative;
-		float:right;
-		margin-right: 30px;
-		font-size:15px;
-		color:#aaa;
-		font-weight: 500;
-	}
-
-
-	.main_wrapper .base_top .register{
-		position:relative;
-		float:right;
-		font-size:16px;
-		color:#fff;
-		font-weight:300;
-		background-color:rgba(37,57,132,0.5);
-		border-radius: 10px;
-		border:1px solid #aaa;
-		margin-right:30px;
-		margin-top:-12px;
-		padding:10px 20px;
-	}
-
-	.main_wrapper .top_row{
-		width:100%;
-		height: 50px;
-		padding-top:50px;
 	}
 }
