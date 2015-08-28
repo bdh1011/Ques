@@ -29,7 +29,7 @@ a{
 
 .header_wrapper{
 	width: 100%;
-	background-image: url("../img/6271bc5e15d95f67f9036178a52dce5c.png");
+	background-image: url("../img/bg.jpeg");
 	background-size: cover;
 	-webkit-filter: grayscale(0.5)
 }
@@ -65,7 +65,7 @@ a{
 .profile_image{
 	position: relative;
 	float: left;
-	background-image: url("../img/10393901_719770631444133_7258567748749394499_n.jpg")
+	background-image: url("../img/QUES_logo.png")
 }
 
 .profile_name{
@@ -153,7 +153,7 @@ a{
 		border-radius: 25px;
 		height: 40px;
 		width: 340px;
-		background-image: url("../img/search_icon.png");
+		background-image: url("../img/QUES_logo.png");
 		background-size: cover;
 	}
 
@@ -303,7 +303,7 @@ a{
 		width: 30px;
 		height: 30px;
 		margin: 10px 10px;
-		background-image: url("../img/1440770577_39.Heart.png");
+		background-image: url("../img/QUES_logo.png");
 		background-size: cover;
 	}
 }
