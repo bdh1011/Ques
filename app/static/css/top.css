@@ -136,7 +136,7 @@ a{
 		border-style: solid;
 		border-color: #FFF;
 		padding:0 15px;
-		font-size: 20px;
+		font-size: 18px;
 		color: #FFF;
 		margin: 28px 0;
 		line-height: 40px;
@@ -180,6 +180,7 @@ a{
 		padding-top: 15px;
 	}
 	#navbar ul li ul li{
+		font-size:18px;
 		width: 130px;
 		line-height: 40px;
 		display: block;
@@ -223,7 +224,7 @@ a{
 
 	.main_title{
 		top: 80px;
-		font-size: 35px;
+		font-size: 42px;
 		width: 300px;
 		position: relative;
 		margin: 0 auto;
@@ -244,7 +245,7 @@ a{
 		line-height: 80px;
 		width:1038px;
 		margin: 0 auto;
-		font-size: 20px;
+		font-size: 24px;
 	}
 
 	.card_count a{
