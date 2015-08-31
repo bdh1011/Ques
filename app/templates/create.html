@@ -6,14 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel='stylesheet' type='text/css'  href='../static/css/create.css'>
 	<script src='../static/js/jquery-1.9.1.min.js'></script>
-
 	<script type="text/javascript">
 	$(document).ready(function(){
-
 		//질문추가
 		$(document).on("click", '.addition',function()
 		{
-			var question = "<div class='question'><input type ='text' placeholder='질문제목을 입력하세요(텍스트입력)'><br><textarea rows='2' col='10' placeholder='이 질문에 대해서 설명해주세요.(텍스트입력)'></textarea><br>질문형식 : <select class='select'><option value='choice'>객관식</option><option value='essay'>주관식</option></select><div class='choice'><input type = 'text' placeholder='옵션''><a href='#'><div class='option_addition'>옵션추가</div></a></div></div>";
+			var question = "<div class='question'><div><span>질문 제목</span><input type ='text'></div><br><div><span>도움말 텍스트</span><textarea rows='1' col='10'></textarea></div><br><span>질문 유형</span><select class='select'><option value='choice'>객관식 질문</option><option value='essay'>주관식 질문</option><option value='multiple_choice'>객관식 (중복응답)</option><option value='range'>점수 범위 선택</option></select><div class='choice'><input type = 'text'placeholder='옵션''><a href='#''><div class='option_addition'>옵션추가</div></a></div></div></div>";
 			$("#ques").append(question);
 		});
 
@@ -23,8 +21,11 @@
 		     var valueSelected  = $(this).val();
 		     if(valueSelected=="essay"){
 		     	$(this).next().remove();
+		     	var essay = "<div class='choice'><input type = 'text' placeholder='답변'></div>";
+		     	$(this).parents(".question").append(essay);
 		     }
-		     else{
+		     else if(valueSelected=='choice' || valueSelected=='multiple_choice'){
+		     	$(this).next().remove();
 		     	var choice = "<div class='choice'><input type = 'text' placeholder='옵션'><a href='#'><div class='option_addition'>옵션추가</div></a></div>";
 		     	$(this).parents(".question").append(choice);
 		     }
@@ -40,33 +41,35 @@
 	</script>
 </head>
 <body>
-	<div class="container">
-		<div class="top">
-			<!--back_btn 클릭시 이전페이지로//UES 클릭시 메인페이지로-->
-			<a href="#"><div class="back_btn"></div></a>
-			<div class="title"><a href="#">QUES</a></div>
-			<div class="submit">완료</div>
-
-			<!--이름 클릭시 개인페이지로?? 생각해봄-->
-			<div class="user"><a href="#">신만수<!-- 현재 세션의 네임 불러오면 됨-->님</a></div>
-			<div class="point">퀘스포인트 : 30점<!-- 현재 세션의 포인트 불러오면 됨--></div>
-		</div>
-
+	<div class="create_wrapper">
 		<!--설문 하나 세트-->
-		<div id="ques">
-			<div class="survey_title"><input type ="text" placeholder="설문제목을 입력하세요(텍스트입력)"></div>
-
-			<!--질문 1세트-->
-			<div class="question"><input type ="text" placeholder="질문제목을 입력하세요(텍스트입력)"><br>
-			<textarea rows="2" col="10" placeholder="이 질문에 대해서 설명해주세요.(텍스트입력)"></textarea><br>
-			질문형식 : <select class="select"><option value="choice">객관식</option><option value="essay">주관식</option></select>
-				<div class="choice">
-					<input type = "text" placeholder="옵션">
-					<a href="#"><div class="option_addition">옵션추가</div></a>
+		<form>
+			<div id="ques">
+				<div class="survey_title_wrapper">
+					<input type ="text" class="survey_title" placeholder="설문제목을 입력하세요(텍스트입력)">
+				</div>
+				<div class="survey_subtitle_wrapper">
+					<input type ="text" class="survey_subtitle" placeholder="설문지 설명">
+				</div>
+				<!--질문 1세트-->
+				<div class="question">
+					<div><span>질문 제목</span><input type ="text">
+					</div><br>
+					<div><span>도움말 텍스트</span><textarea rows="1" col="10"></textarea></div><br>
+					<span>질문 유형</span><select class="select"><option value="choice">객관식 질문</option><option value="essay">주관식 질문</option>
+					<option value="multiple_choice">객관식 (중복응답)</option>
+					<option value="range">점수 범위 선택</option></select>
+					<div class="choice">
+						<input type = "text" placeholder="옵션">
+						<a href="#"><div class="option_addition">옵션추가
+						</div></a>
+					</div>
 				</div>
 			</div>
-		</div>
-		<a href="#"><div class="addition">질문추가</div></a>
+			<a href="#"><div class="addition">질문추가</div></a>
+			<a href="#"><input type="submit" value="완료"></a>
+		</form>
+
 
 	</div>
 
