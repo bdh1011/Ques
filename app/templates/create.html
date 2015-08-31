@@ -15,7 +15,7 @@
 			$("#ques").append(question);
 		});
 
-		//객관식 <> 주관식
+	//객관식 <> 주관식 <> 중복객관식(요거는 객관식과 동일 처리하되, 설문참여시 차별을 두도록) <> 범위
 		$(document).on("change", '.select', function()
 		{
 		     var valueSelected  = $(this).val();
