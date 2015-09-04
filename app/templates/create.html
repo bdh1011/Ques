@@ -13,7 +13,29 @@
 		{
 			var question = "<div class='question'><div><span>질문 제목</span><input type ='text'></div><br><div><span>도움말 텍스트</span><textarea rows='1' col='10'></textarea></div><br><span>질문 유형</span><select class='select'><option value='choice'>객관식 질문</option><option value='essay'>주관식 질문</option><option value='multiple_choice'>객관식 (중복응답)</option><option value='range'>점수 범위 선택</option></select><div class='choice'><input type = 'text'placeholder='옵션''><a><div class='option_addition'>옵션추가</div></a></div></div></div>";
 			$("#ques").append(question);
+
 		});
+
+		$('.survey_title_wrapper input').focus(
+		    function(){
+		        $(this).parent('div').css('border-left','solid 8px #FF3900');
+		        $(this).css('margin-left','18px');
+		    }).blur(
+		    function(){
+		        $(this).parent('div').css('border-left','none');
+		        $(this).css('margin-left','26px');
+		    });
+
+		/*$('.survey_title_wrapper input').hover(
+		    function(){
+		        $(this).parent('div').css('border-left','solid 8px #FF3900');
+		        $(this).css('margin-left','18px');
+		    }, function(){
+		        $(this).parent('div').css('border-left','none');
+		        $(this).css('margin-left','26px');
+		    });*/
+
+		    
 
 		//객관식 <> 주관식 <> 중복객관식(요거는 객관식과 동일 처리하되, 설문참여시 차별을 두도록) <> 범위
 		$(document).on("change", '.select', function()

@@ -34,7 +34,11 @@ div{
 a{
 	text-decoration: none;
 	color: inherit;
-	cursor:pointer;
+	cursor: pointer;
+}
+
+*{
+	padding: 0;
 }
 
 .create_wrapper{
@@ -43,7 +47,12 @@ a{
 
 #ques{
 	height: auto;
+	background-color: #FFF;
 }
+
+.survey_title_wrapper{
+		background-color: #F6F6F6;
+	}
 
 .survey_title{
 	background-color: #C7C9C8;
@@ -54,15 +63,6 @@ a{
 }
 
 .survey_title input{
-	width: 100%;
-	background-color: #C7C9C8;
-	margin: 0;
-	padding: 0;
-	border-style: none;
-	font-weight: bold;
-}
-
-.question input{
 	width: 100%;
 	background-color: #C7C9C8;
 	margin: 0;
@@ -104,62 +104,60 @@ a{
 }
 
 /*PC*/
-@media (min-width: 768px){
+@media (min-width: 1064px){
 
 	.create_wrapper{
-		width: 750px;
+		width: 1064px;
 		margin: 0 auto;
-		margin-top: 50px;
 	}
 
 	#ques{
-		width:750px;
+		width: 1064px;
 		margin:0 auto;
+		margin-top: 44px;
+	}
+
+	#ques a{
+		cursor: pointer;
 	}
 
 	.survey_title_wrapper{
-		width: 750px;
+		width: 1064px;
+		position: relative;
 		height: 100px;
-		padding: 20px;
-		background-color: #0F0;
+		margin-top: 16px;
 	}
 
 	.survey_title{
-		font-size: 24px;
-		width: 710px;
-		height: 60px;
+		font-size: 32px;
+		width: 964px;
+		height: 56px;
+		margin: 20px 26px;
+		padding: 0 22px;
 		background-color: #FFF;
 	}
+
 	.survey_title:focus{
-		border:#00f 1px solid;
+		border:#00f 2px solid;
 	}
 
 	.survey_subtitle_wrapper{
-		width: 750px;
+		width: 1064px;
+		position: relative;
 		height: 50px;
-		padding: 10px;
 	}
 
 	.survey_subtitle{
-		font-size: 18px;
-		width: 710px;
-		margin: 0 10px;
-		height: 30px;
+		font-size: 24px;
+		width: 964px;
+		height: 26px;
+		padding: 12px 48px;
 		background-color: #FFF;
-		color: #6B7570;
-		border:none;
+		border: none;
+		color: #9A9A9A;
 	}
 	.survey_subtitle:focus{
-		border:#00f 1px solid;
-	}
-
-	/*.survey_title:active{
-		border-left: 5px solid #00F;
-	}*/
-
-	.survey_title input{
-	height: 100px;
-	font-size: 30px;
+		border:#00f 2px solid;
 	}
 
 	.question{
@@ -281,6 +279,8 @@ a{
 		width:100%;
 		margin-top: 20px;
 	}
+
+
 
 	.survey_title{
 		padding: 10px;
