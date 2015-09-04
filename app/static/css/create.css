@@ -42,7 +42,7 @@ a{
 }
 
 .create_wrapper{
-	background-color: #F00;
+	background-color: #FFF;
 }
 
 #ques{
@@ -59,11 +59,11 @@ a{
 }
 
 .question{
-	background-color: #C7C9C8;
+	background-color: #F6F6F6;
 }
 
 .survey_title input{
-	width: 100%;
+	width: 150px;
 	background-color: #C7C9C8;
 	margin: 0;
 	padding: 0;
@@ -80,7 +80,14 @@ a{
 }
 
 .question select{
-	border:none;
+	border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.essay td{
+	width: 50px;
 }
 
 .choice input{
@@ -161,9 +168,21 @@ a{
 	}
 
 	.question{
-		width: 750px;
+		width: 1064px;
 		height: auto;
-		padding: 20px;
+		padding: 48px;
+	}
+
+	.question tbody tr td{
+		font-size: 20px;
+	}
+
+	.question_title{
+		font-size: 20px;
+	}
+
+	.question tbody tr td input[type="text"]{
+		height: 30px;
 	}
 
 	.question span{
@@ -192,7 +211,19 @@ a{
 	}
 
 	.question select{
-	font-size: 15px;
+		padding: 0 8px;
+    	border: none;
+    	box-shadow: none;
+    	background: transparent;
+    	background-image: none;
+    	-webkit-appearance: none;
+		height: 30px;
+		font-size: 12px;
+		line-height: 30px;
+	}
+
+	.question select:focus{
+		outline: none;
 	}
 
 	.choice input{
@@ -208,12 +239,45 @@ a{
 	border-radius: 10px;
 	}
 
+
+
+	.submit{
+	width: 100px;
+	height: 40px;
+	margin-top:28px;
+	border: 1px solid #000;
+	line-height: 40px;
+	font-size: 18px;
+	border-radius: 5px;
+	color: #FFF;
+	cursor: pointer;
+	background-color: #FF3900;
+	}
+
 	.addition{
 	width: 100px;
-	height: 30px;
-	line-height: 30px;
-	margin: 10px auto;
-	border-radius: 10px;
+	height: 40px;
+	margin:28px 48px;
+	border: 1px solid #000;
+	line-height: 40px;
+	font-size: 18px;
+	border-radius: 5px;
+	color: #FFF;
+	cursor: pointer;
+	background-color: #FF3900;
+	}
+
+	.complete{
+	width: 100px;
+	height: 40px;
+	margin:28px 48px;
+	border: 1px solid #000;
+	line-height: 40px;
+	font-size: 18px;
+	border-radius: 5px;
+	color: #FFF;
+	cursor: pointer;
+	background-color: #FF3900;
 	}
 
 }
@@ -249,15 +313,7 @@ a{
 		font-size: 25px;
 	}
 
-	.submit{
-		width: 15%;
-		height: 40px;
-		margin: 5px 2.5%;
-		line-height: 40px;
-		font-size: 15px;
-		border-radius: 5px;
-		
-	}
+
 
 	.user{
 		width: 50%;
