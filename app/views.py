@@ -5,33 +5,15 @@ from app import app
 import hashlib
 import os
 import sys
-from models import User
+import datetime
+import random
+import re
+
+from models import User, Survey, Question
 
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-
-
-#temp decorator
-def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        print request.headers
-        session_token = session.get('token')
-        if session_token is None:
-            return jsonify({ 'message': u'로그인해주세요.' }), 401
-
-        session_token = escape(session_token)
-        if redis_connections.get(session_token) is None:
-            return jsonify({ 'message': u'로그인해주세요.' }), 401
-
-        return f(*args, **kwargs)
-    return decorated_function
-
-
-
-
-
 
 @app.route('/join', methods=['POST'])
 def join():
@@ -48,11 +30,11 @@ def join():
     
     
     if email is None or password is None:
-    	flash('폼을 채워주세요')
         return redirect(url_for('join'))
-    # if User.query.filter_by(email=email).first() is not None:
-    #     flash('이미 존재하는 계정입니다')
-    #     return redirect(url_for('join'))
+
+    if User.query.filter_by(email=email).first() is not None:
+        return redirect(url_for('join'))
+
     print email, password, birthday, gender
 
     user = User(email=email, password=password, gender=gender, birthday=birthday )
@@ -61,10 +43,10 @@ def join():
     db.session.commit()
     g.user = user
 
-    user_hash = hashlib.sha1(str(user.id)).hexdigest()
-    session['token'] = user_hash
+    # user_hash = hashlib.sha1(str(user.id)).hexdigest()
+    # session['token'] = user_hash
 
-    return render_template("main.html")
+    return redirect(url_for('main'))
 
 
 @app.route('/join',  methods=['GET'])
@@ -87,13 +69,47 @@ def logout():
     session.pop('token', None)
     return redirect(url_for('login'))
 
+@app.route('/create', methods=['GET','POST'])
+def create():
+    if request.method=='GET':
+        current_time = datetime.datetime.now()
+        print current_time
+        hash = random.getrandbits(g.user.id+current_time)
+        print hash
+        return render_template("create.html")
+    else:
+        survey_title = request.form['survey_title']
+        survey_subtitle = request.form['survey_subtitle']
+        question_type = request.form['question_type']
+        isEssential = request.form['is_essential']
+        user = g.user
+        survey = Survey(title=title, subtitle=subtitle, userID=user.id)
+        db.session.add(survey)
+        db.session.commit()
+        # question = Question(title=survey_title, subtitle=survey_subtitle, questionType=question_type, surveyID)
+        return render_template("create.html")
 
+@app.route('/create/question_tmp_save', methods=['POST'])
+def tmp_create():
+    question = request.get_json()
+    question_index = question.keys()
+    question = question[question_index]
+    print question_index
+    question_title = question['title']
+    question_subtitle = question['subtitle']
+    question_type = question['type']
+    question_option = question['option']
+    for each_question_option in question_option:
+        print each_question_option
+    print question_title
+    print question_subtitle
+    return jsonify('success')
 
 @app.route('/')
 @app.route('/login' , methods=['GET', 'POST'])
 def login():
     if request.method=='GET':
-        if 'token' in session:
+        if g.get('user', None):
             return redirect(url_for('main'))
     	return render_template("login.html")
     else:
@@ -112,7 +128,8 @@ def login():
         user_hash = hashlib.sha1(str(user.id)).hexdigest()
         session['token'] = user_hash
         g.user = user
-        return render_template("main.html")
+        # username = re.match('(.*)(@)',user.email).group(1)
+        return redirect(url_for('main'))
 
 
 
@@ -144,15 +161,14 @@ def fb_login():
 
 @app.route('/main')
 def main():
-	if not 'token' in session:
-		return redirect(url_for('login'))
-	return render_template("main.html")
+    if not g.get('user'):
+        return redirect(url_for('login'))
+    user = g.user
+    username = re.match('(.*)(@)',user.email).group(1)
+        
+    return render_template("main.html")
 
 @app.route('/home')
 def home():
 
 	return render_template('home.html')
-
-@app.route('/create')
-def create():
-	return render_template('create.html')

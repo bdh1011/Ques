@@ -43,19 +43,19 @@
 <body>
 	<div class="create_wrapper">
 		<!--설문 하나 세트-->
-		<form>
+		<form accept-charset="UTF-8" action="/create" class="create_form" method="post">>
 			<div id="ques">
 				<div class="survey_title_wrapper">
-					<input type ="text" class="survey_title" placeholder="설문제목을 입력하세요(텍스트입력)">
+					<input type ="text" class="survey_title" name="survey_title" placeholder="설문제목을 입력하세요(텍스트입력)">
 				</div>
 				<div class="survey_subtitle_wrapper">
-					<input type ="text" class="survey_subtitle" placeholder="설문지 설명">
+					<input type ="text" class="survey_subtitle" name="survey_subtitle" placeholder="설문지 설명">
 				</div>
 				<!--질문 1세트-->
 				<div class="question">
-					<div><span>질문 제목</span><input type ="text">
+					<div><span>질문 제목</span><input type ="text" name="question_title">
 					</div><br>
-					<div><span>도움말 텍스트</span><textarea rows="1" col="10"></textarea></div><br>
+					<div><span>도움말 텍스트</span><textarea rows="1" col="10" name="question_subtitle"></textarea></div><br>
 					<span>질문 유형</span><select class="select"><option value="choice">객관식 질문</option><option value="essay">주관식 질문</option>
 					<option value="multiple_choice">객관식 (중복응답)</option>
 					<option value="range">점수 범위 선택</option></select>
