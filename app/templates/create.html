@@ -24,7 +24,7 @@
 			}
 			var question = { "title":"example question", "subtitle":"subtitle", "type":"choice", "option":["option1","option2","option3"]};
 
-			$.ajax({ type: "POST", url: pathname.substring(pathname.length-4)+'/tmpsave', data: JSON.stringify({0: question }), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){alert("b");}, failure: function(errMsg) { alert("a");}});
+			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'/tmpsave', data: JSON.stringify({0: question }), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){alert("b");}, failure: function(errMsg) { alert("a");}});
 
 		});
 
