@@ -8,11 +8,23 @@
 	<script src='{{url_for("static",filename="js/jquery-1.9.1.min.js")}}'></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
+		
+		$(document).on("click", '.submit',function()
+		{
+
+			var question = { "title":"example question", "subtitle":"subtitle", "type":"choice", "option":["option1","option2","option3"]};
+			$.ajax({ type: "POST", url: "172.30.20.113/create/tmp_question_save", data: JSON.stringify({0: question }), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){alert("b");}, failure: function(errMsg) { alert("a");}});
+
+		});
+
 		//질문추가
 		$(document).on("click", '.addition',function()
 		{
+
+			var question2 = "<table class='question'><tbody><tr><td>질문 제목</td><td><input type='text'></td></tr><tr><td>도움말 텍스트</td><td><input type='text'></td></tr><tr><td>질문 유형</td><td><select class='select'><option value='choice'>객관식 질문</option><option value='multiple_choice'>객관식 질문(중복 응답)</option><option value='essay'>주관식 질문</option></select></td></tr><tr class='option'><td></td><td><input type='text'></td></tr><tr><td></td><td><a class='option_addition'>옵션추가</a></td></tr><tr><td><input type='submit' value='완료''></td></tr></tbody></table>";
+
 			var question = "<div class='question'><div><span>질문 제목</span><input type ='text'></div><br><div><span>도움말 텍스트</span><textarea rows='1' col='10'></textarea></div><br><span>질문 유형</span><select class='select'><option value='choice'>객관식 질문</option><option value='essay'>주관식 질문</option><option value='multiple_choice'>객관식 (중복응답)</option><option value='range'>점수 범위 선택</option></select><div class='choice'><input type = 'text'placeholder='옵션''><a><div class='option_addition'>옵션추가</div></a></div></div></div>";
-			$("#ques").append(question);
+			$("#ques").append(question2);
 
 		});
 
@@ -26,37 +38,42 @@
 		        $(this).css('margin-left','26px');
 		    });
 
-		/*$('.survey_title_wrapper input').hover(
+		$('.survey_title_wrapper input').hover(
 		    function(){
 		        $(this).parent('div').css('border-left','solid 8px #FF3900');
 		        $(this).css('margin-left','18px');
 		    }, function(){
 		        $(this).parent('div').css('border-left','none');
 		        $(this).css('margin-left','26px');
-		    });*/
+		    });
 
 		    
 
 		//객관식 <> 주관식 <> 중복객관식(요거는 객관식과 동일 처리하되, 설문참여시 차별을 두도록) <> 범위
-		$(document).on("change", '.select', function()
+		
+		$(document).on("change", 'select', function()
 		{
 		     var valueSelected  = $(this).val();
 		     if(valueSelected=="essay"){
-		     	$(this).next().remove();
-		     	var essay = "<div class='choice'><input type = 'text' placeholder='답변'></div>";
-		     	$(this).parents(".question").append(essay);
+		     	$(this).parents('tr').nextAll(".option").remove();
+		     	$(this).parents('tr').next().remove();
+		     	var essay = "<tr class='essay'><td><input type='text'></td></tr>";
+		     	$(this).parents("tr").after(essay);
+
 		     }
 		     else if(valueSelected=='choice' || valueSelected=='multiple_choice'){
-		     	$(this).next().remove();
-		     	var choice = "<div class='choice'><input type = 'text' placeholder='옵션'><a><div class='option_addition'>옵션추가</div></a></div>";
-		     	$(this).parents(".question").append(choice);
+		     	$(this).parents('tr').next(".essay").remove();
+		     	$(this).parents('tr').nextAll(".option").remove();
+		     	$(this).parents('tr').next().remove();
+		     	var choice = "<tr class='option'><td></td><td><input type='text'></td></tr><tr>	<td></td><td><a class='option_addition'>옵션추가</a></td></tr>";
+		     	$(this).parents("tr").after(choice);
 		     }
  		});	
 
 		//옵션추가
  		$(document).on("click", '.option_addition', function(){
-			var option = "<input type = 'text' placeholder='옵션'>";
-			$(this).parents('a').prepend(option);
+			var option = "<tr class='option'><td></td><td><input type='text'></td></tr>";
+			$(this).parents('tr').prev().before(option);
 		});
 	});
 
@@ -65,19 +82,52 @@
 <body>
 	<div class="create_wrapper">
 		<!--설문 하나 세트-->
-		<form accept-charset="UTF-8" action="/create" class="create_form" method="post">>
+		<form>
 			<div id="ques">
 				<div class="survey_title_wrapper">
-					<input type ="text" class="survey_title" name="survey_title" placeholder="설문제목을 입력하세요(텍스트입력)">
+					<input type ="text" class="survey_title" placeholder="설문제목을 입력하세요(텍스트입력)">
 				</div>
 				<div class="survey_subtitle_wrapper">
-					<input type ="text" class="survey_subtitle" name="survey_subtitle" placeholder="설문지 설명">
+					<input type ="text" class="survey_subtitle" placeholder="설문지 설명">
 				</div>
 				<!--질문 1세트-->
+				<table class="question">
+					<tbody>
+						<tr>
+							<td>질문 제목</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td>도움말 텍스트</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td>질문 유형</td>
+							<td><select class=".select">
+								<option value="choice">객관식 질문</option>
+								<option value="multiple_choice">객관식 질문(중복 응답)</option>
+								<option value="essay">주관식 질문</option>
+							</select></td>
+						</tr>
+						<tr class="option">
+							<td></td>
+							<td><input  type="text"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><a class="option_addition">옵션추가</a></td>	
+						</tr>
+						<tr>
+							<td><input class="submit" type="submit" value="완료"></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!--
 				<div class="question">
-					<div><span>질문 제목</span><input type ="text" name="question_title">
+					<div><span>질문 제목</span><input type ="text">
 					</div><br>
-					<div><span>도움말 텍스트</span><textarea rows="1" col="10" name="question_subtitle"></textarea></div><br>
+					<div><span>도움말 텍스트</span><textarea rows="1" col="10"></textarea></div><br>
 					<span>질문 유형</span><select class="select"><option value="choice">객관식 질문</option><option value="essay">주관식 질문</option>
 					<option value="multiple_choice">객관식 (중복응답)</option>
 					<option value="range">점수 범위 선택</option></select>
@@ -86,10 +136,10 @@
 						<a><div class="option_addition">옵션추가
 						</div></a>
 					</div>
-				</div>
+				</div>-->
 			</div>
-			<a><div class="addition">질문추가</div></a>
-			<a><input type="submit" value="완료"></a>
+			<a><div class="addition">항목 추가</div></a>
+			<a><input type="submit" value="설문지 완성"></a>
 		</form>
 
 
