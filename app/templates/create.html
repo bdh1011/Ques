@@ -16,6 +16,8 @@
 			var title = $(this).parents('tbody').children('.question_title').find('td input').val();
 			var subtitle = $(this).parents('tbody').children('.question_subtitle').find('td input').val();
 			var type = $(this).parents('tbody').children('.select').find('td select').val();
+			var question_element = $(this).parents('.question');
+			var index = $('.question').index(question_element);
 			var option_count = $(this).parents('tbody').children(".option").length;
 			var option=[];
 			var i = i;
