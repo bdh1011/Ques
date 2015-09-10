@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>QUES</title>
+	<meta charset ='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' type='text/css'  href='../static/css/survey.css'>
+	<script src='../static/js/jquery-1.9.1.min.js'></script>
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+    $("input:radio:checked").data("chk",true);
+    $("input:radio").click(function(){
+        $("input[name='"+$(this).attr("name")+"']:radio").not(this).removeData("chk");
+        $(this).data("chk",!$(this).data("chk"));
+        $(this).prop("checked",$(this).data("chk"));
+    });
+});
+		
+	</script>
+</head>
+<body>
+	<form id="view_wrapper">
+		<div class="survey_title_wrapper">
+			좋아하는 과자에 대한 설문
+			<!--설문 제목 불러오기-->
+		</div>
+		<div class="survey_subtitle_wrapper">
+				좋아하는 과자에 대한 면밀한 조사입니다. 요즘 트렌드 과제에 무엇인지..
+				<!--설명불러왓!-->
+		</div>
+		<!--객관식-->
+		<div class="question">
+			<h2>당신이 제일 좋아하는 과자는</h2>
+			<h3>스낵류만</h3>
+			<table>
+				<tbody>
+					<!--name이 같다면 중복체크가 안됨-->
+					<tr><td><input type="radio" name="option" value="콘칩"></td><td>콘칩</td></tr>
+					<tr><td><input type="radio" name="option" value="콘칩"></td><td>콘칩</td></tr>
+					<tr><td><input type="radio" name="option" value="콘칩"></td><td>콘칩</td></tr>
+					<tr><td><input type="radio" name="option" value="콘칩"></td><td>콘칩</td></tr>
+				</tbody>
+			</table>
+		</div>
+		<!--중복 객관식-->
+		<div class="question">
+			<h2>당신이 좋아하는 과자는(중복)</h2>
+			<h3>스낵류만</h3>
+			<table>
+				<tbody>
+					<tr><td><input type="radio" value="콘칩"></td><td>콘칩</td></tr>
+					<tr><td><input type="radio" value="콘칩"></td><td>콘칩</td></tr>
+					<tr><td><input type="radio" value="콘칩"></td><td>콘칩</td></tr>
+					<tr><td><input type="radio" value="콘칩"></td><td>콘칩</td></tr>
+				</tbody>
+			</table>
+		</div>
+		<!--주관식-->
+		<div class="question">
+			<h2>당신이 제일 좋아하는 과자는</h2>
+			<h3>스낵류만</h3>
+			<table>
+				<tbody>
+					<tr><td><input type="text" ></td></tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="complete_wrapper"><input class="complete" type="submit" value="설문 보내기"></div>
+	</form>
+
+</body>
+</html>
