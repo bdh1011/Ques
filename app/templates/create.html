@@ -19,17 +19,28 @@
 			var question_element = $(this).parents('.question');
 			var index = $('.question').index(question_element);
 			var option_count = $(this).parents('tbody').children(".option").length;
-			var option=[];
+			var options=[];
 			var i = i;
 			for(i=0; i<option_count; i++){
-				option[i] = $(this).parents('tbody').children(".option").find('td input').eq(i).val();
+				options[i] = $(this).parents('tbody').children(".option").find('td input').eq(i).val();
 			}
-			var question = { "title":"example question", "subtitle":"subtitle", "type":"choice", "option":["option1","option2","option3"]};
+			var question = { "title":title, "subtitle":subtitle, "type":type, "option":options};
 
-			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'/tmpsave', data: JSON.stringify({0: question }), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){alert("b");}, failure: function(errMsg) { alert("a");}});
+			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'tmpsave', data: JSON.stringify({"question": question }), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){alert("b");}, failure: function(errMsg) { alert("a");}});
 
 		});
 
+	
+		$(document).on("click", '.complete',function()
+		{
+			var pathname = window.location.pathname;
+
+			var title = $('.survey_title').val();
+			var subtitle = $('.survey_subtitle').val();
+			
+			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'register', data: JSON.stringify({"size": 0 ,"title":title,"subtitle":subtitle}), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){alert("b");}, failure: function(errMsg) { alert("a");}});
+
+		});
 		//질문추가
 		$(document).on("click", '.addition',function()
 		{

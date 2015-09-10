@@ -45,9 +45,10 @@
 			
 		</div>
 		<div class="cards">
+		{% for each_survey in survey_list %}
 			<div class="card">
-				<h2>20대 청춘의 가장 큰 고민</h2>
-				<h3>20대 청춘의 고민을 면밀히 분석하여..</h3>
+				<h2>{{each_survey.title}}</h2>
+				<h3>{{each_survey.subtitle}}</h3>
 				<div class="card_bottom">
 					<div class="card_icon">
 						<div class="icon"></div>
@@ -63,118 +64,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="card">
-				<div class="card_bottom">
-					<div class="card_icon">
-						<div class="icon"></div>
-						230<!--조아요순-->
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card_bottom">
-					<div class="card_icon">
-						<div class="icon"></div>
-						230<!--조아요순-->
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card_bottom">
-					<div class="card_icon">
-						<div class="icon"></div>
-						230<!--조아요순-->
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card_bottom">
-					<div class="card_icon">
-						<div class="icon"></div>
-						230<!--조아요순-->
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card_bottom">
-					<div class="card_icon">
-						<div class="icon"></div>
-						230<!--조아요순-->
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card_bottom">
-					<div class="card_icon">
-						<div class="icon"></div>
-						230<!--조아요순-->
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card_bottom">
-					<div class="card_icon">
-						<div class="icon"></div>
-						230<!--조아요순-->
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						230
-					</div>
-				</div>
-			</div>
+		{% endfor %}
 		</div>
 	</div>
 </body>

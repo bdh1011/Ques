@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, flash, session, url_for, g, request, redirect
+from flask import render_template, flash,jsonify, session, url_for, g, request, redirect
 from app import db
 from app import app
 import hashlib
@@ -10,7 +10,7 @@ import random
 import re
 from functools import wraps
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from models import User, Survey, Question
+from models import User, Survey, Question, Option
 import decorator
 # from forms import LoginForm
 
@@ -85,6 +85,7 @@ def logout():
 @app.route('/create', methods=['GET','POST'])
 @login_required
 def create():
+    session['tmp_question_dict'] = {}
     if request.method=='GET':
         current_time = datetime.datetime.now().strftime("%Y-%m-%d,%H:%M:%S")
         print current_time
@@ -109,25 +110,71 @@ def create():
 def survey_edit(survey_id):
     return render_template("create.html")
 
-@app.route('/survey/<survey_id>/tmpsave', methods=['POST'])
+@app.route('/survey/<survey_id>/tmpsave', methods=['POST','GET'])
 @login_required
 def tmp_create(survey_id):
+    if request.method=='GET':
+        return jsonify(request.get_json())
+    question = request.get_json()['question']
+    if session['tmp_question_dict'].has_key(survey_id):
+        session['tmp_question_dict'][survey_id].append(question)
+    else:
+        session['tmp_question_dict'][survey_id] = []
+        session['tmp_question_dict'][survey_id].append(question)
+    print session
+    return jsonify({'success': session['tmp_question_dict']})
+
+
+@app.route('/survey/<survey_id>')
+@login_required
+def get_survey(survey_id):
+    return jsonify(session['tmp_question_dict'][survey_id])
+
+
+@app.route('/survey/<survey_id>/delete', methods=['POST'])
+@login_required
+def tmp_delete(survey_id):
     question = request.get_json()
-    question_index = question.keys()
-    question = question[question_index]
+    question_index = question['index']
+    print question_index
+    print session['tmp_question_dict'][survey_id]
+    session['tmp_question_dict'][survey_id].pop(question_index)
+    return jsonify({'result':'success'})
 
-    tmp_question = {}
 
-    tmp_question['title'] = question['title']
-    tmp_question['subtitle'] = question['subtitle']
-    tmp_question['type'] = question['type']
-    question_option = question['option']
-    question_option_list = []
-    for each_question_option in question_option:
-        question_option_list.append(each_question_option)
-        print each_question_option
-    session[question_index].append(question)
-    return jsonify('success')
+@app.route('/survey/<survey_id>/register', methods=['POST'])
+@login_required
+def register_survey(survey_id):
+    survey = request.get_json()
+    survey_size = survey['size']
+    survey_title = survey['title']
+    survey_subtitle = survey['subtitle']
+    user = User.query.filter_by(id=session['userid']).first()
+    survey = Survey(title=survey_title, subtitle=survey_subtitle, userID=user.id)
+    db.session.add(survey)
+    db.session.commit()
+    db.session.flush()
+    session['userid'] = user.id
+    for each_question in session['tmp_question_dict'][survey_id]: 
+        question = Question(
+            title=each_question['title'],
+         subtitle=each_question['subtitle'],
+         questionType=each_question['type'],
+         isEssential=True, 
+         surveyID=survey.id)
+        db.session.add(question)
+        db.session.commit()
+        db.session.flush()
+        question = Question.query.filter_by(title=question.title).first()
+        for each_option in each_question['option']:
+            option = Option(content=each_option, questionID=question.id)
+            db.session.add(option)
+            db.session.commit()
+            db.session.flush()
+
+    return jsonify({'result':'success'})
+
+
 
 @app.route('/')
 @app.route('/login' , methods=['GET', 'POST'])
@@ -177,7 +224,7 @@ def fb_login():
 
 		# user_hash = hashlib.sha1(str(user.id)).hexdigest()
 		session['userid'] = user.id
-    return redirect(url_for('userid'))
+    return redirect(url_for('main'))
 
 
 @app.route('/main')
@@ -186,10 +233,16 @@ def main():
         return redirect(url_for('login'))
     user = User.query.filter_by(id=session['userid']).first()
     username = re.match('(.*)(@)',user.email).group(1)
+    survey_list = Survey.query.order_by(Survey.register_timestamp).all()
+    for each in survey_list:
+        print each.id
+        print each.title
+        print each.subtitle
+        print each.register_timestamp
+        print each.userID
 
-    session['tmp_question_dict'] = []
         
-    return render_template("main.html", username=username)
+    return render_template("main.html", username=username, survey_list=survey_list)
 
 @app.route('/home')
 @login_required

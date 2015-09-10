@@ -3,6 +3,9 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.httpauth import HTTPBasicAuth
 from flask.ext.login import LoginManager
+from redis import Redis
+
+redis = Redis()
 
 app = Flask(__name__)
 app.secret_key = 'ques'

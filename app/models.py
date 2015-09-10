@@ -57,8 +57,14 @@ class Survey(db.Model):
 	__tablename__ = 'survey'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
 	title = db.Column(db.String(64), nullable=False)
+	subtitle = db.Column(db.String(256), nullable=True)
 	register_timestamp = db.Column(db.DateTime, default=db.func.now())
 	userID = db.Column(db.String(64), db.ForeignKey('user.id'))
+
+	def __init__(self, title, subtitle, userID):
+		self.title = title
+		self.subtitle = subtitle
+		self.userID = userID
 
 	like = db.relationship('Like', backref='survey',lazy='dynamic')
 	question = db.relationship('Question', backref='survey',lazy='dynamic')
@@ -78,16 +84,26 @@ class Question(db.Model):
 	title = db.Column(db.String(64), nullable=False)
 	subtitle = db.Column(db.Text, nullable=False)
 	questionType = db.Column(db.Integer, nullable=False)
-	isEssential = db.Column(db.Boolean, nullable=False)
 	surveyID = db.Column(db.String(64), db.ForeignKey('survey.id'))
+	def __init__(self, title, subtitle, questionType, isEssential, surveyID):
+		self.title = title
+		self.subtitle = subtitle
+		self.questionType = questionType
+		self.isEssential = isEssential
+		self.surveyID = surveyID
+
+
 	option = db.relationship('Option', backref='question', lazy = 'dynamic')
+
 
 class Option(db.Model):
 	__tablename__ = 'option'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
-	optionType = db.Column(db.Integer)
 	content = db.Column(db.Text)
 	questionID = db.Column(db.String(64), db.ForeignKey('question.id'))
+	def __init__(self, content, questionID):
+		self.content = content
+		self.questionID = questionID
 
 	answer = db.relationship('Answer', backref='option', lazy = 'dynamic')
 
