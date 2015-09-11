@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>QUES</title>
+	<meta charset ='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' type='text/css'  href='../static/css/result.css'>	
+	</script>
+</head>
+<body>
+	<form id="view_wrapper" method="post">
+		<div class="survey_title_wrapper">
+		<b>좋아하는 과자에 대한 설문</b>
+			<!--설문 제목 불러오기-->
+		</div>
+		<div class="survey_subtitle_wrapper">
+				좋아하는 과자에 대한 면밀한 조사입니다. 요즘 트렌드 과자에 무엇인지..
+				<!--설명불러왓!-->
+		</div>
+		<!--주관식-->
+		<div class="question">
+			<div class="question_top">
+				<div class="question_title">
+					<h2><!--질문번호 + 질문제목-->1. 당신이 제일 좋아하는 과자는?</h2><br>
+					<h4>스낵류만</h4>
+				</div>
+			<h3>응답자수 : 100명<!--응답 카운트--></h3>
+			</div>
+			<table class="essay_table">
+				<tbody>
+					<!--{% if each_question.type == 'essay' %}-->
+						<tr>
+							<td>(1) 초코콘</td>
+						</tr>
+						<tr>
+							<td>(1) 초코콘</td>
+						</tr>
+						<tr>
+							<td>(1) 초코콘</td>
+						</tr>
+						<tr>
+							<td>(1) 초코콘</td>
+						</tr>
+					<!--{% else %}
+						{% for each_option in each_question.option_list %}
+							{% if each_question.type == 'choice' %}
+							<tr>
+								<td><input type="radio" name="{{ each_question.id }}" value="{{ each_option.content }}"></td>
+								<td>{{ each_option.content }}</td>
+							</tr>
+							{% elif each_question.type == 'multiple_choice' %}
+							<tr>
+								<td><input type="checkbox" name="{{ each_question.id }}" value="{{ each_option.content }}"></td>
+								<td>{{ each_option.content }}</td>
+							</tr>
+							{% endif %}
+						{% endfor %}
+					{% endif %}-->
+				</tbody>
+			</table>
+		</div>
+		<div class="question">
+			<div class="question_top">
+				<div class="question_title">
+					<h2><!--질문번호 + 질문제목-->1. 당신이 제일 좋아하는 과자는?</h2><br>
+					<h4>스낵류만</h4>
+				</div>
+			<h3>원 그래프로 보기<!--응답 카운트--></h3>
+			</div>
+			<div class="graph">그래프보기는 준비중입니다.</div>
+			<table class="choice_table">
+				<tbody>
+					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+				</tbody>
+			</table> 
+		</div>
+		<!--{% endfor %}-->
+
+
+		<div class="complete_wrapper"><input class="complete" type="submit" value="설문 보내기"></div>
+	</form>
+
+</body>
+</html>
