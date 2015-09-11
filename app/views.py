@@ -236,7 +236,12 @@ def login():
 def fb_login():
     email = request.form['email']
     birthday = request.form['birthday']
-    print email, birthday
+    profile_picture = request.form['profile_picture']
+    name = request.form['name']
+    gender = request.gender['gender']
+    fb_id = request.gender['id']
+
+    print fb_id,email, birthday, profile_picture, name, gender
     user = User.query.filter_by(email=email).first()
     try:
         if not user.verify_password(password):
@@ -244,8 +249,7 @@ def fb_login():
 			flash(error_msg)
 			return render_template("login.html", error_msg=error_msg)
     except:
-		gender =  "male" #request.form['gender']
-		password = birthday
+		password = fb_id
 		user = User(email=email, password=birthday, gender=gender, birthday=birthday )
 
 		db.session.add(user)

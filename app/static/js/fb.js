@@ -34,7 +34,7 @@ function fb_login(){
             user_id = response.authResponse.userID; //get FB UID
 
             FB.api('/me', function(response) {
-                console.log(response.email);
+                console.log(response);
                 user_email = response.name; //get user email
                 user_public_profile = response.public_profile;
                 user_birthday = response.id;
@@ -122,12 +122,16 @@ function fb_login(){
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
+  
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    var url = '/me?fields=name,email,picture, gender, birthday';
+    FB.api(url, function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('fb-status').innerHTML =
-        response.name + '으로 로그인하기!';
-
+      
+      post('/fb_login', {"id":response.id,"profile_picture":response.picture.data.url,"name":response.name,"email": response.email, "gender":response.gender, "birthday":response.birthday}, "post");
     });
   }
+
+
+
+
