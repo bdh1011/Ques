@@ -238,8 +238,8 @@ def fb_login():
     birthday = request.form['birthday']
     profile_picture = request.form['profile_picture']
     name = request.form['name']
-    gender = request.gender['gender']
-    fb_id = request.gender['id']
+    gender = request.form['gender']
+    fb_id = request.form['id']
 
     print fb_id,email, birthday, profile_picture, name, gender
     user = User.query.filter_by(email=email).first()
