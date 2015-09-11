@@ -29,7 +29,7 @@ a{
 
 .header_wrapper{
 	width: 100%;
-	background-image: url("../img/bg.jpeg");
+	background-image: url("../img/home.jpg");
 	background-size: cover;
 	-webkit-filter: grayscale(0.5)
 }
