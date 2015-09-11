@@ -55,13 +55,15 @@ class User(db.Model):
 
 class Survey(db.Model):
 	__tablename__ = 'survey'
-	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+	id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
 	title = db.Column(db.String(64), nullable=False)
+	link = db.Column(db.String(64), nullable=False)
 	subtitle = db.Column(db.String(256), nullable=True)
 	register_timestamp = db.Column(db.DateTime, default=db.func.now())
 	userID = db.Column(db.String(64), db.ForeignKey('user.id'))
 
-	def __init__(self, title, subtitle, userID):
+	def __init__(self, link, title, subtitle, userID):
+		self.link = link
 		self.title = title
 		self.subtitle = subtitle
 		self.userID = userID
@@ -105,7 +107,7 @@ class Option(db.Model):
 		self.content = content
 		self.questionID = questionID
 
-	answer = db.relationship('Answer', backref='option', lazy = 'dynamic')
+	
 
 
 class Answer(db.Model):
@@ -114,8 +116,12 @@ class Answer(db.Model):
 	userID = db.Column(db.String(64), db.ForeignKey('user.id'))
 
 	content = db.Column(db.Text)
-	optionID = db.Column(db.String(64), db.ForeignKey('option.id'))
-
+	questionID = db.Column(db.String(64), db.ForeignKey('question.id'))
+	def __init__(self, userID, content, questionID):
+		self.userID = userID
+		self.content = content
+		self.questionID = questionID
+		
 	timestamp = db.Column(db.DateTime, default=db.func.now())
 
 

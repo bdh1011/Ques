@@ -20,52 +20,47 @@
 	</script>
 </head>
 <body>
-	<form id="view_wrapper">
+	<form id="view_wrapper" method="post">
 		<div class="survey_title_wrapper">
-			좋아하는 과자에 대한 설문
+		{{ survey.title }}
 			<!--설문 제목 불러오기-->
 		</div>
 		<div class="survey_subtitle_wrapper">
-				좋아하는 과자에 대한 면밀한 조사입니다. 요즘 트렌드 과제에 무엇인지..
+				{{ survey.subtitle}}
 				<!--설명불러왓!-->
 		</div>
 		<!--객관식-->
+		{% for each_question in question_list %}
 		<div class="question">
-			<h2>당신이 제일 좋아하는 과자는</h2>
-			<h3>스낵류만</h3>
+			<h2>{{each_question.title}}</h2>
+			<h3>{{each_question.subtitle}}</h3>
 			<table>
 				<tbody>
-					<!--name이 같다면 중복체크가 안됨-->
-					<tr><td><input type="radio" name="option" value="콘칩"></td><td>콘칩</td></tr>
-					<tr><td><input type="radio" name="option" value="콘칩"></td><td>콘칩</td></tr>
-					<tr><td><input type="radio" name="option" value="콘칩"></td><td>콘칩</td></tr>
-					<tr><td><input type="radio" name="option" value="콘칩"></td><td>콘칩</td></tr>
+					{% if each_question.type == 'essay' %}
+						<tr>
+							<tr><td><input type="text" name="{{ each_question.id }}"></td></tr>
+						</tr>
+					{% else %}
+						{% for each_option in each_question.option_list %}
+							{% if each_question.type == 'choice' %}
+							<tr>
+								<td><input type="radio" name="{{ each_question.id }}" value="{{ each_option.content }}"></td>
+								<td>{{ each_option.content }}</td>
+							</tr>
+							{% elif each_question.type == 'multiple_choice' %}
+							<tr>
+								<td><input type="checkbox" name="{{ each_question.id }}" value="{{ each_option.content }}"></td>
+								<td>{{ each_option.content }}</td>
+							</tr>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
 				</tbody>
 			</table>
 		</div>
-		<!--중복 객관식-->
-		<div class="question">
-			<h2>당신이 좋아하는 과자는(중복)</h2>
-			<h3>스낵류만</h3>
-			<table>
-				<tbody>
-					<tr><td><input type="radio" value="콘칩"></td><td>콘칩</td></tr>
-					<tr><td><input type="radio" value="콘칩"></td><td>콘칩</td></tr>
-					<tr><td><input type="radio" value="콘칩"></td><td>콘칩</td></tr>
-					<tr><td><input type="radio" value="콘칩"></td><td>콘칩</td></tr>
-				</tbody>
-			</table>
-		</div>
-		<!--주관식-->
-		<div class="question">
-			<h2>당신이 제일 좋아하는 과자는</h2>
-			<h3>스낵류만</h3>
-			<table>
-				<tbody>
-					<tr><td><input type="text" ></td></tr>
-				</tbody>
-			</table>
-		</div>
+		{% endfor %}
+
+
 		<div class="complete_wrapper"><input class="complete" type="submit" value="설문 보내기"></div>
 	</form>
 

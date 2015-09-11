@@ -46,6 +46,7 @@
 		</div>
 		<div class="cards">
 		{% for each_survey in survey_list %}
+			<a href="/survey/{{each_survey.link}}">
 			<div class="card">
 				<h2>{{each_survey.title}}</h2>
 				<h3>{{each_survey.subtitle}}</h3>
@@ -58,12 +59,13 @@
 						<div class="icon"></div>
 						<span>230</span>
 					</div>
-					<div class="card_icon">
+					<div class="card_icon">sc
 						<div class="icon"></div>
 						<span>230</span>
 					</div>
 				</div>
 			</div>
+			</a>
 		{% endfor %}
 		</div>
 	</div>

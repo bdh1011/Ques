@@ -10,7 +10,7 @@ import random
 import re
 from functools import wraps
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from models import User, Survey, Question, Option
+from models import User, Survey, Question, Option, Answer
 import decorator
 # from forms import LoginForm
 
@@ -29,16 +29,13 @@ def login_required(f):
 
 @app.route('/join', methods=['POST'])
 def join():
-
     email = request.form['email']
     password =  request.form['password']
-
     year = request.form['year']
     month = request.form['month']
     day = request.form['day']
     birthday =  year + month + day
     gender =  request.form['gender']
-    
     
     if email is None or password is None:
         return redirect(url_for('join'))
@@ -47,7 +44,6 @@ def join():
         return redirect(url_for('join'))
 
     print email, password, birthday, gender
-
     user = User(email=email, password=password, gender=gender, birthday=birthday )
 
     db.session.add(user)
@@ -105,6 +101,12 @@ def create():
         # question = Question(title=survey_title, subtitle=survey_subtitle, questionType=question_type, surveyID)
         return render_template("create.html")
 
+@app.route('/survey')
+@login_required
+def survey():
+    return render_template('survey.html')
+
+
 @app.route('/survey/<survey_id>/edit', methods=['GET','POST'])
 @login_required
 def survey_edit(survey_id):
@@ -116,6 +118,7 @@ def tmp_create(survey_id):
     if request.method=='GET':
         return jsonify(request.get_json())
     question = request.get_json()['question']
+    print question
     if session['tmp_question_dict'].has_key(survey_id):
         session['tmp_question_dict'][survey_id].append(question)
     else:
@@ -125,10 +128,36 @@ def tmp_create(survey_id):
     return jsonify({'success': session['tmp_question_dict']})
 
 
-@app.route('/survey/<survey_id>')
+@app.route('/survey/<survey_id>', methods=['POST','GET'])
 @login_required
 def get_survey(survey_id):
-    return jsonify(session['tmp_question_dict'][survey_id])
+    survey = Survey.query.filter_by(link=survey_id).first()
+    question_list = Question.query.filter_by(surveyID=survey.id).all()
+    
+    if request.method=='GET':
+        question_option_list = []
+        for each_question in question_list:
+            each_question_options = {}
+            each_question_options['title'] = each_question.title
+            each_question_options['subtitle'] = each_question.subtitle
+            each_question_options['type'] = each_question.questionType
+            each_question_options['id'] = each_question.id
+
+            option_list = Option.query.filter_by(questionID=each_question.id).all()
+            each_question_options['option_list'] = option_list
+            question_option_list.append(each_question_options)
+        return render_template("survey.html",survey=survey, question_list=question_option_list)
+    else:
+        user = User.query.filter_by(id=session['userid']).first()
+        print request
+        for each_question in question_list:
+            print each_question.id
+            each_answer = request.form[str(each_question.id)]
+            answer = Answer(userID = user.id, content=each_answer, questionID=each_question.id)
+            db.session.add(answer)
+            db.session.commit()
+            db.session.flush()
+        return redirect('/main')
 
 
 @app.route('/survey/<survey_id>/delete', methods=['POST'])
@@ -150,7 +179,7 @@ def register_survey(survey_id):
     survey_title = survey['title']
     survey_subtitle = survey['subtitle']
     user = User.query.filter_by(id=session['userid']).first()
-    survey = Survey(title=survey_title, subtitle=survey_subtitle, userID=user.id)
+    survey = Survey(link=survey_id, title=survey_title, subtitle=survey_subtitle, userID=user.id)
     db.session.add(survey)
     db.session.commit()
     db.session.flush()
