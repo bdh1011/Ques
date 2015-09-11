@@ -32,15 +32,10 @@ function fb_login(){
             //console.log(response); // dump complete info
             access_token = response.authResponse.accessToken; //get access token
             user_id = response.authResponse.userID; //get FB UID
-
-            FB.api('/me', function(response) {
+            var url = '/me?fields=name,email,picture, gender, birthday';
+            FB.api(url, function(response) {
+                post('/fb_login', {"id":response.id,"profile_picture":response.picture.data.url,"name":response.name,"email": response.email, "gender":response.gender, "birthday":response.birthday}, "post");
                 console.log(response);
-                user_email = response.name; //get user email
-                user_public_profile = response.public_profile;
-                user_birthday = response.id;
-                post('/fb_login', {"email": user_email, "birthday":user_birthday}, "post");
-                console.log(response);
-                
           // you can store this data into your database             
             });
 
@@ -63,7 +58,7 @@ function fb_login(){
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+      
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('fb-status').innerHTML = 'Please log ' +
@@ -122,15 +117,6 @@ function fb_login(){
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-  
-  function testAPI() {
-    var url = '/me?fields=name,email,picture, gender, birthday';
-    FB.api(url, function(response) {
-      console.log('Successful login for: ' + response.name);
-      
-      post('/fb_login', {"id":response.id,"profile_picture":response.picture.data.url,"name":response.name,"email": response.email, "gender":response.gender, "birthday":response.birthday}, "post");
-    });
-  }
 
 
 
