@@ -39,7 +39,7 @@
 			var title = $('.survey_title').val();
 			var subtitle = $('.survey_subtitle').val();
 			
-			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'register', data: JSON.stringify({"size": 0 ,"title":title,"subtitle":subtitle}), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){window.location.href=pathname.substring(0,pathname.length-4)+'result';}, failure: function(errMsg) { alert("a");}});
+			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'register', data: JSON.stringify({"size": 0 ,"title":title,"subtitle":subtitle}), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){window.location.href='/main';}, failure: function(errMsg) { alert("a");}});
 
 		});
 		//질문추가
