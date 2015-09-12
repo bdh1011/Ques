@@ -1,0 +1,10 @@
+@charset "utf-8";
+@font-face{ 
+	font-family: 'Font';
+	/*src:url("../font/210 콤퓨타세탁R.ttf")format('truetype');*/
+	src:url("aaa.ttf")format('truetype');
+}
+
+body{
+	font-family: "Font";
+}
