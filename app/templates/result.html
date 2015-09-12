@@ -4,71 +4,70 @@
 	<title>QUES</title>
 	<meta charset ='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='stylesheet' type='text/css'  href='../static/css/result.css'>	
+	<link rel='stylesheet' type='text/css'  href='{{url_for("static",filename="css/result.css")}}'>	
 	</script>
 </head>
 <body>
 	<form id="view_wrapper" method="post">
+	
 		<div class="survey_title_wrapper">
-		<b>좋아하는 과자에 대한 설문</b>
+		<b></b>
+		{{ survey.title }}
 			<!--설문 제목 불러오기-->
 		</div>
 		<div class="survey_subtitle_wrapper">
-				좋아하는 과자에 대한 면밀한 조사입니다. 요즘 트렌드 과자에 무엇인지..
+				{{ survey.subtitle }}
 				<!--설명불러왓!-->
 		</div>
 		<!--주관식-->
+		{% for question_answers_dict in question_answers_dict_list %}
+
+		{% if question_answers_dict.question.questionType == 'essay'%}
 		<div class="question">
 			<div class="question_top">
 				<div class="question_title">
-					<h2><!--질문번호 + 질문제목-->1. 당신이 제일 좋아하는 과자는?</h2><br>
-					<h4>스낵류만</h4>
+					<h2>{{ question_answers_dict.question.title }}</h2><br>
+					<h4>{{ question_answers_dict.question.subtitle }}</h4>
 				</div>
-			<h3>응답자수 : 100명<!--응답 카운트--></h3>
+			<h3>응답자수 : {{ question_answers_dict.answers_size }}</h3>
 			</div>
 			<table class="essay_table">
 				<tbody>
-						<tr>
-							<td>(1) 초코콘</td>
-						</tr>
-						<tr>
-							<td>(1) 초코콘</td>
-						</tr>
-						<tr>
-							<td>(1) 초코콘</td>
-						</tr>
-						<tr>
-							<td>(1) 초코콘</td>
-						</tr>
+				{% for each_answer in question_answers_dict.answers %}
+					<tr>
+						<td>{{ each_answer.content }}</td>
+					</tr>
+				{% endfor %}
 				</tbody>
 			</table>
 		</div>
+		{% elif question_answers_dict.question.questionType == 'choice' %}
 		<div class="question">
 			<div class="question_top">
 				<div class="question_title">
-					<h2><!--질문번호 + 질문제목-->1. 당신이 제일 좋아하는 과자는?</h2><br>
-					<h4>스낵류만</h4>
+					<h2>{{ question_answers_dict.question.title }}</h2><br>
+					<h4>{{ question_answers_dict.question.subtitle }}</h4>
 				</div>
 			<h3>원 그래프로 보기<!--응답 카운트--></h3>
+			<h3>응답자수 : {{ question_answers_dict.answers_size }}</h3>
 			</div>
 			<div class="graph">그래프보기는 준비중입니다.</div>
 			<table class="choice_table">
 				<tbody>
-					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
-					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
-					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
-					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
-					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
-					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
-					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
-					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
-					<tr><td>(1)치토스</td><td>10</td><td>30%</td></tr>
+					{% for content, statistic in answer_count.iteritems() %}
+					<tr><td>{{content}}</td><td>{{statistic.count}}</td><td>{{statistic.percentage}}%</td></tr>
+					{% endfor %}
 				</tbody>
 			</table> 
 		</div>
 
+		{% endif %}
+		{% endfor %}
+
+		
 
 		<div class="complete_wrapper"><input class="complete" type="submit" value="설문 보내기"></div>
+	
 	</form>
 
 </body>

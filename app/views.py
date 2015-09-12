@@ -58,6 +58,8 @@ def join():
 
 @app.route('/join',  methods=['GET'])
 def sign_up():
+    if session['userid'] is not None:
+        return redirect(url_for('main'))
     return render_template("join.html")
 
 
@@ -162,7 +164,7 @@ def get_survey(survey_id):
             db.session.add(answer)
             db.session.commit()
             db.session.flush()
-        return redirect('/main')
+        return redirect('/survey/'+survey_id+'/result')
 
 
 @app.route('/survey/<survey_id>/delete', methods=['POST'])
@@ -210,10 +212,46 @@ def register_survey(survey_id):
 
 
 
+
+@app.route('/survey/<survey_id>/result', methods=['GET'])
+@login_required
+def survey_result(survey_id):
+    survey = Survey.query.filter_by(link=survey_id).first()
+    question_list = Question.query.filter_by(surveyID=survey.id).all()
+    question_answers_dict_list = []
+    for each_question in question_list:
+        question_answers_dict = {}
+        question_answers_dict['question'] = each_question
+        question_answers_dict['answers'] = Answer.query.filter_by(questionID=each_question.id).all()
+        question_answers_dict['answers_size'] = len(Answer.query.filter_by(questionID=each_question.id).all())
+        question_answers_dict_list.append(question_answers_dict)
+    print question_answers_dict_list
+    answer_count = {}  
+
+    answer_size = len(question_answers_dict['answers'])
+    for each_answer in question_answers_dict['answers']:
+
+        if each_answer.content in answer_count:
+            answer_count[each_answer.content]['count'] += 1
+        else:
+            answer_count[each_answer.content] = {}
+            answer_count[each_answer.content]['count'] = 1
+
+    for content, statistic in answer_count.iteritems():
+        answer_count[each_answer.content]['percentage'] = (statistic['count']*100) / answer_size
+
+
+    return render_template('result.html', answer_count=answer_count, survey=survey, question_answers_dict_list=question_answers_dict_list)
+
+
+
 @app.route('/')
 @app.route('/login' , methods=['GET', 'POST'])
 def login():
     if request.method=='GET':
+        if session['userid'] is not None:
+            return redirect(url_for('main'))
+
         # if g.get('user', None) is not None:
         #     return redirect(url_for('main'))
     	return render_template("login.html")
