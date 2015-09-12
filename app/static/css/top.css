@@ -65,9 +65,12 @@ a{
 .profile_image{
 	position: relative;
 	float: left;
-	background-image: url("../img/QUES_logo.png")
+
 }
 
+.profile_image img{
+	width:100%;
+}
 .profile_name{
 	position: relative;
 	float: left;
@@ -204,12 +207,12 @@ a{
 
 
 	.profile_image{
-		width: 40px;
-		height: 40px;
-		margin: 30px 0;
+		width: 50px;
+		height: 50px;
+		margin: 30px 10px;
 		background-color: #FFF;
 		background-size: cover;
-
+		border-radius:25px;
 	}
 	.profile_name{
 		line-height: 100px;

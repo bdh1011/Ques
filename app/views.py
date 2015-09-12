@@ -101,6 +101,11 @@ def create():
         # question = Question(title=survey_title, subtitle=survey_subtitle, questionType=question_type, surveyID)
         return render_template("create.html")
 
+@app.route('/result')
+@login_required
+def result():
+    return render_template('result.html')
+
 @app.route('/survey')
 @login_required
 def survey():
@@ -250,7 +255,7 @@ def fb_login():
 			return render_template("login.html", error_msg=error_msg)
     except:
 		password = fb_id
-		user = User(email=email, password=birthday, gender=gender, birthday=birthday )
+		user = User(email=email, password=birthday, gender=gender, birthday=birthday, profile_picture=profile_picture )
 
 		db.session.add(user)
 		db.session.commit()
@@ -275,7 +280,7 @@ def main():
         print each.userID
 
         
-    return render_template("main.html", username=username, survey_list=survey_list)
+    return render_template("main.html", username=username, profile_picture=user.profile_picture,survey_list=survey_list)
 
 @app.route('/home')
 @login_required

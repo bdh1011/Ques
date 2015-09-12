@@ -16,7 +16,7 @@ class User(db.Model):
 	gender = db.Column(db.String(64), nullable=False)
 	birthday = db.Column(db.String(64), nullable=False)
 	q_point = db.Column(db.Integer)
-	profile_picture_filename = db.Column(db.String(64))
+	profile_picture = db.Column(db.String(64))
 
 	register_timestamp = db.Column(db.DateTime, default=db.func.now())
 	recent_login_timestamp = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
@@ -24,6 +24,14 @@ class User(db.Model):
 	like = db.relationship('Like', backref='user', lazy='dynamic')
 	answer = db.relationship('Answer', backref='user', lazy='dynamic')
 	
+	def __init__(self, email, password, gender, birthday, profile_picture ):
+		self.email = email
+		self.hash_password(password)
+		self.gender = gender
+		self.birthday = birthday
+		self.profile_picture = profile_picture
+
+
 	def __init__(self, email, password, gender, birthday):
 		self.email = email
 		self.hash_password(password)
@@ -121,7 +129,7 @@ class Answer(db.Model):
 		self.userID = userID
 		self.content = content
 		self.questionID = questionID
-		
+
 	timestamp = db.Column(db.DateTime, default=db.func.now())
 
 

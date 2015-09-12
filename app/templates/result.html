@@ -28,7 +28,6 @@
 			</div>
 			<table class="essay_table">
 				<tbody>
-					<!--{% if each_question.type == 'essay' %}-->
 						<tr>
 							<td>(1) 초코콘</td>
 						</tr>
@@ -41,21 +40,6 @@
 						<tr>
 							<td>(1) 초코콘</td>
 						</tr>
-					<!--{% else %}
-						{% for each_option in each_question.option_list %}
-							{% if each_question.type == 'choice' %}
-							<tr>
-								<td><input type="radio" name="{{ each_question.id }}" value="{{ each_option.content }}"></td>
-								<td>{{ each_option.content }}</td>
-							</tr>
-							{% elif each_question.type == 'multiple_choice' %}
-							<tr>
-								<td><input type="checkbox" name="{{ each_question.id }}" value="{{ each_option.content }}"></td>
-								<td>{{ each_option.content }}</td>
-							</tr>
-							{% endif %}
-						{% endfor %}
-					{% endif %}-->
 				</tbody>
 			</table>
 		</div>
@@ -82,7 +66,6 @@
 				</tbody>
 			</table> 
 		</div>
-		<!--{% endfor %}-->
 
 
 		<div class="complete_wrapper"><input class="complete" type="submit" value="설문 보내기"></div>
