@@ -25,8 +25,8 @@ class User(db.Model):
 	answer = db.relationship('Answer', backref='user', lazy='dynamic')
 	
 	def __init__(self, **kwargs):
-        super(User, self).__init__(**kwargs)
-        self.hash_password(password)
+		super(User, self).__init__(**kwargs)
+		self.hash_password(password)
 
 	def hash_password(self, password):
 		self.password_hash = pwd_context.encrypt(password)
