@@ -255,7 +255,7 @@ def fb_login():
 			return render_template("login.html", error_msg=error_msg)
     except:
 		password = fb_id
-		user = User(email=email, password=birthday, gender=gender, birthday=birthday, profile_picture=profile_picture )
+		user = User(email=email, gender=gender, birthday=birthday, profile_picture=profile_picture,password=password  )
 
 		db.session.add(user)
 		db.session.commit()

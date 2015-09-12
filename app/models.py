@@ -25,8 +25,12 @@ class User(db.Model):
 	answer = db.relationship('Answer', backref='user', lazy='dynamic')
 	
 	def __init__(self, **kwargs):
-		super(User, self).__init__(**kwargs)
-		self.hash_password(password)
+		self.email = kwargs['email']
+		self.hash_password(kwargs['password'])
+		self.gender = kwargs['gender']
+		self.birthday = kwargs['birthday']
+		if 'profile_picture' in kwargs:
+			self.profile_picture = kwargs['profile_picture']
 
 	def hash_password(self, password):
 		self.password_hash = pwd_context.encrypt(password)

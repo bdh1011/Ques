@@ -120,10 +120,10 @@ a{
 /*web*/
 @media(min-width: 1064px){
 	.header_wrapper{
-	height: 480px;
+		height: 480px;
 	}
 	#navbar{
-		top: 40px;
+		top: 20px;
 		height: 100px;
 	}
 
@@ -138,11 +138,11 @@ a{
 		border-radius: 10px;
 		border-style: solid;
 		border-color: #FFF;
-		padding:0 15px;
+		padding:0 16px;
 		font-size: 18px;
 		color: #FFF;
 		margin: 28px 0;
-		line-height: 40px;
+		line-height: 44px;
 		border-width: 2px;
 	}
 
@@ -151,13 +151,12 @@ a{
 		left: 50%;
 		margin-left: -150px;
 		margin-top: 35px;
-		border-width: 0;
-		border: none;
+		border-width: 1px;
 		border-radius: 25px;
+		border-color:#fff;
 		height: 40px;
 		width: 340px;
-		background-image: url("../img/QUES_logo.png");
-		background-size: cover;
+		background-color:rgba(100,100,100,0.3);
 	}
 
 	.profile{
@@ -207,16 +206,16 @@ a{
 
 
 	.profile_image{
-		width: 50px;
-		height: 50px;
+		width: 40px;
+		height: 40px;
 		margin: 30px 10px;
 		background-color: #FFF;
 		background-size: cover;
-		border-radius:25px;
+		border-radius:20px;
 	}
 	.profile_name{
 		line-height: 100px;
-		padding: 0 10px;
+		margin-left: 34px;
 		font-size: 20px;
 		display: inline;
 	}
