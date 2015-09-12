@@ -24,19 +24,9 @@ class User(db.Model):
 	like = db.relationship('Like', backref='user', lazy='dynamic')
 	answer = db.relationship('Answer', backref='user', lazy='dynamic')
 	
-	def __init__(self, email, password, gender, birthday, profile_picture ):
-		self.email = email
-		self.hash_password(password)
-		self.gender = gender
-		self.birthday = birthday
-		self.profile_picture = profile_picture
-
-
-	def __init__(self, email, password, gender, birthday):
-		self.email = email
-		self.hash_password(password)
-		self.gender = gender
-		self.birthday = birthday
+	def __init__(self, **kwargs):
+        super(User, self).__init__(**kwargs)
+        self.hash_password(password)
 
 	def hash_password(self, password):
 		self.password_hash = pwd_context.encrypt(password)
