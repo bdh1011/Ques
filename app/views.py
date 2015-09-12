@@ -249,7 +249,7 @@ def survey_result(survey_id):
 @app.route('/login' , methods=['GET', 'POST'])
 def login():
     if request.method=='GET':
-        if session['userid'] is not None:
+        if 'userid' in session:
             return redirect(url_for('main'))
 
         # if g.get('user', None) is not None:
