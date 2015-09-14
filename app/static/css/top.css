@@ -147,10 +147,11 @@ a{
 	}
 
 	.search{
-		position: absolute;
+		position: relative;
+		margin: 0 auto;
+		margin-top: 30px;
 		left: 50%;
-		margin-left: -150px;
-		margin-top: 35px;
+		margin-left: -310px;
 		border-width: 1px;
 		border-radius: 25px;
 		border-color:#fff;
