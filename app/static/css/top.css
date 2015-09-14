@@ -146,16 +146,47 @@ a{
 		border-width: 2px;
 	}
 
-	.search{
-		position: relative;
-		margin: 0 auto;
-		margin-top: 30px;
-		border-width: 1px;
-		border-radius: 25px;
-		border-color:#fff;
-		height: 40px;
+	.search_wrapper{
 		width: 340px;
-		background-color:rgba(100,100,100,0.3);
+		height: 40px;
+		margin: 0 auto;
+		vertical-align: middle;
+		white-space: nowrap;
+		position: relative;
+		display: inline-block;
+		left: 50%;
+		margin-left: -310px;
+		top: 30px;
+	}
+
+	.search_wrapper input#search{
+		width: 340px;
+		height: 40px;
+		background:#2b303b;
+		border: none;
+		outline: none;
+		font-size: 15px;
+		float: left;
+		color: #FFF;
+		position: absolute;
+		padding:0 45px;
+		-webkit-border-radius: 25px;
+		  -moz-border-radius: 25px;
+		  border-radius: 25px;
+		  display: inline-block;
+		  z-index: 3;
+
+	}
+	.search_icon{
+		width: 20px;
+		height: 20px;
+		margin: 10px 10px;
+		position: absolute;
+		z-index: 5;
+		color: #F00;
+		background-image: url("../img/QUES_logo.png");
+		background-size: cover;
+		display: inline-block;
 	}
 
 	.profile{
@@ -164,17 +195,6 @@ a{
 		margin-left: 0;
 		margin-right: 60px;
 	}
-	
-	#navbar form{
-		margin: 0 auto;
-		left: 50%;
-		margin-left: -310px;
-
-		width: 340px;
-		display: inline;
-		position: relative;
-	}
-	
 	#navbar ul{
 		position: relative;
 		float: right;
