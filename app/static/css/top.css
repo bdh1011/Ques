@@ -257,6 +257,11 @@ a{
 		color: #A7A7A7;
 		cursor: pointer;
 	}
+	
+	.card_count span img{
+		position: relative;
+		top:2px;
+	}
 
 	.cards{
 		width: 1064px;
