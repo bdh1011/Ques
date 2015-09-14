@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>QUES</title>
+	<meta charset ='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' type='text/css'  href='{{url_for("static",filename="css/common.css")}}'>
+	<link rel='stylesheet' type='text/css'  href='{{url_for("static",filename="css/top.css")}}'>
+	<script src='{{url_for("static",filename="js/jquery-1.9.1.min.js")}}'></script>
+	<script>
+		$(document).ready(function(){
+		
+			$(document).on("click", '.joined_survey_btn',function(){
+				$('.created_survey_btn').removeClass('active');
+				$(this).addClass('active');
+
+				$('.created_survey').css('display','none');
+				$('.joined_survey').css('display','block');
+			});
+
+			$(document).on("click", '.created_survey_btn',function(){
+				$('.joined_survey_btn').removeClass('active');
+				$(this).addClass('active');
+
+				$('.joined_survey').css('display','none');
+				$('.created_survey').css('display','block');
+			});
+		})
+	</script>
+</head>
+<body>
+	<header class="header_wrapper">
+		<nav id="navbar">
+			<div class="nav_icon">큐스</div>
+			<form>
+				<input class="search" type="search">
+			</form>
+			<ul class="menu">
+				<li class="create">
+					<a href="/create">설문 등록하기</a>
+				</li>
+				<li class="profile">
+				<!--<div style="backgound-image:url('유알엘')" 로 변경가능(프로필 사진 url)>-->
+					<div class="profile_name">
+						<!--이름 불러와야해-->
+						<span>{{username}}</span>
+					</div>
+
+					{% if profile_picture %}
+					<div class="profile_image" style="background-image:url('{{profile_picture}}')">
+					</div>
+					{% else %}
+					<div class="profile_image">
+					</div>
+					{% endif %}
+					<ul class="fallback">
+						<li><a href="/archive">설문 보관함</a></li>
+    					<li><a href="#">프로필 수정</a></li>
+    					<li><a href="#">문의하기</a></li>
+    					<li><a href="/logout">로그아웃</a></li>
+					</ul>
+				</li>
+			
+			</ul>
+		</nav>
+		<div class="archive_profile_box">
+				<div class="joined_survey_count">
+					{{ joined_survey_count }}<br>
+					참여한 설문
+				</div>
+				{% if profile_picture %}
+					<div class="archive_profile_image" style="background-image:url('{{profile_picture}}')">
+					</div>
+					{% else %}
+					<div class="archive_profile_image">
+					</div>
+				{% endif %}
+				<div class="my_q_point">
+					{{ q_point }}<br>
+					보유한 Q
+				</div>
+				<div class="archive_profile_name">
+						<!--이름 불러와야해-->
+						<span>{{username}}</span>
+				</div>
+
+		</div>
+	</header>
+	<div class="main_wrapper">
+		<div class="archive_top">
+			<div class="archive_type_container">
+				<div class="created_survey_btn active">내가 만든 설문</div>
+			
+				<div class="joined_survey_btn">참여한 설문</div>
+				
+			</div>
+			
+		</div>
+		<div class="created_survey cards">
+		{% for each_survey in created_survey_list %}
+			<a href="/survey/{{each_survey.link}}">
+			<div class="card">
+				<h2>{{each_survey.title}}</h2>
+				<h3>{{each_survey.subtitle}}</h3>
+				<div class="card_bottom">
+					<div class="card_icon">
+						<div class="icon"></div>
+						<span>230</span>
+					</div>
+					<div class="card_icon">
+						<div class="icon"></div>
+						<span>230</span>
+					</div>
+					<div class="card_icon">
+						<div class="icon"></div>
+						<span>230</span>
+					</div>
+				</div>
+			</div>
+			</a>
+		{% endfor %}
+		</div>
+		<div class="joined_survey cards" style="display:none">
+		{% for each_survey in joined_survey_list %}
+			<a href="/survey/{{each_survey.link}}">
+			<div class="card">
+				<h2>{{each_survey.title}}</h2>
+				<h3>{{each_survey.subtitle}}</h3>
+				<div class="card_bottom">
+					<div class="card_icon">
+						<div class="icon"></div>
+						<span>230</span>
+					</div>
+					<div class="card_icon">
+						<div class="icon"></div>
+						<span>230</span>
+					</div>
+					<div class="card_icon">
+						<div class="icon"></div>
+						<span>230</span>
+					</div>
+				</div>
+			</div>
+			</a>
+		{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

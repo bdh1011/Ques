@@ -44,7 +44,7 @@ def join():
         return redirect(url_for('join'))
 
     print email, password, birthday, gender
-    user = User(email=email, password=password, gender=gender, birthday=birthday )
+    user = User(email=email, password=password, gender=gender, birthday=birthday,q_point=q_point )
 
     db.session.add(user)
     db.session.commit()
@@ -58,7 +58,7 @@ def join():
 
 @app.route('/join',  methods=['GET'])
 def sign_up():
-    if session['userid'] is not None:
+    if 'userid' in session2:
         return redirect(url_for('main'))
     return render_template("join.html")
 
@@ -107,6 +107,20 @@ def create():
 @login_required
 def result():
     return render_template('result.html')
+
+@app.route('/archive')
+@login_required
+def archive():
+    created_survey_list = Survey.query.filter_by(userID=session['userid']).all()
+    answer_list = Answer.query.filter_by(userID=session['userid']).all()
+    joined_survey_list = []
+    for each_answer in answer_list:
+        joined_question = Question.query.filter_by(id=each_answer.questionID).first()
+        joined_survey_list.append(Survey.query.filter_by(id=joined_question.surveyID).first())
+    user = User.query.filter_by(id=session['userid']).first()
+    username = re.match('(.*)(@)',user.email).group(1)
+
+    return render_template('archive.html', created_survey_list=created_survey_list, joined_survey_list=joined_survey_list, joined_survey_count=len(joined_survey_list),username=username, profile_picture=user.profile_picture, q_point=user.q_point)
 
 @app.route('/survey')
 @login_required
@@ -239,6 +253,7 @@ def survey_result(survey_id):
 
     for content, statistic in answer_count.iteritems():
         answer_count[each_answer.content]['percentage'] = (statistic['count']*100) / answer_size
+        print answer_count[each_answer.content]['percentage']
 
 
     return render_template('result.html', answer_count=answer_count, survey=survey, question_answers_dict_list=question_answers_dict_list)
@@ -293,7 +308,7 @@ def fb_login():
 			return render_template("login.html", error_msg=error_msg)
     except:
 		password = fb_id
-		user = User(email=email, gender=gender, birthday=birthday, profile_picture=profile_picture,password=password  )
+		user = User(email=email, gender=gender, birthday=birthday, profile_picture=profile_picture,password=password,q_point=0 )
 
 		db.session.add(user)
 		db.session.commit()

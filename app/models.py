@@ -29,6 +29,7 @@ class User(db.Model):
 		self.hash_password(kwargs['password'])
 		self.gender = kwargs['gender']
 		self.birthday = kwargs['birthday']
+		self.q_point = kwargs['q_point']
 		if 'profile_picture' in kwargs:
 			self.profile_picture = kwargs['profile_picture']
 
