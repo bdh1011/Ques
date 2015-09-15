@@ -159,23 +159,39 @@ a{
 		top: 30px;
 	}
 
+	.search_wrapper:hover .search_icon,
+	.search_wrapper input#search:hover ~ .search_icon{
+		background-image: url("../img/search_icon_1.png");
+	}
+
+	.search_wrapper:hover .search_icon,
+	.search_wrapper input#search:focus ~ .search_icon{
+		background-image: url("../img/search_icon_1.png");
+	}
+
 	.search_wrapper input#search{
 		width: 340px;
 		height: 40px;
 		background:#2b303b;
-		border: none;
+		border: solid 2px #FFF;
 		outline: none;
+		opacity: 0.5;
 		font-size: 15px;
 		float: left;
 		color: #FFF;
 		position: absolute;
-		padding:0 45px;
-		-webkit-border-radius: 25px;
-		  -moz-border-radius: 25px;
-		  border-radius: 25px;
+		padding:0 40px;
+		-webkit-border-radius: 40px;
+		  -moz-border-radius: 40px;
+		  border-radius: 40px;
 		  display: inline-block;
 		  z-index: 3;
 
+	}
+
+	.search_wrapper input#search:hover, .search_wrapper input#search:focus{
+		outline: none;
+		background-color: #000;
 	}
 	.search_icon{
 		width: 20px;
@@ -184,17 +200,18 @@ a{
 		position: absolute;
 		z-index: 5;
 		color: #F00;
-		background-image: url("../img/QUES_logo.png");
+		background-image: url("../img/search_icon_2.png");
 		background-size: cover;
 		display: inline-block;
 	}
-
 	.profile{
 		height: 100%;
 		margin: 0 42px;
 		margin-left: 0;
 		margin-right: 60px;
 	}
+
+	
 	#navbar ul{
 		position: relative;
 		float: right;
@@ -275,6 +292,9 @@ a{
 		height: 80px;
 		background-color: #F2F2F2;
 		border-bottom: solid 3px #C5C5C5;
+		  -webkit-box-shadow: 1px 1px 4px 0px rgba(100, 100, 100, 0.2);
+-moz-box-shadow:    1px 1px 4px 0px rgba(100, 100, 100, 0.2);
+box-shadow:         1px 1px 4px 0px rgba(100, 100, 100, 0.2);
 	}
 
 	.archive_top{
@@ -395,6 +415,9 @@ a{
 		border-radius: 10px;
 		border-style: solid;
 		border-color: #E5E5E5;
+		-webkit-box-shadow: 1px 1px 4px 0px rgba(100, 100, 100, 0.2);
+-moz-box-shadow:    1px 1px 4px 0px rgba(100, 100, 100, 0.2);
+box-shadow:         1px 1px 4px 0px rgba(100, 100, 100, 0.2);
 	}
 
 
@@ -450,8 +473,21 @@ a{
 		width: 30px;
 		height: 30px;
 		margin: 10px 10px;
-		background-image: url("../img/QUES_logo.png");
-		background-size: cover;
+
+	}
+
+	.que{
+		background-image: url("../img/Q_gray.png");
+		background-size: 30px 30px;
+	}
+
+	.heart{
+		background-image: url("../img/like_unclick.png");
+		background-size: 30px 30px;
+	}
+	.person{
+				background-image: url("../img/person_Grey.png");
+		background-size: 30px 30px;
 	}
 	
 	#after_submit{
