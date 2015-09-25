@@ -22,14 +22,7 @@
 			var option_count = $(this).parents('tbody').children(".option").length;
 			var options=[];
 			var i = i;
-			for(i=0; i<option_count; i++){
-				options[i] = $(this).parents('tbody').children(".option").find('td input').eq(i).val();
-				if(options[i] == ''){
-					alert("보기를 채워주세요");
-					return;
-				}
-			}
-			if(title.length == 0 | subtitle.length == 0 | options.length == 0){
+			if(title.length == 0 | options.length == 0){
 				alert("모든 칸을 채워주세요");
 				return;
 			}

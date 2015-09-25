@@ -492,7 +492,7 @@ box-shadow:         1px 1px 4px 0px rgba(100, 100, 100, 0.2);
 		cursor: pointer;
 	}
 	.que{
-		background-image: url("../img/Q_gray.png");
+		background-image: url("../img/Q_red.png");
 		background-size: 30px 30px;
 	}
 
@@ -505,7 +505,7 @@ box-shadow:         1px 1px 4px 0px rgba(100, 100, 100, 0.2);
 		background-size: 30px 30px;
 	}
 	.person{
-				background-image: url("../img/person_Grey.png");
+				background-image: url("../img/person_red.png");
 		background-size: 30px 30px;
 	}
 	
