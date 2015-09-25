@@ -2,7 +2,7 @@
 @font-face{ 
 	font-family: 'font';
 	/*src:url("../font/210 콤퓨타세탁R.ttf")format('truetype');*/
-	src:url('../font/윤고딕320.ttf');
+	src:url('../font/yoon320.ttf');
 }
 body{
 	font-family: 'font';
