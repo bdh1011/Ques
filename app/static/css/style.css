@@ -1,97 +1,216 @@
 @charset "UTF-8";
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+*{
     margin: 0;
     padding: 0;
     border: 0;
     font: inherit;
-    font-size: 100%;
-    font-weight: 400;
     vertical-align: baseline
 }
-
-html {
-    line-height: 1
+body{
+    min-height: 100%;
+    width: 100%;
+    background-image: url(../img/home.jpg);
+    background-size: cover;
 }
+#wrapper{
+    width: 400px;
+    height: 546px;
+    border-radius: 5px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-top: -273px;
+    margin-left: -200px;
+    filter: grayscale(20%);
+}
+
+.content{
+    position: relative;
+    text-align: center;
+}
+
+.content span.intro-ques{
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    color: #FFF;
+    display: block;
+}
+ .content span.intro-msg{
+    margin: 0 auto;
+    color: #FFF;
+    font-size: 28px;
+    display: block;
+}
+ .content .login{
+    color: #FFF;
+    font-size: 18px;
+ }
+
+.content a#login-btn{
+    color: #FC0000;
+}
+
+ .fb-login{
+    cursor: pointer;
+    width: 300px;
+    height: 80px;
+    margin:0 auto;
+    background-color: #00F;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    top: 0;
+    color: #FFF;
+ }
+
+ .fb-login .fb-logo{
+    float: left;
+    position: relative;
+    width: 74px;
+    height: 80px;
+    background-color: #3b5998;
+ }
+
+ .fb-login .fb-logo img{
+    margin-top:27px;
+    margin-left: 30px;
+ }
+
+ .fb-login .fb-text{
+    float: right;
+    position: relative;
+    width: 226px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #8b9dc3;
+ }
+
+ .email-login{
+    width: 300px;
+    height: 80px;
+    margin:0 auto;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    border: solid #FFF 2px;
+    color: #FFF;
+    cursor: pointer;
+ }
+
+ .email-login .email-logo{
+    float: left;
+    color: #FFF;
+    position: relative;
+    width: 74px;
+    height: 80px;
+    border-right: solid #FFF 2px;
+ }
+ .email-login .email-logo img{
+    margin-top:32px;
+    margin-left: 27px;
+ }
+
+ .email-login .email-text{
+    float: right;
+    position: relative;
+    width: 222px;
+    height: 78px;
+    line-height: 78px;
+    font-size: 16px;
+    text-align: center;
+ }
+
+ #login-wrapper{
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 150px;
+    border-radius: 10px;
+    width: 400px;
+    height: 390px;
+    background-color: #EEE;
+    display: none;
+ }
+
+ #login-wrapper .login-wrapper-top{
+    width: 100%;
+    height: 68px;
+    background-color: #FFF;
+    text-align: center;
+    line-height: 66px;
+    font-size: 24px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    margin-bottom: 22px;
+ }
+
+#login-wrapper form input[type="text"]{
+    width: 300px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #FFF;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 0 10px;
+}
+
+#login-wrapper form input[type="password"]{
+    width: 300px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #FFF;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 0 10px;
+}
+
+#login-wrapper form input[type="submit"]{
+    width: 300px;
+    height: 80px;
+    margin: 20px 50px;
+    background-color: #FF7D00;
+    border-radius: 10px;
+    color: #FFF;
+    font-size: 20px;
+}
+
+#login-wrapper span{
+    margin: 0 auto;
+    color: #9b9b9b;
+    font-size: 14px;
+}
+
+#fb-wrapper{
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 10px;
+    width: 400px;
+    height: 160px;
+    background-color: #EEE;
+    display: none;
+    padding-top: 10px;
+
+}
+
+#fb-wrapper span{
+    color: #9b9b9b;
+}
+
+#fb-wrapper .fb-login{
+    margin-top: 20px;
+}
+
+#fb-wrapper .fb-login .fb-logo{
+    padding: 0;
+}
+
+
 ol,
 ul {
     list-style: none
@@ -107,9 +226,7 @@ td {
     font-weight: normal;
     vertical-align: middle
 }
-html span {
-    font-family:  '나눔고딕', NanumGothic, 'Apple SD Gothic Neo','맑은 고딕', 'Malgun Gothic', '돋움', dotum, '굴림', gulim, applegothic, sans-serif;
-}
+
 q,
 blockquote {
     quotes: none
@@ -143,17 +260,6 @@ summary {
 }
 .icons-sprite {
     background: url(https://d12hfz37g51hrt.cloudfront.net/assets/icons-s88a0c27ba3-60fcdb2254b1efd18e6840d2ffdd85f6.png) no-repeat
-}
-html,
-body {
-    background-color: #fff;
-    letter-spacing: -1px;
-    min-height: 100%
-}
-html,
-input,
-textarea {
-    font-family:  '나눔고딕', NanumGothic, 'Apple SD Gothic Neo','맑은 고딕', 'Malgun Gothic', '돋움', dotum, '굴림', gulim, applegothic, sans-serif
 }
 a {
     text-decoration: none;
@@ -400,7 +506,7 @@ body.intro .app-store {
 
 
 #contents .login_background{
-    background: url(../img/bg.jpg);
+    background: url(../img/main.jpg);
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -436,7 +542,8 @@ body.intro .app-store {
 .ham_box {
     position: relative;
     margin: 0 auto;
-    width: 300px;
+    width: 400px;
+
 }
 
 
@@ -453,7 +560,7 @@ body.intro .app-store {
     padding: 32px 0;
     line-height: 16px;
     background-color: white;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
     color: #555;
     cursor: default;
@@ -484,11 +591,13 @@ body.intro .app-store {
 
 
 .ham_box .content_ham .input_form {
-    width: 240px;
+    width: 300px;
+    margin: 0 auto;
 }
 
 .ham_box .content_ham .input_form .box_wrapper {
     height: 40px;
+    width: 300px;
     position: relative;
     border: solid 1px #dddddd;
     background-color: white;
@@ -509,7 +618,7 @@ body.intro .app-store {
     font-size: 14px;
     text-shadow: 0px 1px #fff;
     border: 0 none;
-    width: 237px;/*
+    width: 300px;/*
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -563,20 +672,16 @@ body.intro .app-store {
 
 .ham_box .content_ham .btn_fb_join, .ham_box .content_ham .btn_join, .ham_box .content_ham .btn_login {
     display: block;
-    text-decoration: none;
-    text-indent: 40px;
-    float: left;
-    width: 238px;
-    height: 58px;
+    width: 300px;
+    height: 56px;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
     -ms-border-radius: 7px;
     -o-border-radius: 7px;
     border-radius: 7px;
-    font-size: 14px;
+    font-size: 24px;
     font-weight: bold;
-    line-height: 58px;
-    text-indent: 59px;
+    line-height: 56px;
     text-align: center;
     color: white;
     cursor: pointer;
@@ -586,7 +691,7 @@ body.intro .app-store {
     -o-transition: all 0.5s;
     transition: all 0.5s;
     -ms-transition: all 0.5s;
-
+    margin: 0 auto;
 
 }
 
@@ -727,7 +832,7 @@ body.intro .app-store {
 .login_box .content_ham .input_form .box_wrapper {
     height: 40px;
     position: relative;
-    border: solid 1px #dddddd;
+    border: solid 1px #DDDDDD;
     background-color: white;
     /*-webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -809,7 +914,7 @@ body.intro .app-store {
     border: 1px solid #ccc;
     background: #fff;
     border-radius: 0;
-    width: 79.3px;
+    width: 33.3333%;
     padding: 5px;
     font-size: 16px;
     height: 40px;
@@ -835,11 +940,7 @@ body.intro .app-store {
     display:none;
     /*position:relative;*/
 }
-.gender input[type="radio"] + label {
-    color: $DarkBrown;
-    font-family:Arial, sans-serif;
-    font-size:14px;
-}
+
 .gender input[type="radio"] + label span {
     display:inline-block;
     width:100%;

@@ -74,6 +74,8 @@ a{
 		width: 1064px;
 		position: relative;
 		padding: 48px 48px;
+		display: block;
+		overflow: hidden;
 	}
 
 	.question_top{
@@ -117,29 +119,25 @@ a{
 	}
 
 	.graph{
-		background-color: #F00;
 		width: 50%;
-		height: 200px;
 		float: left;
-		border-bottom: 2px solid #A7A7A7;
 	}
 
 	.choice_table{
 		width: 50%;
-		height: 200px;
 		float: right;
-		border-bottom: 2px solid #A7A7A7;
 		position: relative;
-		overflow: hidden;
+		border-top: 2px solid #A7A7A7;
+		border-bottom: 2px solid #A7A7A7;
 	}
 
 	.choice_table tbody tr{
-		height: 50px;
+		height: 30px;
 	}
 
 
 	.choice_table tbody tr td{
-		margin: 10px 10px;
+		height: 30px;
 		line-height: 30px;
 		display: inline-block;
 		overflow: hidden;
@@ -180,13 +178,16 @@ a{
 		width: 200px;
 		height: 20px;
 	}
+
 	.complete{
 	height: 40px;
-	margin:28px 48px;
-	padding: 0 20px;
-	border: 1px solid #000;
-	line-height: 40px;
+	width: 150px;
+	line-height: 38px;
 	font-size: 18px;
+	text-align: center;
+	border: 1px solid #000;
+	position: relative;
+	left: 48px;
 	border-radius: 5px;
 	color: #FFF;
 	cursor: pointer;

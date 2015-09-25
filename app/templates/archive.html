@@ -8,6 +8,7 @@
 	<link rel='stylesheet' type='text/css'  href='{{url_for("static",filename="css/top.css")}}'>
 	<script src='{{url_for("static",filename="js/jquery-1.9.1.min.js")}}'></script>
 	<script>
+
 		$(document).ready(function(){
 		
 			$(document).on("click", '.joined_survey_btn',function(){
@@ -25,16 +26,71 @@
 				$('.joined_survey').css('display','none');
 				$('.created_survey').css('display','block');
 			});
+
+
+			$(document).on("click", '.share_x_btn',function(){
+				$('.overlay').toggle();
+				$('.share_x_btn').remove();
+			});
+
+
+			  
+			$(".share_wrapper").click(function(){
+				var survey_link = $(this).attr("data-survey-link");
+				var survey_title = $(this).attr("data-survey-title");
+			    $(".overlay").toggle(); // show/hide the overlay
+			    
+			    var share_popup = "<div class='share_popup'>\
+			    <div class='share_x_btn'></div>\
+			    <div class='share_title'>"+survey_title+"<br>에 대한 공유</div>\
+			    <div class='share_url_row'>\
+			    	<input type='text' readonly onClick='this.select();' class='share_url_text' value='http://ques.co.kr/survey/"+survey_link+"'></input>\
+			    	<input type='button' class='share_url_btn' value='URL 복사'></input>\
+			    </div>\
+			    <div class='fb-share' onclick='fb_login();'>\
+					<div class='fb-logo'><img src='https://d12hfz37g51hrt.cloudfront.net/assets/intro/intro_btn_fb-be965df1261cacccc62891c1759f853a.png'></div>\
+					<div class='fb-text'>페이스북으로 공유</div>\
+				</div>\
+			    </div>";
+
+				$(".overlay").append(share_popup);
+
+
+				$(".share_url_btn").click(function(){
+				console.log('hi')
+				var copyTextarea = $('.share_url_text');
+				copyTextarea.select();
+				try {
+					var successful = document.execCommand('copy');
+					var msg = successful ? 'successful' : 'unsuccessful';
+					console.log('Copying text command was ' + msg);
+				} catch (err) {
+					alert('지원하지 않는 브라우저입니다.')
+				}
+			});
+			})
+
+
+			
+			
 		})
+
+
 	</script>
 </head>
 <body>
+	<div class="overlay"></div>
 	<header class="header_wrapper">
 		<nav id="navbar">
-			<div class="nav_icon">큐스</div>
-			<form>
-				<input class="search" type="search">
-			</form>
+			<a href="/main">
+				<div class="nav_icon">Ques</div>
+			</a>
+			<div class="search_wrapper">
+				<form>
+				 <i class="search_icon"></i>
+				 	<input id="search" name="search" type="search" value="{{search_query}}">
+				</form>
+			</div>
 			<ul class="menu">
 				<li class="create">
 					<a href="/create">설문 등록하기</a>
@@ -98,22 +154,22 @@
 		</div>
 		<div class="created_survey cards">
 		{% for each_survey in created_survey_list %}
-			<a href="/survey/{{each_survey.link}}">
 			<div class="card">
-				<h2>{{each_survey.title}}</h2>
-				<h3>{{each_survey.subtitle}}</h3>
+					<div class="card_body">
+						<h2>{{each_survey.title}}</h2>
+						<h3>{{each_survey.subtitle}}</h3>
+					</div>
+					
 				<div class="card_bottom">
-					<div class="card_icon">
-						<div class="icon"></div>
-						<span>230</span>
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						<span>230</span>
-					</div>
-					<div class="card_icon">
-						<div class="icon"></div>
-						<span>230</span>
+					<a href="/survey/{{each_survey.link}}/result">
+						<div class="card_icon data_wrapper" data-survey-id="{{each_survey.id}}">
+							<div class="icon data_img"></div>
+							<span>데이터</span>
+						</div>
+					</a>
+					<div class="card_icon share_wrapper" data-survey-title="{{each_survey.title}}" data-survey-link="{{each_survey.link}}">
+						<div class="icon share_img"></div>
+						<span>공유</span>
 					</div>
 				</div>
 			</div>
@@ -127,17 +183,17 @@
 				<h2>{{each_survey.title}}</h2>
 				<h3>{{each_survey.subtitle}}</h3>
 				<div class="card_bottom">
-					<div class="card_icon">
-						<div class="icon"></div>
-						<span>230</span>
+						<div class="card_icon">
+						<div class="icon heart"></div>
+						<span>{{each_survey.like_len}}</span>
 					</div>
 					<div class="card_icon">
-						<div class="icon"></div>
-						<span>230</span>
+						<div class="icon que"></div>
+						<span>{{each_survey.que}}</span>
 					</div>
 					<div class="card_icon">
-						<div class="icon"></div>
-						<span>230</span>
+						<div class="icon person"></div>
+						<span>{{each_survey.joined_len}}</span>
 					</div>
 				</div>
 			</div>

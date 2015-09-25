@@ -4,8 +4,8 @@
 	<title>QUES</title>
 	<meta charset ='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='stylesheet' type='text/css'  href='{{url_for("static",filename="css/common.css")}}'>
-	<link rel='stylesheet' type='text/css'  href='{{url_for("static",filename="css/create.css")}}'>
+	<link rel='stylesheet' type='text/css'  href="{{url_for('static',filename='css/common.css')}}">
+	<link rel='stylesheet' type='text/css'  href="{{url_for('static',filename='css/create.css')}}">
 	<script src='{{url_for("static",filename="js/jquery-1.9.1.min.js")}}'></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -24,6 +24,14 @@
 			var i = i;
 			for(i=0; i<option_count; i++){
 				options[i] = $(this).parents('tbody').children(".option").find('td input').eq(i).val();
+				if(options[i] == ''){
+					alert("보기를 채워주세요");
+					return;
+				}
+			}
+			if(title.length == 0 | subtitle.length == 0 | options.length == 0){
+				alert("모든 칸을 채워주세요");
+				return;
 			}
 			var question = { "title":title, "subtitle":subtitle, "type":type, "option":options};
 
@@ -39,7 +47,20 @@
 			var title = $('.survey_title').val();
 			var subtitle = $('.survey_subtitle').val();
 			
-			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'register', data: JSON.stringify({"size": 0 ,"title":title,"subtitle":subtitle}), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){window.location.href='/main';}, failure: function(errMsg) { alert("a");}});
+			if(title.length == 0 | subtitle.length == 0 ){
+				alert("모든 칸을 채워주세요");
+				return;
+			}
+			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'register', data: JSON.stringify({"size": 0 ,"title":title,"subtitle":subtitle}), contentType: "application/json; charset=utf-8", dataType: "json", 
+				success: function(data){
+					if (data['result'] == 'success'){
+						window.location.href='/main'
+					}
+					else if (data['result'] == 'q_shortage'){
+						alert('큐가 부족합니다');
+					}
+				},
+				failure: function(errMsg) { alert("a");}});
 
 		});
 		//질문추가
@@ -117,6 +138,9 @@
 				<div class="survey_subtitle_wrapper">
 					<input type ="text" class="survey_subtitle" placeholder="설문지 설명">
 				</div>
+				<!-- <div class="survey_que_wrapper">
+					<input type ="number" class="survey_que" placeholder="설문 참여 별 제공 Q">
+				</div> -->
 				<!--질문 1세트-->
 				<table class="question">
 					<tbody>

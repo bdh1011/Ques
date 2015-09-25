@@ -173,6 +173,10 @@ a{
 		padding: 48px;
 	}
 
+	.question tbody tr{
+		height: 50px;
+	}
+
 	.question tbody tr td{
 		font-size: 20px;
 	}
@@ -212,7 +216,6 @@ a{
 
 	.question select{
 		padding: 0 8px;
-    	border: none;
     	box-shadow: none;
     	background: transparent;
     	background-image: none;
@@ -280,6 +283,39 @@ a{
 	background-color: #FF3900;
 	}
 
+	.question_survey{
+		width: 1064px;
+		position: relative;
+		padding: 48px 48px;
+	}
+
+	.question_survey h2{
+		font-size: 20px;
+		margin: 0;
+	}
+
+	.question_survey h3{
+		margin: 0;
+		color: #9B9B9B;
+		font-size: 20px;
+	}
+
+	.question_survey table{
+		margin: 0;
+		margin-top: 22px;
+		font-size: 20px;
+	}
+
+	.question_survey form input[type="radio"]{
+		width: 20px;
+		height: 20px;
+		border-radius: 0;
+	}
+
+	.question_survey form input[type="text"]{
+		width: 200px;
+		height: 20px;
+	}
 }
 
 /*mobile*/

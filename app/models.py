@@ -64,12 +64,14 @@ class Survey(db.Model):
 	subtitle = db.Column(db.String(256), nullable=True)
 	register_timestamp = db.Column(db.DateTime, default=db.func.now())
 	userID = db.Column(db.String(64), db.ForeignKey('user.id'))
+	que = db.Column(db.Integer)
 
-	def __init__(self, link, title, subtitle, userID):
+	def __init__(self, link, title, subtitle, userID, que):
 		self.link = link
 		self.title = title
 		self.subtitle = subtitle
 		self.userID = userID
+		self.que = que
 
 	like = db.relationship('Like', backref='survey',lazy='dynamic')
 	question = db.relationship('Question', backref='survey',lazy='dynamic')
@@ -78,9 +80,12 @@ class Like(db.Model):
 	__tablename__ = 'like'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
 	timestamp = db.Column(db.DateTime, default=db.func.now())
-	userID = db.Column(db.String(64), db.ForeignKey('user.id'))
-	surveyID = db.Column(db.String(64), db.ForeignKey('survey.id'))
-	
+	userID = db.Column(db.Integer, db.ForeignKey('user.id'))
+	surveyID = db.Column(db.Integer, db.ForeignKey('survey.id'))
+	def __init__(self, userID, surveyID):
+		self.userID = userID
+		self.surveyID = surveyID
+
 
 
 class Question(db.Model):
@@ -89,7 +94,7 @@ class Question(db.Model):
 	title = db.Column(db.String(64), nullable=False)
 	subtitle = db.Column(db.Text, nullable=False)
 	questionType = db.Column(db.Integer, nullable=False)
-	surveyID = db.Column(db.String(64), db.ForeignKey('survey.id'))
+	surveyID = db.Column(db.Integer, db.ForeignKey('survey.id'))
 	def __init__(self, title, subtitle, questionType, isEssential, surveyID):
 		self.title = title
 		self.subtitle = subtitle
@@ -105,7 +110,7 @@ class Option(db.Model):
 	__tablename__ = 'option'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
 	content = db.Column(db.Text)
-	questionID = db.Column(db.String(64), db.ForeignKey('question.id'))
+	questionID = db.Column(db.Integer, db.ForeignKey('question.id'))
 	def __init__(self, content, questionID):
 		self.content = content
 		self.questionID = questionID
@@ -116,10 +121,10 @@ class Option(db.Model):
 class Answer(db.Model):
 	__tablename__ = 'answer'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
-	userID = db.Column(db.String(64), db.ForeignKey('user.id'))
+	userID = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 	content = db.Column(db.Text)
-	questionID = db.Column(db.String(64), db.ForeignKey('question.id'))
+	questionID = db.Column(db.Integer, db.ForeignKey('question.id'))
 	def __init__(self, userID, content, questionID):
 		self.userID = userID
 		self.content = content

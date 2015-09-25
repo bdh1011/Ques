@@ -10,7 +10,8 @@ import random
 import re
 from functools import wraps
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from models import User, Survey, Question, Option, Answer
+from sqlalchemy import or_, and_
+from models import User, Survey, Question, Option, Answer, Like
 import decorator
 # from forms import LoginForm
 
@@ -23,9 +24,9 @@ def login_required(f):
     def decorated_function(*args, **kwargs):
         if not 'userid' in session:
             return redirect(url_for('login', next=request.url))
+        print session['userid']
         return f(*args, **kwargs)
     return decorated_function
-
 
 @app.route('/join', methods=['POST'])
 def join():
@@ -36,6 +37,7 @@ def join():
     day = request.form['day']
     birthday =  year + month + day
     gender =  request.form['gender']
+    q_point = 1000
     
     if email is None or password is None:
         return redirect(url_for('join'))
@@ -45,24 +47,19 @@ def join():
 
     print email, password, birthday, gender
     user = User(email=email, password=password, gender=gender, birthday=birthday,q_point=q_point )
-
     db.session.add(user)
     db.session.commit()
     session['userid'] = user.id
-
     # user_hash = hashlib.sha1(str(user.id)).hexdigest()
     # session['token'] = user_hash
-
     return redirect(url_for('main'))
 
 
 @app.route('/join',  methods=['GET'])
 def sign_up():
-    if 'userid' in session2:
+    if 'userid' in session:
         return redirect(url_for('main'))
     return render_template("join.html")
-
-
 
 @app.route('/join/email/<email>')
 def check_duplicate_email(email):
@@ -77,7 +74,7 @@ def check_duplicate_email(email):
 def logout():
     # remove the user from the session if it's there
     logout_user()
-    session.pop('token', None)
+    session.pop('userid', None)
     return redirect(url_for('login'))
 
 @app.route('/create', methods=['GET','POST'])
@@ -119,6 +116,16 @@ def archive():
         joined_survey_list.append(Survey.query.filter_by(id=joined_question.surveyID).first())
     user = User.query.filter_by(id=session['userid']).first()
     username = re.match('(.*)(@)',user.email).group(1)
+    for i in range(len(created_survey_list)):
+        created_survey_list[i].like_len = len(Like.query.filter_by(surveyID=created_survey_list[i].id).all())
+        created_survey_question = Question.query.filter_by(surveyID=created_survey_list[i].id).first()
+        created_survey_list[i].joined_len = len(Answer.query.filter_by(questionID=created_survey_question.id).all())
+
+    for i in range(len(joined_survey_list)):
+        joined_survey_list[i].like_len = len(Like.query.filter_by(surveyID=joined_survey_list[i].id).all())
+        joined_survey_question = Question.query.filter_by(surveyID=joined_survey_list[i].id).first()
+        joined_survey_list[i].joined_len = len(Answer.query.filter_by(questionID=joined_survey_question.id).all())
+
 
     return render_template('archive.html', created_survey_list=created_survey_list, joined_survey_list=joined_survey_list, joined_survey_count=len(joined_survey_list),username=username, profile_picture=user.profile_picture, q_point=user.q_point)
 
@@ -171,6 +178,9 @@ def get_survey(survey_id):
     else:
         user = User.query.filter_by(id=session['userid']).first()
         print request
+        user.q_point += survey.que
+        db.session.commit()
+        db.session.flush()
         for each_question in question_list:
             print each_question.id
             each_answer = request.form[str(each_question.id)]
@@ -200,11 +210,21 @@ def register_survey(survey_id):
     survey_title = survey['title']
     survey_subtitle = survey['subtitle']
     user = User.query.filter_by(id=session['userid']).first()
-    survey = Survey(link=survey_id, title=survey_title, subtitle=survey_subtitle, userID=user.id)
+    if user.q_point < 100:
+        return jsonify({'result':'q_shortage'})
+    user.q_point -= 100
+    question_len = len(session['tmp_question_dict'][survey_id])
+    if question_len < 5:
+        survey_que = question_len * 10
+    else:
+        survey_que = 50
+    survey = Survey(link=survey_id, title=survey_title, subtitle=survey_subtitle, userID=user.id, que=survey_que)
     db.session.add(survey)
     db.session.commit()
     db.session.flush()
     session['userid'] = user.id
+
+
     for each_question in session['tmp_question_dict'][survey_id]: 
         question = Question(
             title=each_question['title'],
@@ -227,10 +247,10 @@ def register_survey(survey_id):
 
 
 
-@app.route('/survey/<survey_id>/result', methods=['GET'])
+@app.route('/survey/<survey_link>/result', methods=['GET'])
 @login_required
-def survey_result(survey_id):
-    survey = Survey.query.filter_by(link=survey_id).first()
+def survey_result(survey_link):
+    survey = Survey.query.filter_by(link=survey_link).first()
     question_list = Question.query.filter_by(surveyID=survey.id).all()
     question_answers_dict_list = []
     for each_question in question_list:
@@ -266,7 +286,6 @@ def login():
     if request.method=='GET':
         if 'userid' in session:
             return redirect(url_for('main'))
-
         # if g.get('user', None) is not None:
         #     return redirect(url_for('main'))
     	return render_template("login.html")
@@ -298,7 +317,6 @@ def fb_login():
     name = request.form['name']
     gender = request.form['gender']
     fb_id = request.form['id']
-
     print fb_id,email, birthday, profile_picture, name, gender
     user = User.query.filter_by(email=email).first()
     try:
@@ -309,31 +327,62 @@ def fb_login():
     except:
 		password = fb_id
 		user = User(email=email, gender=gender, birthday=birthday, profile_picture=profile_picture,password=password,q_point=0 )
-
 		db.session.add(user)
 		db.session.commit()
-
 		# user_hash = hashlib.sha1(str(user.id)).hexdigest()
 		session['userid'] = user.id
     return redirect(url_for('main'))
 
 
-@app.route('/main')
+@app.route('/main', methods=['POST','GET'])
+@login_required
 def main():
-    if not 'userid' in session:
-        return redirect(url_for('login'))
-    user = User.query.filter_by(id=session['userid']).first()
-    username = re.match('(.*)(@)',user.email).group(1)
-    survey_list = Survey.query.order_by(Survey.register_timestamp).all()
-    for each in survey_list:
-        print each.id
-        print each.title
-        print each.subtitle
-        print each.register_timestamp
-        print each.userID
+    if request.method=='GET':
+        if not 'userid' in session:
+            return redirect(url_for('login'))
+        user = User.query.filter_by(id=session['userid']).first()
+        username = re.match('(.*)(@)',user.email).group(1)
+        search_query = request.args.get('search')
+        if search_query is not None:
+            survey_list = db.session.query(Survey).join(Question).filter(or_(
+                Survey.title.contains(search_query),
+                Survey.subtitle.contains(search_query),
+                Question.title.contains(search_query),
+                Question.subtitle.contains(search_query)
+                )).order_by(Survey.register_timestamp).all()
+        else:
+            search_query = ''
+            survey_list = Survey.query.order_by(Survey.register_timestamp).all()
 
-        
-    return render_template("main.html", username=username, profile_picture=user.profile_picture,survey_list=survey_list)
+        for i in range(len(survey_list)):
+            like_list = Like.query.filter_by(surveyID=survey_list[i].id).all()
+            survey_list[i].like_len = len(like_list)
+            survey_list[i].melike=False
+            for each_like in like_list:
+                if session['userid'] == each_like.userID:
+                    survey_list[i].melike = True
+                    break
+
+            survey_question = Question.query.filter_by(surveyID=survey_list[i].id).first()
+            survey_list[i].joined_len = len(Answer.query.filter_by(questionID=survey_question.id).all())
+        return render_template("main.html", search_query=search_query,username=username,user_q=user.q_point, profile_picture=user.profile_picture,survey_list=survey_list)
+
+@app.route('/like', methods=['POST'])
+@login_required
+def like():
+    survey_id = request.get_json()['survey_id']
+    already_like = Like.query.filter(and_(Like.userID==session['userid'], Like.surveyID==survey_id)).first()
+    if already_like is not None:
+        Like.query.filter(and_(Like.userID==session['userid'], Like.surveyID==survey_id)).delete()
+        db.session.commit()
+        return jsonify({"result":"unlike"})
+    else:
+        like = Like(userID=session['userid'], surveyID=survey_id)
+        db.session.add(like)
+        db.session.commit()
+        return jsonify({"result":"like"})
+
+
 
 @app.route('/home')
 @login_required
