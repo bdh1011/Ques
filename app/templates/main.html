@@ -35,7 +35,10 @@
 				}, 
 				failure: function(errMsg) { alert(data.result);}});
 
-			})
+		})
+
+
+
 	});
 
 	</script>
@@ -88,7 +91,13 @@
 				가지고 있는&nbsp;<span style="color:#FF3900; font-size:25px;"><b>Q&nbsp;{{user_q}}</b></span><!--survey 수자-->
 				
 				<span class="survey_sort" style="font-size:20px;">설문 분류</span>
-				
+				<div class="survey_sort_wrapper">
+					<ul>
+						<li></li>
+						<li></li>
+
+					</ul>
+				</div>
 			</div>
 			
 		</div>
@@ -96,7 +105,7 @@
 		<div class="cards">
 		{% for each_survey in survey_list%}
 				<div class="card">
-				<a href="/survey/{{each_survey.link}}">
+					<a href="/survey/{{each_survey.link}}">
 					<div class="card_body">
 						<h2>{{each_survey.title}}</h2>
 						<h3>{{each_survey.subtitle}}</h3>

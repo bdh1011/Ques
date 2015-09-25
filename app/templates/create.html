@@ -64,13 +64,25 @@
 
 		});
 		//질문추가
-		$(document).on("click", '.addition',function()
+		$(document).on("change", '.addition select',function()
 		{
 
-			var question2 = "<table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='choice'>객관식 질문</option><option value='multiple_choice'>객관식 질문(중복 응답)</option><option value='essay'>주관식 질문</option></select></td></tr><tr class='option'><td></td><td><input placeholder='옵션' type='text'></td></tr><tr><td></td><td><a class='option_addition'>옵션추가</a></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table>";
+			
 
-			var question = "<div class='question'><div><span>질문 제목</span><input type ='text'></div><br><div><span>도움말 텍스트</span><textarea rows='1' col='10'></textarea></div><br><span>질문 유형</span><select class='select'><option value='choice'>객관식 질문</option><option value='essay'>주관식 질문</option><option value='multiple_choice'>객관식 (중복응답)</option><option value='range'>점수 범위 선택</option></select><div class='choice'><input type = 'text'placeholder='옵션''><a><div class='option_addition'>옵션추가</div></a></div></div></div>";
+			var valueSelected  = $(this).val();
+		     if(valueSelected=="essay"){
+		     	var question2 = "<table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='essay'>주관식 질문</option><option value='choice'>객관식 질문</option><option value='multiple_choice'>객관식 질문(중복 응답)</option></select></td></tr><tr class='option'><td></td><td><input placeholder='옵션' type='text'></td></tr><tr><td></td><td><a class='option_addition'>옵션추가</a></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table>";
+		     }
+		     else if(valueSelected=='choice'){
+		     	var question2 = "<table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='choice'>객관식 질문</option><option value='multiple_choice'>객관식 질문(중복 응답)</option><option value='essay'>주관식 질문</option></select></td></tr><tr class='option'><td></td><td><input placeholder='옵션' type='text'></td></tr><tr><td></td><td><a class='option_addition'>옵션추가</a></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table>";
+		     }
+
+		     else if(valueSelected=='multiple_choice'){
+		     	var question2 = "<table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='multiple_choice'>객관식 질문(중복 응답)</option><option value='choice'>객관식 질문</option><option value='essay'>주관식 질문</option></select></td></tr><tr class='option'><td></td><td><input placeholder='옵션' type='text'></td></tr><tr><td></td><td><a class='option_addition'>옵션추가</a></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table>";
+		     }
+
 			$("#ques").append(question2);
+			$(this).val("title");
 
 		});
 
@@ -97,13 +109,13 @@
 
 		//객관식 <> 주관식 <> 중복객관식(요거는 객관식과 동일 처리하되, 설문참여시 차별을 두도록) <> 범위
 		
-		$(document).on("change", 'select', function()
+		$(document).on("change", '.question select', function()
 		{
 		     var valueSelected  = $(this).val();
 		     if(valueSelected=="essay"){
 		     	$(this).parents('tr').nextAll(".option").remove();
 		     	$(this).parents('tr').next().remove();
-		     	var essay = "<tr class='essay'><td><input type='text' value='답변'></td></tr>";
+		     	var essay = "<tr class='essay'><td colspan='2'><input type='text' value='답변'></td></tr>";
 		     	$(this).parents("tr").after(essay);
 
 		     }
@@ -189,7 +201,14 @@
 					</div>
 				</div>-->
 			</div>
-			<a><div class="addition">항목 추가</div></a>
+			<div class="addition">
+			<select>
+				<option value="title">항목추가</option>
+				<option value="choice">객관식 질문</option>
+				<option value="multiple_choice">객관식 질문(중복 응답)</option>	
+				<option value="essay">주관식 질문</option>
+			</select>
+			</div>
 			<a><div class="complete">설문지 완성</div></a>
 		</form>
 	</div>

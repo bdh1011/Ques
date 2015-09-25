@@ -81,7 +81,7 @@ a{
 
 .question select{
 	border: 1px solid #ccc;
-    width: 120px;
+    width: 170px;
     border-radius: 3px;
     overflow: hidden;
 }
@@ -105,7 +105,6 @@ a{
 }
 
 .addition{
-	background-color: #6B7570;
 	text-align: center;
 	color: #FFF;
 }
@@ -218,7 +217,9 @@ a{
 		padding: 0 8px;
     	box-shadow: none;
     	background: transparent;
-    	background-image: none;
+    	background-image: url("../img/drop_down.png");
+    	background-repeat: no-repeat;
+    	background-position: right;
     	-webkit-appearance: none;
 		height: 30px;
 		font-size: 12px;
@@ -247,8 +248,8 @@ a{
 	.submit{
 	width: 100px;
 	height: 40px;
+	border: none;
 	margin-top:28px;
-	border: 1px solid #000;
 	line-height: 40px;
 	font-size: 18px;
 	border-radius: 5px;
@@ -258,17 +259,26 @@ a{
 	}
 
 	.addition{
-	width: 100px;
-	height: 40px;
-	margin:28px 48px;
-	border: 1px solid #000;
-	line-height: 40px;
-	font-size: 18px;
-	border-radius: 5px;
-	color: #FFF;
-	cursor: pointer;
-	background-color: #FF3900;
+		display: inline-block;
+		margin:28px 48px;
+		border-radius: 5px;
+		cursor: pointer;
 	}
+
+	.addition select{
+		padding: 0 8px;
+    	box-shadow: none;
+    	background: transparent;
+    	background-image: url("../img/drop_down.png");
+    	background-repeat: no-repeat;
+    	background-position: right;
+    	-webkit-appearance: none;
+		height: 35px;
+		font-size: 18px;
+		line-height: 35px;
+		border-radius: 3px;
+	}
+
 
 	.complete{
 	width: 100px;
