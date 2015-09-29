@@ -32,43 +32,50 @@
 				$('.overlay').toggle();
 				$('.share_x_btn').remove();
 			});
+			$(document).on("click", '.data_wrapper',function(){
+				var pathname = window.location.pathname;
+				var survey_link = $(this).attr("data-survey-link");
+				
 
+				$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-7)+'survey/'+survey_link+'/download', contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){ alert(data)}, failure: function(errMsg) { alert("a");}});
+
+		});
 
 			  
-			$(".share_wrapper").click(function(){
-				var survey_link = $(this).attr("data-survey-link");
-				var survey_title = $(this).attr("data-survey-title");
-			    $(".overlay").toggle(); // show/hide the overlay
+			// $(".share_wrapper").click(function(){
+			// 	var survey_link = $(this).attr("data-survey-link");
+			// 	var survey_title = $(this).attr("data-survey-title");
+			//     $(".overlay").toggle(); // show/hide the overlay
 			    
-			    var share_popup = "<div class='share_popup'>\
-			    <div class='share_x_btn'></div>\
-			    <div class='share_title'>"+survey_title+"<br>에 대한 공유</div>\
-			    <div class='share_url_row'>\
-			    	<input type='text' readonly onClick='this.select();' class='share_url_text' value='http://ques.co.kr/survey/"+survey_link+"'></input>\
-			    	<input type='button' class='share_url_btn' value='URL 복사'></input>\
-			    </div>\
-			    <div class='fb-share' onclick='fb_login();'>\
-					<div class='fb-logo'><img src='https://d12hfz37g51hrt.cloudfront.net/assets/intro/intro_btn_fb-be965df1261cacccc62891c1759f853a.png'></div>\
-					<div class='fb-text'>페이스북으로 공유</div>\
-				</div>\
-			    </div>";
+			//     var share_popup = "<div class='share_popup'>\
+			//     <div class='share_x_btn'></div>\
+			//     <div class='share_title'>"+survey_title+"<br>에 대한 공유</div>\
+			//     <div class='share_url_row'>\
+			//     	<input type='text' readonly onClick='this.select();' class='share_url_text' value='http://ques.co.kr/survey/"+survey_link+"'></input>\
+			//     	<input type='button' class='share_url_btn' value='URL 복사'></input>\
+			//     </div>\
+			//     <div class='fb-share' onclick='fb_login();'>\
+			// 		<div class='fb-logo'><img src='https://d12hfz37g51hrt.cloudfront.net/assets/intro/intro_btn_fb-be965df1261cacccc62891c1759f853a.png'></div>\
+			// 		<div class='fb-text'>페이스북으로 공유</div>\
+			// 	</div>\
+			//     </div>";
 
-				$(".overlay").append(share_popup);
+			// 	$(".overlay").append(share_popup);
 
 
-				$(".share_url_btn").click(function(){
-				console.log('hi')
-				var copyTextarea = $('.share_url_text');
-				copyTextarea.select();
-				try {
-					var successful = document.execCommand('copy');
-					var msg = successful ? 'successful' : 'unsuccessful';
-					console.log('Copying text command was ' + msg);
-				} catch (err) {
-					alert('지원하지 않는 브라우저입니다.')
-				}
-			});
-			})
+			// 	$(".share_url_btn").click(function(){
+			// 	console.log('hi')
+			// 	var copyTextarea = $('.share_url_text');
+			// 	copyTextarea.select();
+			// 	try {
+			// 		var successful = document.execCommand('copy');
+			// 		var msg = successful ? 'successful' : 'unsuccessful';
+			// 		console.log('Copying text command was ' + msg);
+			// 	} catch (err) {
+			// 		alert('지원하지 않는 브라우저입니다.')
+			// 	}
+			// });
+			// })
 
 
 			
@@ -155,18 +162,19 @@
 		<div class="created_survey cards">
 		{% for each_survey in created_survey_list %}
 			<div class="card">
+				<a href="/survey/{{each_survey.link}}/result">
 					<div class="card_body">
 						<h2>{{each_survey.title}}</h2>
 						<h3>{{each_survey.subtitle}}</h3>
 					</div>
-					
+				</a>
 				<div class="card_bottom">
-					<a href="/survey/{{each_survey.link}}/result">
-						<div class="card_icon data_wrapper" data-survey-id="{{each_survey.id}}">
+				<a href="/survey/{{each_survey.link}}/download">
+						<div class="card_icon data_wrapper" data-survey-link="{{each_survey.link}}">
 							<div class="icon data_img"></div>
 							<span>데이터</span>
 						</div>
-					</a>
+						</a>
 					<div class="card_icon share_wrapper" data-survey-title="{{each_survey.title}}" data-survey-link="{{each_survey.link}}">
 						<div class="icon share_img"></div>
 						<span>공유</span>

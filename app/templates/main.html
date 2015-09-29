@@ -32,8 +32,15 @@
 						clicked_like.find(".heart_click").removeClass("heart_click");
 						clicked_like.find(".like_len").text(parseInt(clicked_like.find(".like_len").text())-1);
 					}
+					if(data['result'] == '403'){
+						alert("do survey first")
+					}
 				}, 
-				failure: function(errMsg) { alert(data.result);}});
+				failure: function(errMsg) { 
+					alert(errMsg)
+				}
+
+			});
 
 		})
 
@@ -82,13 +89,13 @@
 			
 			</ul>
 		</nav>
-		<div class="main_title">설문을<br>만들고<br>공유하세요.
+		<div class="main_title"><span>설문을<br>만들고<br>공유하세요.</span>
 		</div>
 	</header>
 	<div class="main_wrapper">
 		<div class="main_top">
 			<div class="card_count">
-				가지고 있는&nbsp;<span style="color:#FF3900; font-size:25px;"><b>Q&nbsp;{{user_q}}</b></span><!--survey 수자-->
+				가지고 있는&nbsp;<span style="color:#FF3900; font-size:20px;"><b>Q&nbsp;{{user_q}}</b></span><!--survey 수자-->
 				
 				<span class="survey_sort" style="font-size:20px;">설문 분류</span>
 				<div class="survey_sort_wrapper">

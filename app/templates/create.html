@@ -19,13 +19,19 @@
 			var type = $(this).parents('tbody').children('.select').find('td select').val();
 			var question_element = $(this).parents('.question');
 			var index = $('.question').index(question_element);
-			var option_count = $(this).parents('tbody').children(".option").length;
+			var option_list = $(this).parents('tbody').children(".option").find("input");
 			var options=[];
 			var i = i;
-			if(title.length == 0 | options.length == 0){
+			console.log(option_list);
+			if(title.length == 0){
 				alert("모든 칸을 채워주세요");
 				return;
 			}
+			option_list.each(function(index, item){
+				options.push(option_list[index].value);
+			
+			});
+			console.log(options);
 			var question = { "title":title, "subtitle":subtitle, "type":type, "option":options};
 
 			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'tmpsave', data: JSON.stringify({"question": question }), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){ alert(data)}, failure: function(errMsg) { alert("a");}});

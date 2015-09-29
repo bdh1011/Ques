@@ -120,7 +120,7 @@ a{
 /*web*/
 @media(min-width: 1064px){
 	.header_wrapper{
-		height: 480px;
+		height: 380px;
 	}
 	#navbar{
 		top: 40px;
@@ -153,7 +153,7 @@ a{
 		margin: 0 auto;
 		vertical-align: middle;
 		white-space: nowrap;
-		position: relative;
+		position: absolute;
 		display: inline-block;
 		left: 50%;
 		margin-left: -170px;
@@ -281,20 +281,22 @@ a{
 	}
 
 	.main_title{
-		top: 80px;
-		font-size: 42px;
-		width: 300px;
-		position: relative;
-		margin: 0 auto;
+		width:100%;
+		position: absolute;
+		bottom:80px;
 	}
+	.main_title span{
+		font-size: 40px;
+		text-align: center;
 
+	}
 	.main_wrapper{
-
+		padding-bottom:30px;
 	}
 
 	.main_top{
 		width: 100%;
-		height: 80px;
+		height: 50px;
 		background-color: #F2F2F2;
 		border-bottom: solid 3px #C5C5C5;
 		  -webkit-box-shadow: 1px 1px 4px 0px rgba(100, 100, 100, 0.2);
@@ -383,10 +385,10 @@ box-shadow:         1px 1px 4px 0px rgba(100, 100, 100, 0.2);
 	}
 
 	.card_count{
-		line-height: 80px;
+		line-height: 50px;
 		width:1038px;
 		margin: 0 auto;
-		font-size: 24px;
+		font-size: 20px;
 	}
 
 	.card_count .survey_sort{

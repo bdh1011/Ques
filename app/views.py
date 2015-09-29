@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, flash,jsonify, session, url_for, g, request, redirect
+from flask import render_template, flash,jsonify, session, url_for, g, request, redirect, make_response
 from app import db
 from app import app
 import hashlib
@@ -23,6 +23,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not 'userid' in session:
+
             return redirect(url_for('login', next=request.url))
         print session['userid']
         return f(*args, **kwargs)
@@ -284,12 +285,19 @@ def survey_result(survey_link):
 @app.route('/login' , methods=['GET', 'POST'])
 def login():
     if request.method=='GET':
+
+        try:
+            if 'request_url' in request.args:
+                session['request_url'] = request.args['request_url']
+        except Exception as e:
+            print e
         if 'userid' in session:
             return redirect(url_for('main'))
         # if g.get('user', None) is not None:
         #     return redirect(url_for('main'))
     	return render_template("login.html")
     else:
+
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
@@ -305,6 +313,9 @@ def login():
         user_hash = hashlib.sha1(str(user.id)).hexdigest()
         session['userid'] = user.id
         # username = re.match('(.*)(@)',user.email).group(1)
+        
+        if 'request_url' in session:
+            return redirect(session['request_url'])
         return redirect(url_for('main'))
 
 
@@ -356,6 +367,8 @@ def main():
 
         for i in range(len(survey_list)):
             like_list = Like.query.filter_by(surveyID=survey_list[i].id).all()
+            if len(survey_list[i].title) > 20:
+                survey_list[i].title = survey_list[i].title[:20] + '...'
             survey_list[i].like_len = len(like_list)
             survey_list[i].melike=False
             for each_like in like_list:
@@ -371,6 +384,10 @@ def main():
 @login_required
 def like():
     survey_id = request.get_json()['survey_id']
+    survey_list = db.session.query(Question).join(Answer).filter(and_(Answer.userID==session['userid'],
+        Question.surveyID==survey_id)).all()
+    if(len(survey_list)==0):
+        return jsonify({"result":"403"})
     already_like = Like.query.filter(and_(Like.userID==session['userid'], Like.surveyID==survey_id)).first()
     if already_like is not None:
         Like.query.filter(and_(Like.userID==session['userid'], Like.surveyID==survey_id)).delete()
@@ -383,9 +400,69 @@ def like():
         return jsonify({"result":"like"})
 
 
+import csv
 
-@app.route('/home')
-@login_required
-def home():
+@app.route('/survey/<survey_link>/download',methods=['get'])
+def survey_download(survey_link):
+    survey = Survey.query.filter_by(link=survey_link).first()
+    question_list = Question.query.filter_by(surveyID=survey.id).all()
+    question_answers_dict_list = []
+    for each_question in question_list:
+        question_answers_dict = {}
+        question_answers_dict['question'] = each_question
+        question_answers_dict['answers'] = Answer.query.filter_by(questionID=each_question.id).all()
+        question_answers_dict['answers_size'] = len(Answer.query.filter_by(questionID=each_question.id).all())
+        question_answers_dict_list.append(question_answers_dict)
 
-	return render_template('home.html')
+    data_for_csv = []
+
+    (file_basename, server_path, file_size) = create_csv(survey, question_answers_dict_list)
+    print file_basename, server_path, file_size
+    return_file = open(server_path+file_basename, 'r')
+    
+    response = make_response(return_file.read(),200)
+    response.headers['Content-Description'] = 'File Transfer'
+    response.headers['Cache-Control'] = 'no-cache'
+    response.headers['Content-Type'] = 'text/csv'
+    response.headers['Content-Disposition'] = 'attachment; filename=%s' % file_basename
+    response.headers['Content-Length'] = file_size
+    print response
+    return response
+
+## function to create csv from the SQLAlchemy query response object
+import time
+import datetime
+
+def create_csv(survey, question_answers_dict_list):
+    """ returns (file_basename, server_path, file_size) """
+    user = User.query.filter_by(id=survey.userID).first()
+
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('-%Y-%m-%d-%H:%M:%S')
+    file_basename = str(survey.id) + st + '.csv'
+    server_path = os.path.dirname(os.path.realpath(__file__))+"/csv/"
+    w_file = open(str(server_path+file_basename),'w')
+
+    w_file.write("title : "+survey.title + "\n")
+    w_file.write("subtitle : "+survey.subtitle+"\n")
+    w_file.write("user email : "+user.email+"\n")
+    w_file.write("create time : "+str(survey.register_timestamp)+"\n")
+    w_file.write("survey link : ques.co.kr/survey/"+survey.link+"\n")
+    w_file.write("\n")
+    for question_answers_dict in question_answers_dict_list:
+        w_file.write("question title : "+question_answers_dict['question'].title+"\n")
+        w_file.write("question subtitle : "+question_answers_dict['question'].subtitle+"\n")
+        w_file.write("question type : "+question_answers_dict['question'].questionType+"\n")
+        for each_answers in question_answers_dict['answers']:
+            w_file.write(each_answers.content+','+str(each_answers.timestamp)+"\n")
+        w_file.write("\n")
+        
+    w_file.close()
+
+    w_file = open(server_path+file_basename,'r')
+    # print w_file
+    file_size = len(w_file.read())
+    
+    return file_basename, server_path, file_size
+
+
