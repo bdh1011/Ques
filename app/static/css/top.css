@@ -568,6 +568,15 @@ box-shadow:         1px 1px 4px 0px rgba(100, 100, 100, 0.2);
 	.created_survey .card_icon span{
 		color:#FC3B1E;
 	}
+	.joined_survey .card_bottom{
+		padding-left:50px;
+	}
+	.joined_survey .card_icon{
+		cursor: pointer;
+	}
+	.joined_survey .card_icon span{
+		color:#FC3B1E;
+	}
 	.overlay {
 	    position:fixed;
 	    display:none; 
