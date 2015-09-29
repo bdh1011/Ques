@@ -164,6 +164,10 @@ def get_survey(survey_id):
     question_list = Question.query.filter_by(surveyID=survey.id).all()
     
     if request.method=='GET':
+        survey_list = db.session.query(Question).join(Answer).filter(and_(Answer.userID==session['userid'],
+        Question.surveyID==survey_id)).all()
+        if(len(survey_list)!=0):
+            return redirect('/main')
         question_option_list = []
         for each_question in question_list:
             each_question_options = {}
@@ -178,7 +182,7 @@ def get_survey(survey_id):
         return render_template("survey.html",survey=survey, question_list=question_option_list)
     else:
         user = User.query.filter_by(id=session['userid']).first()
-        print request
+
         user.q_point += survey.que
         db.session.commit()
         db.session.flush()

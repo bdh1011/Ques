@@ -149,10 +149,14 @@
 		</div>
 		<div class="joined_survey cards" style="display:none">
 		{% for each_survey in joined_survey_list %}
-			<a href="/survey/{{each_survey.link}}">
+			
 			<div class="card">
-				<h2>{{each_survey.title}}</h2>
-				<h3>{{each_survey.subtitle}}</h3>
+			<a href="/survey/{{each_survey.link}}">
+				<div class="card_body">
+						<h2>{{each_survey.title}}</h2>
+						<h3>{{each_survey.subtitle}}</h3>
+					</div>
+					</a>
 				<div class="card_bottom">
 					<div class="card_icon like_wrapper">
 							{% if each_survey.melike %}
