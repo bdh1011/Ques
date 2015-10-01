@@ -99,7 +99,6 @@ a{
 }
 
 .option_addition{
-	background-color: #00F;
 	text-align: center;
 	color: #FFF;
 }
@@ -189,11 +188,14 @@ a{
 	}
 
 	.question span{
-		width: 120px;
+		width: 30px;
 		height: 30px;
 		line-height: 30px;
 		display: inline-block;
-		background-color: #0F0;
+		background-image: url("../img/addition.png");
+		background-size: cover;
+		cursor: pointer;
+		border: 1px dashed #CCC;
 	}
 	.question input[type="text"]{
 	height: 30px;
@@ -236,9 +238,9 @@ a{
 	}
 
 	.option_addition{
-	width: 100px;
-	height: 30px;
-	line-height: 30px;
+	width: 200px;
+	height: 20px;
+	line-height: 20px;
 	margin: 10px auto;
 	border-radius: 10px;
 	}
@@ -281,10 +283,10 @@ a{
 
 
 	.complete{
+		text-align: center;
 	width: 100px;
 	height: 40px;
 	margin:28px 48px;
-	border: 1px solid #000;
 	line-height: 40px;
 	font-size: 18px;
 	border-radius: 5px;
@@ -405,6 +407,8 @@ a{
 	}
 
 	.option_addition{
+	width: 200px;
+	height: 20px;
 	width: 100px;
 	height: 30px;
 	line-height: 30px;
