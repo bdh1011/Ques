@@ -58,9 +58,7 @@ a{
 	background-color: #C7C9C8;
 }
 
-.question{
-	background-color: #F6F6F6;
-}
+ 
 
 .survey_title input{
 	width: 150px;
@@ -150,6 +148,7 @@ a{
 		width: 1064px;
 		position: relative;
 		height: 50px;
+		margin-bottom: 5px;
 	}
 
 	.survey_subtitle{
@@ -169,6 +168,9 @@ a{
 		width: 1064px;
 		height: auto;
 		padding: 48px;
+		-webkit-box-shadow: 0px 0px 5px 3px rgba(155,155,155,1);
+		-moz-box-shadow: 0px 0px 5px 3px rgba(155,155,155,1);
+		box-shadow: 0px 0px 5px 3px rgba(155,155,155,1);
 	}
 
 	.question tbody tr{
@@ -226,11 +228,47 @@ a{
 		height: 30px;
 		font-size: 12px;
 		line-height: 30px;
+		color: #4D4D4D;
 	}
 
 	.question select:focus{
 		outline: none;
 	}
+
+	.question-view{
+		width: 1064px;
+		position: relative;
+		padding: 48px 48px;
+	}
+
+	.question-view h2{
+		font-size: 20px;
+		margin: 0;
+	}
+
+	.question-view h3{
+		margin: 0;
+		color: #9B9B9B;
+		font-size: 20px;
+	}
+
+	.question-view table{
+		margin: 0;
+		margin-top: 22px;
+		font-size: 20px;
+	}
+
+	.question-view form input[type="radio"]{
+		width: 20px;
+		height: 20px;
+		border-radius: 0;
+	}
+
+	.question-view form input[type="text"]{
+		width: 200px;
+		height: 20px;
+	}
+
 
 	.choice input{
 	margin-top: 5px;
@@ -293,40 +331,6 @@ a{
 	color: #FFF;
 	cursor: pointer;
 	background-color: #FF3900;
-	}
-
-	.question_survey{
-		width: 1064px;
-		position: relative;
-		padding: 48px 48px;
-	}
-
-	.question_survey h2{
-		font-size: 20px;
-		margin: 0;
-	}
-
-	.question_survey h3{
-		margin: 0;
-		color: #9B9B9B;
-		font-size: 20px;
-	}
-
-	.question_survey table{
-		margin: 0;
-		margin-top: 22px;
-		font-size: 20px;
-	}
-
-	.question_survey form input[type="radio"]{
-		width: 20px;
-		height: 20px;
-		border-radius: 0;
-	}
-
-	.question_survey form input[type="text"]{
-		width: 200px;
-		height: 20px;
 	}
 }
 
