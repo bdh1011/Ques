@@ -19,6 +19,11 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+@app.route('/etc')
+def etc():
+	return render_template('etc.html')
+
+	
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -145,17 +150,16 @@ def survey_edit(survey_id):
 @login_required
 def tmp_create(survey_id):
     if request.method=='GET':
-        return jsonify(request.get_json())
+        return jsonify({'result':session['tmp_question_dict'][survey_id]})
     question = request.get_json()['question']
     print question
     if session['tmp_question_dict'].has_key(survey_id):
-        session['tmp_question_dict'][survey_id].append(question)
+        session['tmp_question_dict'][survey_id][question['index']] = question
     else:
-        session['tmp_question_dict'][survey_id] = []
-        session['tmp_question_dict'][survey_id].append(question)
+        session['tmp_question_dict'][survey_id] = {}
+        session['tmp_question_dict'][survey_id][question['index']] = question
     print session
     return jsonify({'success': session['tmp_question_dict']})
-
 
 @app.route('/survey/<survey_id>', methods=['POST','GET'])
 @login_required

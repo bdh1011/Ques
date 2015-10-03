@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = 'ques'
 
 db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/ques.db'
 
 login_manager = LoginManager()
 login_manager.init_app(app)

@@ -32,7 +32,7 @@
 			
 			});
 			console.log(options);
-			var question = { "title":title, "subtitle":subtitle, "type":type, "option":options};
+			var question = { "index":index, "title":title, "subtitle":subtitle, "type":type, "option":options};
 
 			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'tmpsave', data: JSON.stringify({"question": question }), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data){ alert(data)}, failure: function(errMsg) { alert("a");}});
 

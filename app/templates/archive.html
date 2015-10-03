@@ -41,9 +41,38 @@
 
 		});
 
+$(".share_wrapper").click(function(){
+	var survey_link = $(this).attr("data-survey-link");
+	var survey_title = $(this).attr("data-survey-title");
+	$(".overlay").toggle(); // show/hide the overlay    
+	var share_popup = "<div class='share_popup'>\
+				<div class='share_x_btn'></div>\
+				<div class='share_title'>"+survey_title+"<br>에 대한 공유</div>\
+				<div class='share_url_row'>\
+				<input type='text' readonly onClick='this.select();' class='share_url_text' value='http://ques.co.kr/survey/"+survey_link+"'></input>\
+				<input type='button' class='share_url_btn' value='URL 복사'></input>\
+				</div>\
+				<div class='fb-share' onclick='fb_login();'>\
+				<div class='fb-logo'><img src='https://d12hfz37g51hrt.cloudfront.net/assets/intro/intro_btn_fb-be965df1261cacccc62891c1759f853a.png'></div>\
+				<div class='fb-text'>페이스북으로 공유</div>\
+				</div>\
+			</div>";
+
+	$(".overlay").append(share_popup);
+	$(".share_url_btn").click(function(){
+		var copyTextarea = $('.share_url_text');
+		copyTextarea.select();
+		try {
+			var successful = document.execCommand('copy');
+			var msg = successful ? 'successful' : 'unsuccessful';
+			console.log('Copying text command was ' + msg);
+		} catch (err) {
+			alert('지원하지 않는 브라우저입니다.')
+		}
+	});
+	})		
 			
-			
-		})
+})
 
 
 	</script>
