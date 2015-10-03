@@ -73,7 +73,7 @@ a{
 }
 .profile_name{
 	position: relative;
-	float: left;
+	float: left;_
 	color: #FFF;
 }
 
@@ -283,7 +283,7 @@ a{
 	.main_title{
 		width:100%;
 		position: absolute;
-		bottom:80px;
+		top:160px;
 	}
 	.main_title span{
 		font-size: 40px;
