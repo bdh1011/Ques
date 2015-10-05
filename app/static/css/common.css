@@ -1,9 +1,6 @@
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
 @charset "utf-8";
-@font-face{ 
-	font-family: 'font';
-	/*src:url("../font/210 콤퓨타세탁R.ttf")format('truetype');*/
-	src:url('../font/yoon320.ttf');
-}
+
 body{
-	font-family: 'font';
+	font-family: 'Nanum Gothic';
 }

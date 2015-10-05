@@ -524,6 +524,9 @@ box-shadow:         1px 1px 4px 0px rgba(100, 100, 100, 0.2);
 		height: 350px;
 		border-radius: 10px;
 		border: solid #B2B2B2 1px;
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		-moz-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
 	}
 
 	#after_submit .close{
@@ -702,6 +705,9 @@ box-shadow:         1px 1px 4px 0px rgba(100, 100, 100, 0.2);
 		height: 250px;
 		border-radius: 10px;
 		border: solid #B2B2B2 1px;
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		-moz-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
 	}
 
 	#send-mail .after-mail-content{
@@ -725,6 +731,182 @@ box-shadow:         1px 1px 4px 0px rgba(100, 100, 100, 0.2);
 		color: #FF3900;
 		font-size: 26px;
 		border: solid #B2B2B2 1px;
+	}
+
+	#join-success{
+		padding-top: 44px;
+		width: 600px;
+		height: 370px;
+		border-radius: 10px;
+		border: solid #B2B2B2 1px;
+		font-size: 20px;
+		text-align: center;
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		-moz-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+	}
+
+	#join-success .ques-start{
+		margin: 0 auto;
+		width: 560px;
+		height: 60px;
+		line-height: 60px;
+		position: relative;
+		margin-top: 40px;
+		border-radius: 10px;
+		border: solid 1px #FF3900;
+		color:#FF3900;
+	}
+
+	#que-lack{
+		padding-top: 20px;
+		width: 448px;
+		height: 160px;
+		border-radius: 10px;
+		border: solid #B2B2B2 1px;
+		font-size: 20px;
+		text-align: center;
+		position: relative;
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		-moz-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+	}
+
+	#que-lack .close{
+		width: 20px;
+		height: 20px;
+		margin-top: -15px;
+		right: 5px;
+		position: absolute;
+		float: right;
+		background-image: url("../img/close.png");
+		background-size: cover;
+		cursor: pointer;
+	}
+
+	#que-lack .survey-start{
+		margin: 0 auto;
+		width: 264px;
+		height: 40px;
+		line-height: 40px;
+		position: relative;
+		margin-top: 20px;
+		border-radius: 10px;
+		border: solid 1px #FF3900;
+		color:#FF3900;
+	}
+
+	#after-request{
+		padding:10px 0;
+		width: 400px;
+		border-radius: 10px;
+		border: solid #B2B2B2 1px;
+		font-size: 20px;
+		text-align: center;
+		position: relative;
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		-moz-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+	}
+
+	#after-request .close{
+		width: 20px;
+		height: 20px;
+		top:5px;
+		right: 5px;
+		position: absolute;
+		float: right;
+		background-image: url("../img/close.png");
+		background-size: cover;
+		cursor: pointer;
+	}
+
+	#delete-survey{
+		padding-top:40px;
+		padding-bottom: 20px;
+		width: 400px;
+		border-radius: 10px;
+		border: solid #B2B2B2 1px;
+		font-size: 20px;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		-moz-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+	}
+
+	#delete-survey .button{
+		float: left;
+		margin-left: 20px;
+		width: 170px;
+		height: 40px;
+		line-height: 40px;
+		display: inline-block;
+		border-radius: 5px;
+		border: solid #9B9B9B 1px;
+		cursor: pointer;
+	}
+
+	#download-data{
+		padding-top:40px;
+		padding-bottom: 20px;
+		width: 400px;
+		border-radius: 10px;
+		border: solid #B2B2B2 1px;
+		font-size: 20px;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		-moz-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+	}
+
+	#download-data span{
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	#download-data .button{
+		float: left;
+		margin-left: 20px;
+		width: 170px;
+		height: 40px;
+		line-height: 40px;
+		display: inline-block;
+		border-radius: 5px;
+		border: solid #9B9B9B 1px;
+		cursor: pointer;
+		margin-top: 30px;
+	}
+
+	#download-data .download-button{
+		float: left;
+		margin-left: 20px;
+		width: 170px;
+		height: 40px;
+		line-height: 40px;
+		display: inline-block;
+		border-radius: 5px;
+		border: solid #FF3900 1px;
+		background-color: #FF3900;
+		cursor: pointer;
+		margin-top: 30px;
+		color: #FFF;
+	}
+
+	#copy-url{
+		width: 448px;
+		height: 80px;
+		font-size: 20px;
+		line-height: 80px;
+		text-align: center;
+		border-radius: 10px;
+		border: solid #9B9B9B 1px;
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		-moz-box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
+		box-shadow: 0px 2px 4px 0px rgba(155,155,155,1);
 	}
 
 }
