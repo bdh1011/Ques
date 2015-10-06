@@ -28,7 +28,7 @@ $(document).ready(function(){
 		$("#join_sort").css("color","#FF3900");
 	}
 
-	else if(pathname.indexOf("que")!=-1){
+	else if(pathname.substring(pathname.length-3,pathname.length).indexOf("que")!=-1){
 		$("#que_sort").css("background-image",'url("'+"../static/img/send_rectangler_icon.png"+'")');
 		$("#que_sort").css("background-repeat","no-repeat");
 		$("#que_sort").css("background-position","right");
