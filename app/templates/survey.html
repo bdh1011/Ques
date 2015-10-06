@@ -17,7 +17,9 @@
 	        $(this).prop("checked",$(this).data("chk"));
 	    });
 
-	    
+	    $('.overlay').click(function(){
+	    	$(this).toggle();
+	    })
 		$(document).on("click", '.share_x_btn',function(){
 			$('.overlay').toggle();
 			$('.share_x_btn').remove();
@@ -28,7 +30,7 @@
 </head>
 <body>
 	<div class="overlay">
-		<div id="after_submit">
+		<!--<div id="after_submit">
 			<div class="close"></div>
 			<div class="after_submit_content">
 			성실한 답변 감사합니다.<br>
@@ -37,7 +39,7 @@
 			<div class="after_submit_button">
 				네, 지금 확인하고 싶어요
 			</div>
-		</div>
+		</div>-->
 	</div>
 	<form id="view_wrapper" method="post">
 		<div class="survey_title_wrapper">

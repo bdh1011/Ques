@@ -150,15 +150,20 @@ def survey_edit(survey_id):
 @login_required
 def tmp_create(survey_id):
     if request.method=='GET':
+        print 'tmp save session',session['tmp_question_dict'][survey_id]
         return jsonify({'result':session['tmp_question_dict'][survey_id]})
     question = request.get_json()['question']
-    print question
     if session['tmp_question_dict'].has_key(survey_id):
-        session['tmp_question_dict'][survey_id][question['index']] = question
+        print 'survice id exist'
+        print 'before',session['tmp_question_dict'][survey_id]
+        session['tmp_question_dict'][survey_id][str(question['index'])] = question
+        print session['tmp_question_dict'][survey_id]
     else:
         session['tmp_question_dict'][survey_id] = {}
-        session['tmp_question_dict'][survey_id][question['index']] = question
-    print session
+        session['tmp_question_dict'][survey_id][str(question['index'])] = question
+        print 'before',session['tmp_question_dict'][survey_id]
+    print 'survey',session['tmp_question_dict'][survey_id]
+
     return jsonify({'success': session['tmp_question_dict']})
 
 @app.route('/survey/<survey_id>', methods=['POST','GET'])
@@ -166,8 +171,8 @@ def tmp_create(survey_id):
 def get_survey(survey_id):
     survey = Survey.query.filter_by(link=survey_id).first()
     question_list = Question.query.filter_by(surveyID=survey.id).all()
-    
     if request.method=='GET':
+
         survey_list = db.session.query(Question).join(Answer).filter(and_(Answer.userID==session['userid'],
         Question.surveyID==survey_id)).all()
         if(len(survey_list)!=0):
@@ -233,8 +238,9 @@ def register_survey(survey_id):
     db.session.flush()
     session['userid'] = user.id
 
-
-    for each_question in session['tmp_question_dict'][survey_id]: 
+    print 'question dict',session['tmp_question_dict'][survey_id]
+    for question_idx, each_question in session['tmp_question_dict'][survey_id].iteritems(): 
+        print 'value',each_question
         question = Question(
             title=each_question['title'],
          subtitle=each_question['subtitle'],
@@ -354,14 +360,16 @@ def fb_login():
 
 
 @app.route('/main', methods=['POST','GET'])
+@app.route('/main/<sort_type>')
 @login_required
-def main():
+def main(**kwargs):
     if request.method=='GET':
         if not 'userid' in session:
             return redirect(url_for('login'))
         user = User.query.filter_by(id=session['userid']).first()
         username = re.match('(.*)(@)',user.email).group(1)
         search_query = request.args.get('search')
+        sort_type = request.args.get('sort_type')
         if search_query is not None:
             survey_list = db.session.query(Survey).join(Question).filter(or_(
                 Survey.title.contains(search_query),
@@ -373,7 +381,9 @@ def main():
             search_query = ''
             survey_list = Survey.query.order_by(Survey.register_timestamp).all()
 
+
         for i in range(len(survey_list)):
+            print survey_list[i]
             like_list = Like.query.filter_by(surveyID=survey_list[i].id).all()
             if len(survey_list[i].title) > 20:
                 survey_list[i].title = survey_list[i].title[:20] + '...'
@@ -385,8 +395,27 @@ def main():
                     break
 
             survey_question = Question.query.filter_by(surveyID=survey_list[i].id).first()
-            survey_list[i].joined_len = len(Answer.query.filter_by(questionID=survey_question.id).all())
+            if survey_question is not None:
+	            survey_list[i].joined_len = len(Answer.query.filter_by(questionID=survey_question.id).all())
+
+        if 'sort_type' in kwargs:
+            survey_list = sort_survey(survey_list,sort_type)
         return render_template("main.html", search_query=search_query,username=username,user_q=user.q_point, profile_picture=user.profile_picture,survey_list=survey_list)
+
+def sort_survey(survey_list, sort_type):    
+        print survey_list[0]   
+        if sort_type == 'like':
+            survey_list = sorted(survey_list,key=lambda each_survey: each_survey.like_len, reverse=True)
+        elif sort_type == 'joined_num':
+            survey_list = sorted(survey_list,key=lambda each_survey: each_survey.joined_len, reverse=True)
+        elif sort_type == 'que':
+            survey_list = sorted(survey_list,key=lambda each_survey: each_survey.que, reverse=True)
+        else:
+            pass
+        return survey_list
+def get_key(item, sort_key):
+    return item[sort_key]
+
 
 @app.route('/like', methods=['POST'])
 @login_required
