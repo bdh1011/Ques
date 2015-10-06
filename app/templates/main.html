@@ -7,6 +7,7 @@
 	<link rel='stylesheet' type='text/css'  href='../static/css/common.css'>
 	<link rel='stylesheet' type='text/css'  href='../static/css/top.css'>
 	<script src='{{url_for("static",filename="js/jquery-1.9.1.min.js")}}'></script>
+	<script src='{{url_for("static",filename="js/main.js")}}'></script>
 	<script type="text/javascript">
 
 	$(document).ready(function(){
@@ -97,12 +98,13 @@
 			<div class="card_count">
 				가지고 있는&nbsp;<span style="color:#FF3900; font-size:20px;"><b>Q&nbsp;{{user_q}}</b></span><!--survey 수자-->
 				
-				<span class="survey_sort" style="font-size:20px;">설문 분류</span>
 				<div class="survey_sort_wrapper">
+				설문분류
 					<ul>
-						<li></li>
-						<li></li>
-
+						<li><a href="/main">최신순</a></li>
+						<li><a href="/main/like">좋아요 많은순</a></li>
+						<li><a href="/main/joined_num">참여자 많은순</a></li>
+						<li><a href="/main/que">획득가능 Q가 높은순</a></li>
 					</ul>
 				</div>
 			</div>
