@@ -225,7 +225,7 @@ a{
 	}
 
 	#navbar ul li ul{
-		z-index: 10px;
+		z-index: 10;
 		border:solid 1px #9B9B9B;
 		border-top:solid 5px #FF3900;
 		border-bottom-left-radius: 10px;
@@ -234,6 +234,7 @@ a{
 		top: 50px;
 		padding-top: 50px;
 		margin-left: 10px;
+		margin-top: -10px;
 		width: 146px;
 		background-color: #FFF;
 		text-align: center;
@@ -408,7 +409,7 @@ a{
 	}
 
 	.card_count .survey_sort_wrapper ul{
-		z-index: 10px;
+		z-index: 100;
 		border:solid 1px #9B9B9B;
 		border-radius: 10px;
 		position: absolute;
