@@ -397,8 +397,8 @@ def main(**kwargs):
             survey_question = Question.query.filter_by(surveyID=survey_list[i].id).first()
             if survey_question is not None:
 	            survey_list[i].joined_len = len(Answer.query.filter_by(questionID=survey_question.id).all())
-
-        if 'sort_type' in kwargs:
+        print sort_type
+        if sort_type is not None:
             survey_list = sort_survey(survey_list,sort_type)
         return render_template("main.html", search_query=search_query,username=username,user_q=user.q_point, profile_picture=user.profile_picture,survey_list=survey_list)
 
