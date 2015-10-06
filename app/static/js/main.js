@@ -12,6 +12,7 @@ $(document).ready(function(){
 	*/
 
 	var pathname = window.location.pathname;
+	console.log(pathname);
 	if(pathname.indexOf("like")!=-1){
 		$("#like_sort").css("background-image",'url("'+"../static/img/send_rectangler_icon.png"+'")');
 		$("#like_sort").css("background-repeat","no-repeat");
