@@ -43,7 +43,7 @@
 
 			$.ajax({
 				type:"GET",
-				url:pathname.substring(0,path.length-4)+'tmpsave',
+				url:pathname.substring(0,pathname.length-4)+'tmpsave',
 				data: JSON,
 				success:function(data){
 					alert(data);
