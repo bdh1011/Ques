@@ -33,15 +33,15 @@
 			console.log(options+"b");
 			var question = { "index":index, "title":title, "subtitle":subtitle, "type":type, "option":options};
 
-			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'tmpsave', data: JSON.stringify({"question": question }), contentType: "application/json; charset=utf-8", dataType: "json", success: function(data)/*{ 
+			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'tmpsave', data: JSON.stringify({"question": question }), contentType: "application/json; charset=utf-8", dataType: "json", success: testa/*{ 
 					var question_json = $.getJSON(pathname.substring(0,pathname.length-4)+'tmpsave',function(data){
 							$.each(data, function(i,test){
 								console.log(test+"c");
 							})
 						})
-			}*/, failure: function(errMsg) { alert("a");}})
+			}*/, failure: function(errMsg) { alert("a");}});
 
-			function test(){
+			function testa(){
 				$.ajax({
 				type:"GET",
 				url:pathname.substring(0,pathname.length-4)+'tmpsave',
