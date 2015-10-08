@@ -33,7 +33,7 @@
 			console.log(options+"b");
 			var question = { "index":index, "title":title, "subtitle":subtitle, "type":type, "option":options};
 
-			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'tmpsave', data: JSON.stringify({"question": question }), contentType: "application/json; charset=utf-8", dataType: "json", success: testa/*{ 
+			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'tmpsave', data: JSON.stringify({"question": question }), contentType: "application/json; charset=utf-8", dataType: "json", success: getData/*{ 
 					var question_json = $.getJSON(pathname.substring(0,pathname.length-4)+'tmpsave',function(data){
 							$.each(data, function(i,test){
 								console.log(test+"c");
@@ -41,18 +41,15 @@
 						})
 			}*/, failure: function(errMsg) { alert("a");}});
 
-			function testa(){
-				alert("동");
+			function getData(){
 				$.ajax({
 				type:"GET",
 				url:pathname.substring(0,pathname.length-4)+'tmpsave',
 				data: JSON, contentType:"charset=utf-8;",
 				dataType:"json",
 				success:function(data){
-					console.log(data);
-				},
-				error:function(request,status,error){
-    			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+					alert(data);
+				}
 			})}
 			/*$.ajax({
 				type:"GET",
