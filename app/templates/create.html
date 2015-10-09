@@ -42,6 +42,8 @@
 				data: JSON, contentType:"charset=utf-8;",
 				dataType:"json",
 				success:function(data){
+
+					$('.question').remove();
 					console.log(data.result);
 				}
 			})}
@@ -206,7 +208,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="question-view">
+				<!--<div class="question-view">
 					<h2>질문 미리보기</h2>
 					<h3>질문 설명 미리보기</h3>
 					<table>
@@ -224,7 +226,7 @@
 									</tr>
 						</tbody>
 					</table>
-				</div>
+				</div>-->
 
 				<!--
 				<div class="question">
