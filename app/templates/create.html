@@ -44,9 +44,11 @@
 				success:function(data){
 					$('.question').remove();
 					console.log(data.result);
-					$.each(data.result, function(index, val){
-						console.log(data.result[0].subtitle);
-					});
+					for(var i = 0 ;i<data.result.length;i++){
+						var str= '<div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody><tr><td><input type="text" name="앙"></td></tr><tr><td><input type="radio" name="앙" value="앙"></td><td>옵션1</td></tr><tr><td><input type="checkbox" name="당" value="앙"></td><td>옵션1-1</td></tr></tbody></table></div>';
+						$("#ques").append(str);
+			
+					}
 				}
 			})}
 			/*$.ajax({
