@@ -36,7 +36,7 @@
 			$.ajax({ type: "POST", url: pathname.substring(0,pathname.length-4)+'tmpsave', data: JSON.stringify({"question": question }), contentType: "application/json; charset=utf-8", dataType: "json", success: getData, failure: function(errMsg) { alert("a");}});
 
 			function getData(){
-				var i;
+				var length;
 				$.ajax({
 				type:"GET",
 				url:pathname.substring(0,pathname.length-4)+'tmpsave',
@@ -44,7 +44,8 @@
 				dataType:"json",
 				success:function(data){
 					$('.question').remove();
-					console.log(data.result.keys().length);
+					length=Object.keys(data.result).length;
+					console.log("len:"+length);
 					alert(data.result.length);
 					for(i in data.result){	
 						var str= '<div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody><tr><td><input type="text" name="앙"></td></tr><tr><td><input type="radio" name="앙" value="앙"></td><td>옵션1</td></tr><tr><td><input type="checkbox" name="당" value="앙"></td><td>옵션1-1</td></tr></tbody></table></div>';
