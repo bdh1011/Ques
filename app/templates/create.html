@@ -44,9 +44,9 @@
 				success:function(data){
 					$('.question').remove();
 					console.log(data.result);
-					for(var i = 0 ; i<data.result.length;i++){
-						console.log(data.result.i.title);
-					}
+					$.each(data.result, function(index, val){
+						console.log("index:"+index+"\tval:"val);
+					});
 				}
 			})}
 			/*$.ajax({
