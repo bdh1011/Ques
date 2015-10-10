@@ -47,14 +47,14 @@
 					length=Object.keys(data.result).length;
 					for(i in data.result){	
 						if(data.result[i].type=="choice"){
-							var str= '<div class="index_question"><div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody>';
+							var str= '<div class="index_question"><div class="question-view"><div class="edit"></div><div class="delete"></div><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody>';
 							for(j in data.result[i].option){
 								str+='<tr><td><input type="radio" name="앙" value="앙"></td><td>'+data.result[i].option[j]+'</td></tr>'
 							}
 							str+='</tbody></table></div><div>';
 						}
 						else if(data.result[i].type=="multiple_choice"){
-							var str= '<div class="index_question"><div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody>';
+							var str= '<div class="index_question"><div class="question-view"><div class="edit"></div><div class="delete"></div><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody>';
 							for(j in data.result[i].option){
 								str+='<tr><td><input type="checkbox" name="앙" value="앙"></td><td>'+data.result[i].option[j]+'</td></tr>'
 							}
@@ -62,7 +62,7 @@
 							
 						}
 						else{
-							var str= '<div class="index_question"><div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody><tr><td><input type="text" name="앙"></td></tr></tbody></table></div></div>';
+							var str= '<div class="index_question"><div class="question-view"><div class="edit"></div><div class="delete"></div><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody><tr><td><input type="text" name="앙"></td></tr></tbody></table></div></div>';
 						}
 						$("#ques").append(str);
 					}	
