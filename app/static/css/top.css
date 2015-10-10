@@ -343,6 +343,10 @@ a{
 		border-bottom:5px solid #FC3B1E;
 	}
 
+	.created_survey_btn, .joined_survey_btn{
+		cursor: pointer;
+	}
+
 	.archive_profile_box{
 		top: 80px;
 		font-size: 42px;

@@ -17,8 +17,8 @@
 			var title = $(this).parents('tbody').children('.question_title').find('td input').val();
 			var subtitle = $(this).parents('tbody').children('.question_subtitle').find('td input').val();
 			var type = $(this).parents('tbody').children('.select').find('td select').val();
-			var question_element = $(this).parents('.question');
-			var index = $('.question').index(question_element);
+			var question_element = $(this).parents('.index_question');
+			var index = $('.index_question').index(question_element);
 			var option_list = $(this).parents('tbody').children(".option").find("input");
 			var options=[];
 			var i = i;
@@ -47,22 +47,22 @@
 					length=Object.keys(data.result).length;
 					for(i in data.result){	
 						if(data.result[i].type=="choice"){
-							var str= '<div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody>';
+							var str= '<div class="index_question"><div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody>';
 							for(j in data.result[i].option){
 								str+='<tr><td><input type="radio" name="앙" value="앙"></td><td>'+data.result[i].option[j]+'</td></tr>'
 							}
-							str+='</tbody></table></div>';
+							str+='</tbody></table></div><div>';
 						}
 						else if(data.result[i].type=="multiple_choice"){
-							var str= '<div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody>';
+							var str= '<div class="index_question"><div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody>';
 							for(j in data.result[i].option){
 								str+='<tr><td><input type="checkbox" name="앙" value="앙"></td><td>'+data.result[i].option[j]+'</td></tr>'
 							}
-							str+='</tbody></table></div>';
+							str+='</tbody></table></div></div>';
 							
 						}
 						else{
-							var str= '<div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody><tr><td><input type="text" name="앙"></td></tr></tbody></table></div>';
+							var str= '<div class="index_question"><div class="question-view"><h2>'+data.result[i].title+'</h2><h3>'+data.result[i].subtitle+'</h3><table><tbody><tr><td><input type="text" name="앙"></td></tr></tbody></table></div></div>';
 						}
 						$("#ques").append(str);
 					}	
@@ -115,14 +115,14 @@
 
 			var valueSelected  = $(this).val();
 		     if(valueSelected=="essay"){
-		     	var question2 = "<table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='essay'>주관식 질문</option><option value='choice'>객관식 질문</option><option value='multiple_choice'>객관식 질문(중복 응답)</option></select></td></tr><tr class='essay'><td colspan='2'><input type='text' value='답변'></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table>";
+		     	var question2 = "<div class='index_question'><table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='essay'>주관식 질문</option><option value='choice'>객관식 질문</option><option value='multiple_choice'>객관식 질문(중복 응답)</option></select></td></tr><tr class='essay'><td colspan='2'><input type='text' value='답변'></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table></div>";
 		     }
 		     else if(valueSelected=='choice'){
-		     	var question2 = "<table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='choice'>객관식 질문</option><option value='multiple_choice'>객관식 질문(중복 응답)</option><option value='essay'>주관식 질문</option></select></td></tr><tr class='option'><td></td><td><input placeholder='옵션' type='text'></td></tr><tr><td></td><td><span class='option_addition'></span></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table>";
+		     	var question2 = "<div class='index_question'><table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='choice'>객관식 질문</option><option value='multiple_choice'>객관식 질문(중복 응답)</option><option value='essay'>주관식 질문</option></select></td></tr><tr class='option'><td></td><td><input placeholder='옵션' type='text'></td></tr><tr><td></td><td><span class='option_addition'></span></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table></div>";
 		     }
 
 		     else if(valueSelected=='multiple_choice'){
-		     	var question2 = "<table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='multiple_choice'>객관식 질문(중복 응답)</option><option value='choice'>객관식 질문</option><option value='essay'>주관식 질문</option></select></td></tr><tr class='option'><td></td><td><input placeholder='옵션' type='text'></td></tr><tr><td></td><td><span class='option_addition'></span></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table>";
+		     	var question2 = "<div class='index_question'><table class='question'><tbody><tr class='question_title'><td>질문 제목</td><td><input type='text'></td></tr><tr class='question_subtitle'><td>도움말 텍스트</td><td><input type='text'></td></tr><tr class='select'><td>질문 유형</td><td><select><option value='multiple_choice'>객관식 질문(중복 응답)</option><option value='choice'>객관식 질문</option><option value='essay'>주관식 질문</option></select></td></tr><tr class='option'><td></td><td><input placeholder='옵션' type='text'></td></tr><tr><td></td><td><span class='option_addition'></span></td></tr><tr><td><input class='submit' type='button' value='완료''></td></tr></tbody></table></div>";
 		     }
 
 			$("#ques").append(question2);
@@ -195,6 +195,7 @@
 					<input type ="text" class="survey_subtitle" placeholder="설문지 설명">
 				</div>
 				<!--질문 1세트-->
+				<div class="index_question">
 				<table class="question">
 					<tbody>
 						<tr class="question_title">
@@ -226,6 +227,7 @@
 						</tr>
 					</tbody>
 				</table>
+				</div>
 				<!--<div class="question-view">
 					<h2>질문 미리보기</h2>
 					<h3>질문 설명 미리보기</h3>
