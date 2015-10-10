@@ -257,7 +257,6 @@ a{
 		display: inline-block;
 		background-image:url('../img/delete.png');
 		background-repeat: no-repeat;
-		background-color: #FF0;
 		width: 30px;
 		height: 30px;
 		cursor: pointer;
