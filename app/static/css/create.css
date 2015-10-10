@@ -241,6 +241,31 @@ a{
 		padding: 48px 48px;
 	}
 
+	.question-view:hover .edit{
+		display: inline-block;
+		background-image:url('../img/edit.png');
+		background-repeat: no-repeat;
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		position: absolute;
+		right: 88px;
+		top: 48px;
+	}
+
+	.question-view:hover .delete{
+		display: inline-block;
+		background-image:url('../img/delete.png');
+		background-repeat: no-repeat;
+		background-color: #FF0;
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		position: absolute;
+		right: 48px;
+		top: 48px;
+	}
+
 	.question-view h2{
 		font-size: 20px;
 		margin: 0;
